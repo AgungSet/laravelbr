@@ -4,9 +4,14 @@
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
-                <div class="shrink-0 flex items-center">
+                {{-- <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
                         <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
+                    </a>
+                </div> --}}
+                <div class="shrink-0 flex items-center">
+                    <a href="{{ route('dashboard') }}">
+                        <img src="{{ asset('build/mbk.png') }}" alt="Logo" class="block h-9 w-auto" />
                     </a>
                 </div>
 
@@ -21,6 +26,27 @@
                         {{ __('produk') }}
                     </x-nav-link>
                 </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('kategori')" :active="request()->routeIs('kategori')">
+                        {{ __('kategori') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('transaksi')" :active="request()->routeIs('transaksi')">
+                        {{ __('transaksi') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('member')" :active="request()->routeIs('member')">
+                        {{ __('member') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('pesanan')" :active="request()->routeIs('pesanan')">
+                        {{ __('pesanan') }}
+                    </x-nav-link>
+                </div>
+
             </div>
 
             <!-- Settings Dropdown -->
@@ -112,13 +138,13 @@
         </div>
     </div>
     <!-- Responsive Settings Options -->
-    <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
+    {{-- <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
         <div class="px-4">
             <div class="font-medium text-base text-gray-800 dark:text-gray-200">{{ Auth::user()->name }}</div>
             <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
-        </div>
+        </div> --}}
 
-        <div class="mt-3 space-y-1">
+    {{-- <div class="mt-3 space-y-1">
             <x-responsive-nav-link :href="route('profile.edit')">
                 {{ __('Profile') }}
             </x-responsive-nav-link>
@@ -132,7 +158,7 @@
                     {{ __('Log Out') }}
                 </x-responsive-nav-link>
             </form>
-        </div>
+        </div> --}}
     </div>
     </div>
 </nav>
