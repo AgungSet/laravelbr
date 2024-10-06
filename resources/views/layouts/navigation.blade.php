@@ -22,27 +22,27 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('produk')" :active="request()->routeIs('produk')">
+                    <x-nav-link :href="route('produk.index')" :active="request()->routeIs('produk.index')">
                         {{ __('produk') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('kategori')" :active="request()->routeIs('kategori')">
+                    <x-nav-link :href="route('kategori.index')" :active="request()->routeIs('kategori.index')">
                         {{ __('kategori') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('transaksi')" :active="request()->routeIs('transaksi')">
+                    <x-nav-link :href="route('transaksi.index')" :active="request()->routeIs('transaksi.index')">
                         {{ __('transaksi') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('member')" :active="request()->routeIs('member')">
+                    <x-nav-link :href="route('member.index')" :active="request()->routeIs('member.index')">
                         {{ __('member') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('pesanan')" :active="request()->routeIs('pesanan')">
+                    <x-nav-link :href="route('pesanan.index')" :active="request()->routeIs('pesanan.index')">
                         {{ __('pesanan') }}
                     </x-nav-link>
                 </div>
@@ -104,35 +104,35 @@
     </div>
     <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('produk')" :active="request()->routeIs('produk')">
+            <x-responsive-nav-link :href="route('produk.index')" :active="request()->routeIs('produk.index')">
                 {{ __('produk') }}
             </x-responsive-nav-link>
         </div>
     </div>
     <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('kategori')" :active="request()->routeIs('kategori')">
+            <x-responsive-nav-link :href="route('kategori.index')" :active="request()->routeIs('kategori.index')">
                 {{ __('kategori') }}
             </x-responsive-nav-link>
         </div>
     </div>
     <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('transaksi')" :active="request()->routeIs('transaksi')">
+            <x-responsive-nav-link :href="route('transaksi.index')" :active="request()->routeIs('transaksi.index')">
                 {{ __('transaksi') }}
             </x-responsive-nav-link>
         </div>
     </div>
     <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('member')" :active="request()->routeIs('member')">
+            <x-responsive-nav-link :href="route('member.index')" :active="request()->routeIs('member.index')">
                 {{ __('member') }}
             </x-responsive-nav-link>
         </div>
     </div>
     <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('pesanan')" :active="request()->routeIs('pesanan')">
+            <x-responsive-nav-link :href="route('pesanan.index')" :active="request()->routeIs('pesanan.index')">
                 {{ __('pesanan') }}
             </x-responsive-nav-link>
         </div>
