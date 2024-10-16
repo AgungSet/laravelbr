@@ -33,6 +33,12 @@
                                         {{ $produk->nama_produk }}
                                     </td>
                                     <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
+                                        {{ $tanggal->tanggal }}
+                                    </td>
+                                    <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
+                                        {{ $stok->stok }}
+                                    </td>
+                                    <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
                                         {{ date('d M Y', strtotime($produk->created_at)) }}
                                     </td>
 
