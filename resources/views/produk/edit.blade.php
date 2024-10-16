@@ -1,14 +1,14 @@
 @extends('layouts.app')
 @section('header')
-    {{ __('Edit kategori') }}
+    {{ __('Edit produk') }}
 @endsection
 @section('content')
     <div class="py-6">
-        <form class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6" action="{{ route('kategori.update', $kategori->id) }}" method="POST">
+        <form class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6" action="{{ route('produk.update', $produk->id) }}" method="POST">
             @csrf
             @method('PUT')
-            @include('kategori.partials.kategori-form')
-            @include('kategori.partials.kategori-aksi-form')
+            @include('produk.partials.produk-form')
+            @include('produk.partials.produk-aksi-form')
         </form>
     </div>
 @endsection
