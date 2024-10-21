@@ -38,7 +38,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/kategori', [KategoriController::class, 'store'])->name('kategori.store'); //ROUTE UNTUK STORE DATA
     Route::get('/kategori/{kategori}/edit', [KategoriController::class, 'edit'])->name('kategori.edit'); // Rute untuk edit
     Route::put('/kategori/{kategori}', [KategoriController::class, 'update'])->name('kategori.update'); // Rute untuk update
-    Route::delete('/kategori/{kategori}', [KategoriController::class, 'destroy'])->name('produk.destroy'); // Rute untuk destroy
+    Route::delete('/kategori/{kategori}', [KategoriController::class, 'destroy'])->name('kategori.destroy'); // Rute untuk destroy
 });
 
 Route::middleware('auth')->group(function () {

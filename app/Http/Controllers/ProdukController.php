@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kategori;
 use App\Models\Produk;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
@@ -23,18 +24,30 @@ class ProdukController extends Controller
 
     public function create(): View
     {
-        return view('produk.create');
+        $kategoris = Kategori::all();
+
+        return view('produk.create', compact('kategoris'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
             'nama_produk' => 'required',
-            'deskripsi' => 'required'
+            'tanggal' => 'required',
+            'harga' => 'required',
+            'stok' => 'required',
+            'id_kategori' => 'required',
+
+
         ]);
         produk::create([
             'nama_produk' => $request->nama_produk,
-            'deskripsi' => $request->deskripsi,
+            'tanggal' => $request->tanggal,
+            'harga' => $request->harga,
+            'stok' => $request->stok,
+            'id_kategori' => $request->id_kategori,
+
+
         ]);
         return redirect()->route('produk.index')->with('success', 'produk created successfully.');
     }
@@ -48,11 +61,17 @@ class ProdukController extends Controller
     {
         $request->validate([
             'nama_produk' => 'required',
-            'deskripsi' => 'required'
+            'tanggal' => 'required',
+            'harga' => 'required',
+            'stok' => 'required',
+            'id_kategori' => 'required',
         ]);
         $produk->update([
             'nama_produk' => $request->nama_produk,
-            'deskripsi' => $request->deskripsi,
+            'tanggal' => $request->tanggal,
+            'harga' => $request->harga,
+            'stok' => $request->stok,
+            'id_kategori' => $request->id_kategori,
         ]);
         return redirect()->route('produk.index')->with('success', 'produk update successfully.');
     }

@@ -8,10 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Kategori extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'nama_kategori',
-        'deskripsi',
-    ];
+    protected $guarded = [];
 
     public function produk()
     {

@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Produk extends Model
 {
     use HasFactory;
-
-    public function kategori()
+    protected $guarded = [];
+    public function produk()
     {
-        return $this->belongsTo(Kategori::class, 'id');//ONE
+        return $this->belongsTo(produk::class, 'id'); //ONE
     }
 }
