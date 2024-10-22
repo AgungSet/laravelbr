@@ -23,12 +23,6 @@
                                 <th class="bg-gray-50 px-6 py-3 text-left">
                                     <span class="text-xs font-medium uppercase leading-4 tracking-wider text-gray-500">Action</span>
                                 </th>
-                                <th class="bg-gray-50 px-6 py-3 text-left">
-                                    <span class="text-xs font-medium uppercase leading-4 tracking-wider text-gray-500">Kategori</span>
-                                </th>
-                                <th class="bg-gray-50 px-6 py-3 text-left">
-                                    <span class="text-xs font-medium uppercase leading-4 tracking-wider text-gray-500">tanggal</span>
-                                </th>
                             </tr>
                         </thead>
 
@@ -36,18 +30,20 @@
                             @foreach ($transaksis as $index => $transaksi)
                                 <tr class="bg-white">
                                     <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
-                                        {{ $transaksi->nama_transaksi }}
+                                        {{ $transaksi->tanggal }}
                                     </td>
                                     <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
-                                        {{ $tanggal->tanggal }}
+                                        {{ $transaksi->nama_customer }}
                                     </td>
                                     <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
-                                        {{ $harga->harga }}
+                                        {{ $transaksi->nama_produk }}
                                     </td>
                                     <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
-                                        {{ $stok->stok }}
+                                        {{ $transaksi->harga }}
                                     </td>
-                                    {{-- Buat untuk relasi dengan kategori --}}
+                                    <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
+                                        {{ $transaksi->total }}
+                                    </td>
                                     <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
                                         {{ date('d M Y', strtotime($transaksi->created_at)) }}
                                     </td>

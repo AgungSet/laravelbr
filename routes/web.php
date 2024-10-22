@@ -62,4 +62,19 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+// TRANSAKSI
+Route::middleware('auth')->group(function () {
+    Route::get('/transaksi', [TransaksiController::class, 'index'])->name('produk.index'); // Rute untuk index
+    Route::get('/transaksi/create', [TransaksiController::class, 'create'])->name('produk.create'); // Rute untuk create
+    Route::post('/transaksi', [TransaksiController::class, 'store'])->name('produk.store'); //ROUTE UNTUK STORE DATA
+    Route::get('/transaksi/{transaksi}/edit', [TransaksiController::class, 'edit'])->name('produk.edit'); // Rute untuk edit
+    Route::put('/transaksi/{transaksi}', [TransaksiController::class, 'update'])->name('produk.update'); // Rute untuk update
+    Route::delete('/transaksi/{transaksi}', [TransaksiController::class, 'destroy'])->name('produk.destroy'); // Rute untuk destroy
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 require __DIR__ . '/auth.php';
