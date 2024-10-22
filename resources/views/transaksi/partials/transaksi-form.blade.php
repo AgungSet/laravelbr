@@ -1,11 +1,5 @@
 <section class="p-4 sm:p-8 bg-white shadow rounded-lg">
     <div class="flex flex-col mt-4 gap-6">
-        <div class="flex flex-col md:flex-row flex-wrap gap-4">
-            <div class="flex-1">
-                <label for="transaksi" :value="__('transaksi')"> transaksi</label>
-                <input type="text" id="nama_transaksi" name="nama_transaksi" value="{{ old('nama_transaksi', optional($transaksi ?? null)->kategori) }}" class="mt-1 block w-full" />
-            </div>
-        </div>
         <div>
             <label for="tanggal">tanggal</label>
             <input id="tanggal" name="tanggal" type="date" class="mt-1 block w-full">{{ old('nama_customer', optional($transaksi ?? null)->nama_customer ? $transaksi->nama_customer : '') }}</input>

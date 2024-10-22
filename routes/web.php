@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -64,12 +65,12 @@ Route::middleware('auth')->group(function () {
 });
 // TRANSAKSI
 Route::middleware('auth')->group(function () {
-    Route::get('/transaksi', [TransaksiController::class, 'index'])->name('produk.index'); // Rute untuk index
-    Route::get('/transaksi/create', [TransaksiController::class, 'create'])->name('produk.create'); // Rute untuk create
-    Route::post('/transaksi', [TransaksiController::class, 'store'])->name('produk.store'); //ROUTE UNTUK STORE DATA
-    Route::get('/transaksi/{transaksi}/edit', [TransaksiController::class, 'edit'])->name('produk.edit'); // Rute untuk edit
-    Route::put('/transaksi/{transaksi}', [TransaksiController::class, 'update'])->name('produk.update'); // Rute untuk update
-    Route::delete('/transaksi/{transaksi}', [TransaksiController::class, 'destroy'])->name('produk.destroy'); // Rute untuk destroy
+    Route::get('/transaksi', [TransaksiController::class, 'index'])->name('transaksi.index'); // Rute untuk index
+    Route::get('/transaksi/create', [TransaksiController::class, 'create'])->name('transaksi.create'); // Rute untuk create
+    Route::post('/transaksi', [TransaksiController::class, 'store'])->name('transaksi.store'); //ROUTE UNTUK STORE DATA
+    Route::get('/transaksi/{transaksi}/edit', [TransaksiController::class, 'edit'])->name('transaksi.edit'); // Rute untuk edit
+    Route::put('/transaksi/{transaksi}', [TransaksiController::class, 'update'])->name('transaksi.update'); // Rute untuk update
+    Route::delete('/transaksi/{transaksi}', [TransaksiController::class, 'destroy'])->name('transaksi.destroy'); // Rute untuk destroy
 });
 
 Route::middleware('auth')->group(function () {

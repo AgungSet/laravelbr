@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Kategori;
 use App\Models\Produk;
-use App\Models\transaksi;
+use App\Models\Transaksi;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
-class transaksiController extends Controller
+class TransaksiController extends Controller
 {
     public function ajax()
     {
@@ -25,9 +25,8 @@ class transaksiController extends Controller
 
     public function create(): View
     {
-        $kategoris = Kategori::all();
         $produks = Produk::all();
-        return view('transaksi.create', compact('kategoris', 'produks'));
+        return view('transaksi.create', compact('produks'));
     }
 
     public function store(Request $request)
