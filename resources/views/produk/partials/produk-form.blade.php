@@ -8,15 +8,15 @@
         </div>
         <div>
             <label for="tanggal">tanggal</label>
-            <input id="tanggal" name="tanggal" type="date" class="mt-1 block w-full">{{ old('tanggal', optional($produk ?? null)->tanggal ? $produk->tanggal : '') }}</input>
+            <input id="tanggal" name="tanggal" type="date" class="mt-1 block w-full"value={{ old('tanggal', optional($produk ?? null)->tanggal ? $produk->tanggal : '') }}></input>
         </div>
         <div>
             <label for="harga">harga</label>
-            <input id="harga" name="harga" type="number" class="mt-1 block w-full">{{ old('harga', optional($produk ?? null)->harga ? $produk->harga : '') }}</input>
+            <input id="harga" name="harga" type="number" class="mt-1 block w-full"value={{ old('harga', optional($produk ?? null)->harga ? $produk->harga : '') }}></input>
         </div>
         <div>
             <label for="stok">stok</label>
-            <input id="stok" name="stok" type="number" class="mt-1 block w-full">{{ old('stok', optional($produk ?? null)->stok ? $produk->stok : '') }}</input>
+            <input id="stok" name="stok" type="number" class="mt-1 block w-full" value={{ old('stok', optional($produk ?? null)->stok ? $produk->stok : '') }}></input>
         </div>
         {{-- FIELD OPTION JABATAN --}}
         <div class="flex-1">

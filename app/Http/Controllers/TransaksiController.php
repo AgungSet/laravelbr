@@ -32,19 +32,18 @@ class TransaksiController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama_transaksi' => 'required',
             'tanggal' => 'required',
-            'nama_customer' => 'required',
             'id_produk' => 'required',
+            'nama_customer' => 'required',
             'harga' => 'required',
             'total' => 'required',
 
 
         ]);
-        produk::create([
-            'nama_transaksi' => $request->nama_transaksi,
+        transaksi::create([
             'tanggal' => $request->tanggal,
             'id_produk' => $request->id_produk,
+            'nama_customer' => $request->nama_customer,
             'harga' => $request->harga,
             'total' => $request->total,
 
@@ -62,7 +61,6 @@ class TransaksiController extends Controller
     public function update(Request $request, transaksi $transaksi)
     {
         $request->validate([
-            'nama_transaksi' => 'required',
             'tanggal' => 'required',
             'nama_customer' => 'required',
             'id_produk' => 'required',
@@ -71,9 +69,9 @@ class TransaksiController extends Controller
 
         ]);
         $transaksi->update([
-            'nama_transaksi' => $request->nama_transaksi,
             'tanggal' => $request->tanggal,
             'id_produk' => $request->id_produk,
+            'nama_customer' => $request->nama_customer,
             'harga' => $request->harga,
             'total' => $request->total,
 

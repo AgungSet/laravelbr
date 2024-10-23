@@ -54,7 +54,8 @@ class ProdukController extends Controller
 
     public function edit(produk $produk): View
     {
-        return view('produk.edit', compact('produk'));
+        $kategoris = Kategori::all();
+        return view('produk.edit', compact('produk', 'kategoris'));
     }
 
     public function update(Request $request, produk $produk)
