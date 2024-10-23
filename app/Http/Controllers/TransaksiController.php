@@ -55,7 +55,8 @@ class TransaksiController extends Controller
 
     public function edit(transaksi $transaksi): View
     {
-        return view('transaksi.edit', compact('transaksi'));
+        $produks = Produk::all();
+        return view('transaksi.edit', compact('transaksi', 'produks'));
     }
 
     public function update(Request $request, transaksi $transaksi)
