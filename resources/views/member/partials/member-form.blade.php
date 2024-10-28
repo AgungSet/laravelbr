@@ -9,12 +9,12 @@
             <input id="alamat" name="alamat" type="text" class="mt-1 block w-full" value="{{ old('alamat', optional($member ?? null)->alamat ? $member->alamat : '') }}">
         </div>
         <div>
-            <label for="harga">harga</label>
-            <input id="harga" name="harga" type="number" class="mt-1 block w-full"value={{ old('harga', optional($member ?? null)->harga ? $member->harga : '') }}>
+            <label for="no_hp">no_hp</label>
+            <input id="no_hp" name="no_hp" type="number" class="mt-1 block w-full" value="{{ old('no_hp', optional($member ?? null)->no_hp ? $member->no_hp : '') }}">
         </div>
         <div>
-            <label for="total">total</label>
-            <input id="total" name="total" type="number" class="mt-1 block w-full"value={{ old('total', optional($member ?? null)->total ? $member->total : '') }}>
+            <label for="instagram">instagram</label>
+            <input id="instagram" name="instagram" type="text" class="mt-1 block w-full" value="{{ old('instagram', optional($member ?? null)->instagram ? $member->instagram : '') }}">
         </div>
 
 

@@ -17,11 +17,20 @@
                                     <span class="text-xs font-medium uppercase leading-4 tracking-wider text-gray-500">Nama produk</span>
                                 </th>
                                 <th class="bg-gray-50 px-6 py-3 text-left">
-                                    <span class="text-xs font-medium uppercase leading-4 tracking-wider text-gray-500">Created At</span>
+                                    <span class="text-xs font-medium uppercase leading-4 tracking-wider text-gray-500">dibuat</span>
                                 </th>
 
                                 <th class="bg-gray-50 px-6 py-3 text-left">
-                                    <span class="text-xs font-medium uppercase leading-4 tracking-wider text-gray-500">Action</span>
+                                    <span class="text-xs font-medium uppercase leading-4 tracking-wider text-gray-500">stok</span>
+                                </th>
+                                <th class="bg-gray-50 px-6 py-3 text-left">
+                                    <span class="text-xs font-medium uppercase leading-4 tracking-wider text-gray-500">harga</span>
+                                </th>
+                                <th class="bg-gray-50 px-6 py-3 text-left">
+                                    <span class="text-xs font-medium uppercase leading-4 tracking-wider text-gray-500">Tanggal masuk</span>
+                                </th>
+                                <th class="bg-gray-50 px-6 py-3 text-left">
+                                    <span class="text-xs font-medium uppercase leading-4 tracking-wider text-gray-500">Edit/Hapus</span>
                                 </th>
                             </tr>
                         </thead>

@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\TransaksiController;
+use App\Http\Controllers\MemberController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -71,6 +72,21 @@ Route::middleware('auth')->group(function () {
     Route::get('/transaksi/{transaksi}/edit', [TransaksiController::class, 'edit'])->name('transaksi.edit'); // Rute untuk edit
     Route::put('/transaksi/{transaksi}', [TransaksiController::class, 'update'])->name('transaksi.update'); // Rute untuk update
     Route::delete('/transaksi/{transaksi}', [TransaksiController::class, 'destroy'])->name('transaksi.destroy'); // Rute untuk destroy
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+// MEMBER
+Route::middleware('auth')->group(function () {
+    Route::get('/member', [MemberController::class, 'index'])->name('member.index'); // Rute untuk index
+    Route::get('/member/create', [MemberController::class, 'create'])->name('member.create'); // Rute untuk create
+    Route::post('/member', [MemberController::class, 'store'])->name('member.store'); //ROUTE UNTUK STORE DATA
+    Route::get('/member/{member}/edit', [MemberController::class, 'edit'])->name('member.edit'); // Rute untuk edit
+    Route::put('/member/{member}', [MemberController::class, 'update'])->name('member.update'); // Rute untuk update
+    Route::delete('/member/{member}', [MemberController::class, 'destroy'])->name('member.destroy'); // Rute untuk destroy
 });
 
 Route::middleware('auth')->group(function () {

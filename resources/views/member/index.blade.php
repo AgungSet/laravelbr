@@ -5,8 +5,8 @@
             <div class="bg-white overflow-hidden shadow-sm rounded-lg py-4 space-y-4">
                 <div class="flex flex-row justify-between px-4">
                     <div></div>
-                    <a href="{{ route('transaksi.create') }}">
-                        {{ __('Add transaksi') }}
+                    <a href="{{ route('member.create') }}">
+                        {{ __('Add member') }}
                     </a>
                 </div>
                 <div class="w-full overflow-x-scroll align-middle">
@@ -14,7 +14,7 @@
                         <thead>
                             <tr>
                                 <th class="bg-gray-50 px-6 py-3 text-left">
-                                    <span class="text-xs font-medium uppercase leading-4 tracking-wider text-gray-500">Nama transaksi</span>
+                                    <span class="text-xs font-medium uppercase leading-4 tracking-wider text-gray-500">Nama member</span>
                                 </th>
                                 <th class="bg-gray-50 px-6 py-3 text-left">
                                     <span class="text-xs font-medium uppercase leading-4 tracking-wider text-gray-500">Created At</span>
@@ -27,31 +27,28 @@
                         </thead>
 
                         <tbody class="bg-white divide-y divide-gray-200 divide-solid">
-                            @foreach ($transaksis as $index => $transaksi)
+                            @foreach ($members as $index => $member)
                                 <tr class="bg-white">
                                     <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
-                                        {{ $transaksi->tanggal }}
+                                        {{ $member->nama_member }}
                                     </td>
                                     <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
-                                        {{ $transaksi->nama_customer }}
+                                        {{ $member->alamat }}
                                     </td>
                                     <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
-                                        {{ $transaksi->nama_produk }}
+                                        {{ $member->no_hp }}
                                     </td>
                                     <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
-                                        {{ $transaksi->harga }}
+                                        {{ $member->instagram }}
                                     </td>
                                     <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
-                                        {{ $transaksi->total }}
-                                    </td>
-                                    <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
-                                        {{ date('d M Y', strtotime($transaksi->created_at)) }}
+                                        {{ date('d M Y', strtotime($member->created_at)) }}
                                     </td>
 
                                     <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
                                         {{-- edit --}}
-                                        <a href="{{ route('transaksi.edit', $transaksi) }}"> {{ __('Edit') }}</a>
-                                        <form action="{{ route('transaksi.destroy', $transaksi) }}" method="POST" onsubmit="return confirm('Are you sure?')" style="display: inline-block;">
+                                        <a href="{{ route('member.edit', $member) }}"> {{ __('Edit') }}</a>
+                                        <form action="{{ route('member.destroy', $member) }}" method="POST" onsubmit="return confirm('Are you sure?')" style="display: inline-block;">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit">{{ __('Delete') }}</button>
