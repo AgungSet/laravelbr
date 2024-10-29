@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'name' => 'laravelbr',
             'email' => 'laravelbr@gmail.com',
-            'password' => 'laravelbr12',
+            'password' => '123',
         ]);
     }
 }

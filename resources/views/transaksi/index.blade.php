@@ -5,7 +5,7 @@
             <div class="bg-white overflow-hidden shadow-sm rounded-lg py-4 space-y-4">
                 <div class="flex flex-row justify-between px-4">
                     <div></div>
-                    <a href="{{ route('transaksi.create') }}">
+                    <a href="{{ route('transaksi.create') }}" class="bg-gray-600 text-white rounded-full px-3 py-1 transition duration-300 ease-in-out hover:bg-gray-500 active:bg-[#846b2b] text-sm">
                         {{ __('Add transaksi') }}
                     </a>
                 </div>
@@ -33,7 +33,7 @@
                                         {{ $transaksi->tanggal }}
                                     </td>
                                     <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
-                                        {{ $transaksi->nama_customer }}
+                                        {{ $transaksi->nama_member }}
                                     </td>
                                     <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
                                         {{ $transaksi->nama_produk }}

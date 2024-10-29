@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id(); // Menambahkan kolom id sebagai primary key
             $table->string('nama_member'); // Kolom untuk nama anggota
             $table->string('alamat'); // Kolom untuk alamat
-            $table->integer('no_hp'); // Kolom untuk nomor HP
-            $table->string('instagram')->nullable(); // Kolom untuk Instagram (nullable jika tidak selalu ada)
+            $table->string('no_hp')->unique(); // Ubah kolom untuk nomor HP menjadi string
+            $table->string('instagram')->nullable(); // Kolom untuk Instagram, bisa nullable
             $table->timestamps(); // Kolom created_at dan updated_at
         });
     }

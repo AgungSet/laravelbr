@@ -59,6 +59,7 @@ class MemberController extends Controller
 
     public function update(Request $request, member $member)
     {
+        // dd($request);
         $request->validate([
             'nama_member' => 'required',
             'alamat' => 'required',

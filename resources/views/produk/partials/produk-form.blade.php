@@ -18,7 +18,7 @@
             <label for="stok">stok</label>
             <input id="stok" name="stok" type="number" class="mt-1 block w-full" value={{ old('stok', optional($produk ?? null)->stok ? $produk->stok : '') }}></input>
         </div>
-        {{-- FIELD OPTION JABATAN --}}
+        {{-- FIELD OPTION KATEGORI --}}
         <div class="flex-1">
             <label for="id_kategori">kategori</label>
             <select id="id_kategori" name="id_kategori">

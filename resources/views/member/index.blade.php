@@ -5,7 +5,7 @@
             <div class="bg-white overflow-hidden shadow-sm rounded-lg py-4 space-y-4">
                 <div class="flex flex-row justify-between px-4">
                     <div></div>
-                    <a href="{{ route('member.create') }}">
+                    <a href="{{ route('member.create') }}" class="bg-gray-600 text-white rounded-full px-3 py-1 transition duration-300 ease-in-out hover:bg-gray-500 active:bg-[#846b2b] text-sm">
                         {{ __('Add member') }}
                     </a>
                 </div>
@@ -17,11 +17,19 @@
                                     <span class="text-xs font-medium uppercase leading-4 tracking-wider text-gray-500">Nama member</span>
                                 </th>
                                 <th class="bg-gray-50 px-6 py-3 text-left">
-                                    <span class="text-xs font-medium uppercase leading-4 tracking-wider text-gray-500">Created At</span>
+                                    <span class="text-xs font-medium uppercase leading-4 tracking-wider text-gray-500">Alamat</span>
                                 </th>
-
                                 <th class="bg-gray-50 px-6 py-3 text-left">
-                                    <span class="text-xs font-medium uppercase leading-4 tracking-wider text-gray-500">Action</span>
+                                    <span class="text-xs font-medium uppercase leading-4 tracking-wider text-gray-500">No.HP</span>
+                                </th>
+                                <th class="bg-gray-50 px-6 py-3 text-left">
+                                    <span class="text-xs font-medium uppercase leading-4 tracking-wider text-gray-500">Instagram</span>
+                                </th>
+                                <th class="bg-gray-50 px-6 py-3 text-left">
+                                    <span class="text-xs font-medium uppercase leading-4 tracking-wider text-gray-500">Tanggal Dibuat</span>
+                                </th>
+                                <th class="bg-gray-50 px-6 py-3 text-left">
+                                    <span class="text-xs font-medium uppercase leading-4 tracking-wider text-gray-500">Edit/Delete</span>
                                 </th>
                             </tr>
                         </thead>
