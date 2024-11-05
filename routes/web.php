@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\TransaksiController;
@@ -7,8 +8,7 @@ use App\Http\Controllers\MemberController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UmumController;
 use Illuminate\Support\Facades\Route;
-
-
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 // HALAMAN UMUM
 
@@ -25,9 +25,7 @@ Route::get('/home', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('Dashboard.index');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/produk', function () {
     return view('produk');
@@ -46,7 +44,7 @@ Route::get('/pesanan', function () {
     return view('pesanan');
 })->middleware(['auth', 'verified'])->name('pesanan.index');
 
-
+//DASHBOARD
 // KATEGORI
 Route::middleware('auth')->group(function () {
     Route::get('/kategori', [KategoriController::class, 'index'])->name('kategori.index'); // Rute untuk index

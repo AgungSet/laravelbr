@@ -26,24 +26,42 @@
 
 <body>
     <!-- Header with logo and navigation -->
-    <header class="bg-warning text-white">
+    <header class="bg-dark text-white">
         <div class="container py-3 d-flex justify-content-between align-items-center">
-            <a href="/" class="text-white text-decoration-none">
+            <a href="/" class="text-gold text-decoration-none">
                 <h1 class="h4 m-0">Muria Batik</h1>
             </a>
             <nav>
-                <a href="{{ route('umum.index') }}" class="text-white me-3 btn btn-success">Home</a>
-                <a href="{{ route('umum.produk') }}" class="text-white me-3 btn btn-success">Produk Lainnya</a>
+                <a href="{{ route('umum.index') }}" class="text-dark me-3 btn btn-warning">Home</a>
+                <a href="{{ route('umum.produk') }}" class="text-dark me-3 btn btn-warning">Produk Lainnya</a>
             </nav>
             <a href="#" class="btn btn-light position-relative">
                 <i class="bi bi-cart"></i> <!-- Ikon keranjang -->
-                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-gold">
                     3 <!-- Jumlah item di keranjang -->
                 </span>
             </a>
-
         </div>
     </header>
+
+    <style>
+        /* Warna-warna khusus */
+        .bg-dark {
+            background-color: #2f2f2f !important;
+            /* Abu gelap */
+        }
+
+        .text-gold {
+            color: #d4af37 !important;
+            /* Emas */
+        }
+
+        .bg-gold {
+            background-color: #d4af37 !important;
+            /* Emas untuk badge */
+        }
+    </style>
+
 
     <!-- Main catalog container -->
     <div class="container my-5">
