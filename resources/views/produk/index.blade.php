@@ -32,6 +32,9 @@
                                     <span class="text-xs font-medium uppercase leading-4 tracking-wider text-gray-500">Tanggal masuk</span>
                                 </th>
                                 <th class="bg-gray-50 px-6 py-3 text-left">
+                                    <span class="text-xs font-medium uppercase leading-4 tracking-wider text-gray-500">Foto</span>
+                                </th>
+                                <th class="bg-gray-50 px-6 py-3 text-left">
                                     <span class="text-xs font-medium uppercase leading-4 tracking-wider text-gray-500">Edit/Hapus</span>
                                 </th>
                             </tr>
@@ -55,6 +58,9 @@
                                     {{-- Buat untuk relasi dengan kategori --}}
                                     <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
                                         {{ date('d M Y', strtotime($produk->created_at)) }}
+                                    </td>
+                                    <td>
+                                        <img src="uploads/{{ $produk->foto }}" alt="{{ $produk->foto }}" width="100px" height="100px">
                                     </td>
 
                                     <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">

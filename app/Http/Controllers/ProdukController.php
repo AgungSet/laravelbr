@@ -37,17 +37,24 @@ class ProdukController extends Controller
             'harga' => 'required',
             'stok' => 'required',
             'id_kategori' => 'required',
-
-
+            'foto' => 'required',
+            'deskripsi' => 'required',
         ]);
+        // Menghandle upload file
+        if ($request->hasFile('foto')) {
+            $file = $request->file('foto');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('uploads'), $filename); // Menyimpan file ke folder 'uploads'
+        }
+
         produk::create([
             'nama_produk' => $request->nama_produk,
             'tanggal' => $request->tanggal,
             'harga' => $request->harga,
             'stok' => $request->stok,
             'id_kategori' => $request->id_kategori,
-
-
+            'foto' => $filename,
+            'deskripsi' => $request->deskripsi
         ]);
         return redirect()->route('produk.index')->with('success', 'produk created successfully.');
     }
@@ -66,13 +73,24 @@ class ProdukController extends Controller
             'harga' => 'required',
             'stok' => 'required',
             'id_kategori' => 'required',
+            'foto' => 'required',
+            'deskripsi' => 'required',
         ]);
+
+        // Menghandle upload file
+        if ($request->hasFile('foto')) {
+            $file = $request->file('foto');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('uploads'), $filename); // Menyimpan file ke folder 'uploads'
+        }
         $produk->update([
             'nama_produk' => $request->nama_produk,
             'tanggal' => $request->tanggal,
             'harga' => $request->harga,
             'stok' => $request->stok,
             'id_kategori' => $request->id_kategori,
+            'foto' => $filename,
+            'deskripsi' => $request->deskripsi
         ]);
         return redirect()->route('produk.index')->with('success', 'produk update successfully.');
     }

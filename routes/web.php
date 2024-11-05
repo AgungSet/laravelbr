@@ -5,9 +5,23 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UmumController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
+
+
+// HALAMAN UMUM
+
+Route::get('/', [UmumController::class, 'index'])->name('umum.index'); // Rute untuk index
+Route::get('/umum/produk', [UmumController::class, 'produk'])->name('umum.produk'); // Rute untuk index
+
+
+
+
+
+
+// HALAMAN LOGIN
+Route::get('/home', function () {
     return view('welcome');
 });
 
