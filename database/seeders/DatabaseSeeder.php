@@ -20,5 +20,10 @@ class DatabaseSeeder extends Seeder
             'email' => 'laravelbr@gmail.com',
             'password' => '123',
         ]);
+
+        $this->call([
+            Kategori::class,
+            Produk::class,
+        ]);
     }
 }

@@ -17,6 +17,8 @@ return new class extends Migration
             $table->date('tanggal');
             $table->integer('harga');
             $table->integer('stok');
+            $table->string('foto');
+            $table->string('deskripsi');
             $table->unsignedBigInteger('id_kategori');
             $table->foreign('id_kategori')->references('id')->on('kategoris')->onDelete('cascade');
             $table->timestamps();
