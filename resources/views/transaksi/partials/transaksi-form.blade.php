@@ -1,11 +1,7 @@
 <section class="p-4 sm:p-8 bg-white shadow rounded-lg">
     <div class="flex flex-col mt-4 gap-6">
         <div>
-            <label for="tanggal">tanggal</label>
-            <input id="tanggal" name="tanggal" type="date" class="mt-1 block w-full"value={{ old('nama_customer', optional($transaksi ?? null)->nama_customer ? $transaksi->nama_customer : '') }}>
-        </div>
-        <div>
-            <label for="nama_customer">Nama Customer</label>
+            <label for="nama_customer">nama customer</label>
             <input id="nama_customer" name="nama_customer" type="text" class="mt-1 block w-full" value="{{ old('nama_customer', optional($transaksi ?? null)->nama_customer ? $transaksi->nama_customer : '') }}">
         </div>
         {{-- FIELD OPTION produk --}}

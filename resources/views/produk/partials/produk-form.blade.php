@@ -7,10 +7,6 @@
             </div>
         </div>
         <div>
-            <label for="tanggal">tanggal</label>
-            <input id="tanggal" name="tanggal" type="date" class="mt-1 block w-full"value={{ old('tanggal', optional($produk ?? null)->tanggal ? $produk->tanggal : '') }}></input>
-        </div>
-        <div>
             <label for="harga">harga</label>
             <input id="harga" name="harga" type="number" class="mt-1 block w-full"value={{ old('harga', optional($produk ?? null)->harga ? $produk->harga : '') }}></input>
         </div>

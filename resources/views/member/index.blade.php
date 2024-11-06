@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm rounded-lg py-4 space-y-4">
@@ -55,11 +56,17 @@
 
                                     <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
                                         {{-- edit --}}
-                                        <a href="{{ route('member.edit', $member) }}"> {{ __('Edit') }}</a>
+                                        <a href="{{ route('member.edit', $member) }}" title="Edit">
+                                            <i class="fas fa-edit" style="font-size: 1.5em; color: gold;"></i>
+                                        </a>
+
+
                                         <form action="{{ route('member.destroy', $member) }}" method="POST" onsubmit="return confirm('Are you sure?')" style="display: inline-block;">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit">{{ __('Delete') }}</button>
+                                            <button type="submit" style="background: none; border: none; cursor: pointer;">
+                                                <i class="fas fa-trash" style="font-size: 1.2em; color: #6B7280;"></i>
+                                            </button>
                                         </form>
                                     </td>
                                 </tr>
