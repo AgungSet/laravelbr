@@ -30,11 +30,12 @@
                 </div>
 
                 <!-- Angka Produk Aligned to the Right with Button Next to It -->
-                <div class="flex items-center justify-between">
+                <div class="flex flex-1 items-start justify-between">
                     <p class="text-6xl font-bold mb-4">{{ $kategoris }}</p>
                     <!-- Tombol kecil di samping kiri angka -->
                     <a href="#" class="bg-gold text-black px-3 py-1 rounded hover:bg-yellow-600 text-sm">Lihat Kategori</a>
                 </div>
+                
             </div>
 
 
