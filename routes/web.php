@@ -16,10 +16,6 @@ Route::get('/', [UmumController::class, 'index'])->name('umum.index'); // Rute u
 Route::get('/umum/produk', [UmumController::class, 'produk'])->name('umum.produk'); // Rute untuk index
 
 
-
-
-
-
 // HALAMAN LOGIN
 Route::get('/home', function () {
     return view('welcome');
@@ -45,6 +41,7 @@ Route::get('/pesanan', function () {
 })->middleware(['auth', 'verified'])->name('pesanan.index');
 
 //DASHBOARD
+
 // KATEGORI
 Route::middleware('auth')->group(function () {
     Route::get('/kategori', [KategoriController::class, 'index'])->name('kategori.index'); // Rute untuk index
