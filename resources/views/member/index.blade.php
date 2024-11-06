@@ -5,8 +5,8 @@
             <div class="bg-white overflow-hidden shadow-sm rounded-lg py-4 space-y-4">
                 <div class="flex flex-row justify-between px-4">
                     <div></div>
-                    <a href="{{ route('member.create') }}" class="bg-gray-600 text-white rounded-full px-3 py-1 transition duration-300 ease-in-out hover:bg-gray-500 active:bg-[#846b2b] text-sm">
-                        {{ __('Add member') }}
+                    <a href="{{ route('member.create') }}" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-[#d3b643] hover:bg-[#b39b38] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#bca93e] transition ease-in-out duration-150">
+                        {{ __('Add Member') }}
                     </a>
                 </div>
                 <div class="w-full overflow-x-scroll align-middle">

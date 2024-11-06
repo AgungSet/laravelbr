@@ -7,18 +7,23 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
             <!-- Kolom Produk -->
-            <div class="bg-gray-500 text-white rounded-lg shadow-md p-6 flex flex-col justify-between h-full">
+            <div class="bg-gray-500 text-white rounded-lg shadow-md p-5 flex flex-col justify-between h-full">
                 <div>
                     <h5 class="text-xl font-semibold mb-2">Produk</h5>
-                    <p class="mb-4">Kelola dan lihat data produk batik yang tersedia.</p>
+                    <p>Kelola dan lihat data Produk batik yang tersedia.</p>
                 </div>
 
-                <!-- Angka Produk Aligned to the Right -->
-                <p class="text-6xl font-bold mb-4 text-right">{{ $produks }}</p>
+                <!-- Angka Produk Aligned to the Right with Button Next to It -->
+                <div class="flex flex-1 items-start justify-between">
+                    <p class="text-6xl font-bold mb-4">{{ $produks }}</p>
+                    <!-- Tombol kecil dengan margin atas untuk memberi jarak -->
+                    <a href="{{ route('produk.index') }}" class="bg-gold text-black px-4 py-2 rounded hover:bg-yellow-600 mt-2">Lihat Produk</a>
 
-                <!-- Tombol di bagian bawah dengan efek hover -->
-                <a href="#" class="bg-gold text-black px-4 py-2 rounded hover:bg-yellow-600">Lihat Produk</a>
+
+                </div>
+
             </div>
+
 
 
 
@@ -32,26 +37,45 @@
                 <!-- Angka Produk Aligned to the Right with Button Next to It -->
                 <div class="flex flex-1 items-start justify-between">
                     <p class="text-6xl font-bold mb-4">{{ $kategoris }}</p>
-                    <!-- Tombol kecil di samping kiri angka -->
-                    <a href="#" class="bg-gold text-black px-3 py-1 rounded hover:bg-yellow-600 text-sm">Lihat Kategori</a>
+                    <!-- Tombol kecil dengan margin atas untuk memberi jarak -->
+                    <a href="{{ route('kategori.index') }}" class="bg-gold text-black px-4 py-2 rounded hover:bg-yellow-600 mt-2">Lihat Produk</a>
                 </div>
-                
+
+            </div>
+            <!-- Kolom Transaksi -->
+            <div class="bg-gray-500 text-white rounded-lg shadow-md p-6 flex flex-col justify-between h-full">
+                <div>
+                    <h5 class="text-xl font-semibold mb-2">Transaksi</h5>
+                    <p>Kelola dan lihat data transkasi penjualan saat ini</p>
+                </div>
+
+                <!-- Angka Produk Aligned to the Right with Button Next to It -->
+                <div class="flex flex-1 items-start justify-between">
+                    <p class="text-6xl font-bold mb-4">{{ $transaksis }}</p>
+                    <!-- Tombol kecil dengan margin atas untuk memberi jarak -->
+                    <a href="{{ route('transaksi.index') }}" class="bg-gold text-black px-4 py-2 rounded hover:bg-yellow-600 mt-2">Lihat Transaksi</a>
+                </div>
+
             </div>
 
 
             <!-- Kolom Member -->
-            <div class="bg-gray-500 text-white rounded-lg shadow-md p-6">
-                <h5 class="text-xl font-semibold mb-2">Member</h5>
-                <p class="mb-4">Lihat dan kelola data member atau pelanggan.</p>
-                <a href="#" class="bg-gold text-black px-4 py-2 rounded hover:bg-yellow-600">Lihat Member</a>
+            <div class="bg-gray-500 text-white rounded-lg shadow-md p-6 flex flex-col justify-between h-full">
+                <div>
+                    <h5 class="text-xl font-semibold mb-2">Member</h5>
+                    <p>Kelola dan lihat data member yang tersedia.</p>
+                </div>
+
+                <!-- Angka Produk Aligned to the Right with Button Next to It -->
+                <div class="flex flex-1 items-start justify-between">
+                    <p class="text-6xl font-bold mb-4">{{ $members }}</p>
+                    <!-- Tombol kecil dengan margin atas untuk memberi jarak -->
+                    <a href="{{ route('member.index') }}" class="bg-gold text-black px-4 py-2 rounded hover:bg-yellow-600 mt-2">Lihat Member</a>
+                </div>
+
             </div>
 
-            <!-- Kolom Pesanan -->
-            <div class="bg-gray-500 text-white rounded-lg shadow-md p-6">
-                <h5 class="text-xl font-semibold mb-2">Pesanan</h5>
-                <p class="mb-4">Pantau dan kelola pesanan yang masuk.</p>
-                <a href="#" class="bg-gold text-black px-4 py-2 rounded hover:bg-yellow-600">Lihat Pesanan</a>
-            </div>
+
         </div>
     </div>
 @endsection
