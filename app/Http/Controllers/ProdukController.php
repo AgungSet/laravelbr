@@ -31,9 +31,9 @@ class ProdukController extends Controller
 
     public function store(Request $request)
     {
+
         $request->validate([
             'nama_produk' => 'required',
-            'tanggal' => 'required',
             'harga' => 'required',
             'stok' => 'required',
             'id_kategori' => 'required',
@@ -49,7 +49,6 @@ class ProdukController extends Controller
 
         produk::create([
             'nama_produk' => $request->nama_produk,
-            'tanggal' => $request->tanggal,
             'harga' => $request->harga,
             'stok' => $request->stok,
             'id_kategori' => $request->id_kategori,
@@ -69,7 +68,7 @@ class ProdukController extends Controller
     {
         $request->validate([
             'nama_produk' => 'required',
-            'tanggal' => 'required',
+
             'harga' => 'required',
             'stok' => 'required',
             'id_kategori' => 'required',
@@ -85,7 +84,7 @@ class ProdukController extends Controller
         }
         $produk->update([
             'nama_produk' => $request->nama_produk,
-            'tanggal' => $request->tanggal,
+
             'harga' => $request->harga,
             'stok' => $request->stok,
             'id_kategori' => $request->id_kategori,

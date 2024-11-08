@@ -6,7 +6,7 @@ use App\Models\Produk;
 use App\Models\keranjang;
 use Illuminate\Http\Request;
 
-class UmumController extends Controller
+class KeranjangController extends Controller
 {
     public function index()
     {
@@ -18,9 +18,9 @@ class UmumController extends Controller
         $produks = Produk::orderByDesc('created_at')->paginate(10);
         return view('umum.produk', compact('produks'));
     }
-    public function keranjang()
+    public function getKeranjang()
     {
-        $keranjangs = keranjang::orderByDesc('created_at')->paginate(10);
-        return view('keranjang.index', compact('keranjangs'));
+        $keranjangs = Keranjang::orderByDesc('created_at')->paginate(10);
+        return $keranjangs;
     }
 }

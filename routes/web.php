@@ -14,7 +14,7 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 Route::get('/', [UmumController::class, 'index'])->name('umum.index'); // Rute untuk index
 Route::get('/umum/produk', [UmumController::class, 'produk'])->name('umum.produk'); // Rute untuk index
-
+Route::get('/Keranjang/index', [UmumController::class, 'keranjang'])->name('keranjang.index'); // Rute untuk index
 
 // HALAMAN LOGIN
 Route::get('/home', function () {

@@ -16,7 +16,6 @@ class Produk extends Seeder
     {
         ModelsProduk::create([
             'nama_produk' => 'Kain Batik Tulis Motif Parang',
-            'tanggal' => Carbon::now(),
             'harga' => 250000,
             'stok' => 10,
             'foto' => '1730791436_WhatsApp Image 2024-09-07 at 08.20.21_b394d81b.jpg', // Nama file gambar produk
@@ -26,7 +25,6 @@ class Produk extends Seeder
 
         ModelsProduk::create([
             'nama_produk' => 'Batik Cap Motif Mega Mendung',
-            'tanggal' => Carbon::now(),
             'harga' => 150000,
             'stok' => 20,
             'foto' => '1730791436_WhatsApp Image 2024-09-07 at 08.20.21_b394d81b.jpg',
@@ -36,7 +34,6 @@ class Produk extends Seeder
 
         ModelsProduk::create([
             'nama_produk' => 'Batik Kombinasi Motif Kawung dan Sekar Jagad',
-            'tanggal' => Carbon::now(),
             'harga' => 300000,
             'stok' => 5,
             'foto' => '1730791436_WhatsApp Image 2024-09-07 at 08.20.21_b394d81b.jpg',
@@ -46,7 +43,6 @@ class Produk extends Seeder
 
         ModelsProduk::create([
             'nama_produk' => 'Batik Print Motif Bunga',
-            'tanggal' => Carbon::now(),
             'harga' => 80000,
             'stok' => 15,
             'foto' => '1730791436_WhatsApp Image 2024-09-07 at 08.20.21_b394d81b.jpg',

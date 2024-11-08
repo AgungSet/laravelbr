@@ -1,8 +1,15 @@
 <section class="p-4 sm:p-8 bg-white shadow rounded-lg">
     <div class="flex flex-col mt-4 gap-6">
-        <div>
-            <label for="nama_customer">nama customer</label>
-            <input id="nama_customer" name="nama_customer" type="text" class="mt-1 block w-full" value="{{ old('nama_customer', optional($transaksi ?? null)->nama_customer ? $transaksi->nama_customer : '') }}">
+        <div class="flex-1">
+            <label for="id_member">Member</label>
+            <select id="id_member" name="id_member">
+                <option value="">-- Pilih Member --</option>
+                @foreach ($members as $member)
+                    <option value="{{ $member->id }}" {{ old('id_member', $transaksi->id_member ?? '') == $member->id ? 'selected' : '' }}>
+                        {{ $member->nama_member }}
+                    </option>
+                @endforeach
+            </select>
         </div>
         {{-- FIELD OPTION produk --}}
         <div class="flex-1">

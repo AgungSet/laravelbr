@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kategori;
+use App\Models\member;
 use App\Models\Produk;
 use App\Models\Transaksi;
 use Illuminate\Contracts\View\View;
@@ -26,7 +27,8 @@ class TransaksiController extends Controller
     public function create(): View
     {
         $produks = Produk::all();
-        return view('transaksi.create', compact('produks'));
+        $members = member::all();
+        return view('transaksi.create', compact('produks', 'members'));
     }
 
     public function store(Request $request)

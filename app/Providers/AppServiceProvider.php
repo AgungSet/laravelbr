@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Http\Controllers\KeranjangController;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +21,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        View::composer('*', function ($view) {
+            $keranjangController = new KeranjangController();
+            $keranjangs = $keranjangController->getKeranjang();
+            $view->with('keranjangs', $keranjangs);
+        });
     }
 }
