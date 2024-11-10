@@ -3,6 +3,7 @@
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\KeranjangController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\ProfileController;
@@ -14,7 +15,14 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 Route::get('/', [UmumController::class, 'index'])->name('umum.index'); // Rute untuk index
 Route::get('/umum/produk', [UmumController::class, 'produk'])->name('umum.produk'); // Rute untuk index
+Route::get('/umum/kategori', [UmumController::class, 'kategori'])->name('umum.kategori'); // Rute untuk index
 Route::get('/Keranjang/index', [UmumController::class, 'keranjang'])->name('keranjang.index'); // Rute untuk index
+
+
+//KERANJANG
+
+Route::post('/produk/{produks}', [KeranjangController::class, 'input'])->name('produk.input'); // Rute untuk input
+
 
 // HALAMAN LOGIN
 Route::get('/home', function () {
@@ -40,7 +48,7 @@ Route::get('/pesanan', function () {
     return view('pesanan');
 })->middleware(['auth', 'verified'])->name('pesanan.index');
 
-//DASHBOARD
+
 
 // KATEGORI
 Route::middleware('auth')->group(function () {
