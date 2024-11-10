@@ -6,7 +6,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Produk Ready</title>
+        <title>Kategori Ready</title>
         <!-- Menambahkan Google Font -->
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
@@ -122,26 +122,26 @@
     <body>
 
         <div class="container">
-            <h1 class="text-center mb-4">Produk Ready</h1>
+            <h1 class="text-center mb-4">Kategori</h1>
             <div class="row">
-                @foreach ($produks as $produk)
+                @foreach ($kategoris as $kategori)
                     <div class="col-md">
                         <div class="card h-100">
-                            <!-- Gambar produk -->
-                            <img src="{{ asset('uploads/' . $produk->foto) }}" class="card-img-top" alt="{{ $produk->nama_produk }}">
+                            <!-- Gambar kategori -->
+                            <img src="{{ asset('uploads/' . $kategori->foto) }}" class="card-img-top" alt="{{ $kategori->nama_kategori }}">
 
                             <div class="card-body">
-                                <!-- Nama produk -->
-                                <h5 class="card-title">{{ $produk->nama_produk }}</h5>
+                                <!-- Nama kategori -->
+                                <h5 class="card-title">{{ $kategori->nama_kategori }}</h5>
 
-                                <!-- Deskripsi produk -->
-                                <p class="card-text">{{ $produk->deskripsi }}</p>
+                                <!-- Deskripsi kategori -->
+                                <p class="card-text">{{ $kategori->deskripsi }}</p>
 
-                                <!-- Harga produk -->
-                                <h6 class="price">Rp {{ number_format($produk->harga, 0, ',', '.') }}</h6>
+                                <!-- Harga kategori -->
+                                <h6 class="price">Rp {{ number_format($kategori->harga, 0, ',', '.') }}</h6>
 
                                 <!-- Tombol tambah ke keranjang -->
-                                <form action="{{ route('produk.input', $produk->id) }}" method="POST" style="display: inline-block;">
+                                <form action="{{ route('kategori.input', $kategori->id) }}" method="POST" style="display: inline-block;">
                                     @csrf
                                     @method('POST')
                                     <button type="submit" class="btn-gold mt-3">Tambahkan ke Keranjang</button>

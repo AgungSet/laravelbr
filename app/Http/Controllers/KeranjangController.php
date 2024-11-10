@@ -6,6 +6,7 @@ use App\Models\Produk;
 use App\Models\keranjang;
 use App\Models\umum;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class KeranjangController extends Controller
 {
@@ -24,19 +25,17 @@ class KeranjangController extends Controller
         $keranjangs = Keranjang::orderByDesc('created_at')->paginate(10);
         return $keranjangs;
     }
-    public function store(Request $request)
+    public function input($produks)
     {
-        // Anda dapat mengganti nilai request sesuai dengan yang Anda butuhkan.
-        // Misalnya, Anda bisa memberikan ID kategori atau ID produk langsung tanpa menggunakan form input
-        $id_kategori = 'nilai_id_kategorkji'; // Misalnya ini diambil dari tempat lain
-
         // Simpan data ke dalam Keranjang
+        $id_member = Auth::guard('member')->id();
+
         Keranjang::create([
-            'id_produk' => $id_kategori,  // Ganti sesuai kebutuhan
-            'id_member' => $id_kategori,  // Ganti sesuai kebutuhan
+            'id_produk' => $produks,
+            'id_member' => $id_member,
         ]);
 
         // Redirect ke halaman lain setelah aksi
-        return to_route('umum.index');
+        return to_route('umum.produk');
     }
 }

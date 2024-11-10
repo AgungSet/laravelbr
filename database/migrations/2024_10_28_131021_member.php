@@ -12,12 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('members', function (Blueprint $table) {
-            $table->id(); // Menambahkan kolom id sebagai primary key
-            $table->string('nama_member'); // Kolom untuk nama anggota
-            $table->string('alamat'); // Kolom untuk alamat
-            $table->string('no_hp')->unique(); // Ubah kolom untuk nomor HP menjadi string
-            $table->string('instagram')->nullable(); // Kolom untuk Instagram, bisa nullable
-            $table->timestamps(); // Kolom created_at dan updated_at
+            $table->id();
+            $table->string('email')->unique();
+            $table->string('nama_customer');
+            $table->string('username')->unique();
+            $table->string('password');
+            $table->string('alamat');
+            $table->string('no_hp');
+            $table->timestamps();
         });
     }
 

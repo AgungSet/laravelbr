@@ -4,24 +4,33 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\KeranjangController;
+use App\Http\Controllers\LoginmemberController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UmumController;
 use Illuminate\Support\Facades\Route;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+//Halaman Login Umum
+Route::get('/umum/register', [LoginmemberController::class, 'showRegisterForm'])->name('umum.register');
+Route::post('/umum/register', [LoginmemberController::class, 'register']);
+
+Route::get('/umum/login', [LoginmemberController::class, 'showLoginForm'])->name('umum.login');
+Route::post('/umum/login', [LoginmemberController::class, 'login']);
+
+Route::post('/umum/logout', [LoginmemberController::class, 'logout'])->name('umum.logout');
 // HALAMAN UMUM
 
 Route::get('/', [UmumController::class, 'index'])->name('umum.index'); // Rute untuk index
 Route::get('/umum/produk', [UmumController::class, 'produk'])->name('umum.produk'); // Rute untuk index
 Route::get('/umum/kategori', [UmumController::class, 'kategori'])->name('umum.kategori'); // Rute untuk index
 Route::get('/Keranjang/index', [UmumController::class, 'keranjang'])->name('keranjang.index'); // Rute untuk index
-
+// Route::get('produk/{id}', [ProdukController::class, 'show'])->name('produk.show');
 
 //KERANJANG
 
-Route::post('/produk/{produks}', [KeranjangController::class, 'input'])->name('produk.input'); // Rute untuk input
+Route::post('/umum/produk/{produks}', [KeranjangController::class, 'input'])->name('produk.input'); // Rute untuk input
 
 
 // HALAMAN LOGIN
@@ -60,11 +69,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/kategori/{kategori}', [KategoriController::class, 'destroy'])->name('kategori.destroy'); // Rute untuk destroy
 });
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
 
 // PRODUK
 Route::middleware('auth')->group(function () {
