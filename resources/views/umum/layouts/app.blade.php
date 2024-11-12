@@ -52,17 +52,16 @@
                         <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4m1.6 8l1.3 5.2a1 1 0 001 .8h9.4a1 1 0 001-.8l1.3-5.2M10 21a1 1 0 100-2 1 1 0 000 2zm8 0a1 1 0 100-2 1 1 0 000 2z" />
                     </svg>
                 </a>
+                <a href="{{ route('profile.index') }}" class="relative bg-gold text-black p-3 rounded-full hover:bg-yellow-600 transition mt-2">
+                    <!-- Ikon user -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 12c2.28 0 4.14-1.86 4.14-4.14S14.28 3.72 12 3.72 7.86 5.58 7.86 8.86 9.72 12 12 12zm0 1.71c-2.48 0-7.14 1.24-7.14 3.72v2.14h14.28v-2.14c0-2.48-4.66-3.72-7.14-3.72z" />
+                    </svg>
 
 
-
-                <!-- Badge jumlah item di pojok kanan atas ikon -->
-                @if ($keranjangs->count() > 0)
-                    <span class="absolute -top-2 -right-2 inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-600 border-2 border-white rounded-full">
-                        {{ $keranjangs->count() }}
-                    </span>
-                @endif
-                </a>
             </div>
+
+
         </div>
     </header>
 

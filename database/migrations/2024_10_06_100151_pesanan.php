@@ -11,7 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        Schema::create('pesanans', function (Blueprint $table) {
+            $table->id();
+            $table->string('nama_pesanan');
+            $table->integer('harga');
+            $table->integer('jumlah');
+            $table->integer('total');
+            $table->string('foto');
+            $table->string('deskripsi');
+            $table->unsignedBigInteger('id_kategori');
+            $table->foreign('id_kategori')->references('id')->on('kategoris')->onDelete('cascade');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -19,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('pesanans');
     }
 };

@@ -84,7 +84,7 @@
     <div class="login-container">
         <h2>Login Katalog Muria Batik</h2>
         <p>Masukkan username dan password Anda</p>
-        <form action="{{ route('umum.login') }}" method="POST">
+        <form action="{{ route('umum.loginpost') }}" method="POST">
             @csrf
             <input type="text" name="username" placeholder="Username" required>
             <input type="password" name="password" placeholder="Password" required>
