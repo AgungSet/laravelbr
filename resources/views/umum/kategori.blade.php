@@ -141,7 +141,7 @@
                                 <h6 class="price">Rp {{ number_format($kategori->harga, 0, ',', '.') }}</h6>
 
                                 <!-- Tombol tambah ke keranjang -->
-                                <form action="{{ route('kategori.input', $kategori->id) }}" method="POST" style="display: inline-block;">
+                                <form action="{{ route('kategori.index', $kategori->id) }}" method="POST" style="display: inline-block;">
                                     @csrf
                                     @method('POST')
                                     <button type="submit" class="btn-gold mt-3">Tambahkan ke Keranjang</button>
@@ -152,10 +152,8 @@
                 @endforeach
             </div>
         </div>
-
     </body>
-
-    </html>
+</html>
 
 
     <h1 class="text-center mb-4">Produk Pesanan</h1>
@@ -168,10 +166,10 @@
                         <h5 class="card-title">{{ $produk->nama_produk }}</h5>
                         <p class="card-text">{{ $produk->deskripsi }}</p>
                         <h6 class="mt-auto text-danger">Rp {{ number_format($produk->harga, 0, ',', '.') }}</h6>
-                        <form action="{{ route('produk.input', $produks) }}" method="POST" onsubmit="return confirm('Are you sure?')" style="display: inline-block;">
+                        <form action="{{ route('produk.input', $produk->id) }}" method="POST" onsubmit="return confirm('Are you sure?')" style="display: inline-block;">
                             @csrf
                             @method('post')
-                            <button type="submit" class="btn btn-warning mt-3">Tambahkan ke Keranjang< </button>
+                            <button type="submit" class="btn btn-warning mt-3">Tambahkan ke Keranjang</button>
                         </form>
                     </div>
                 </div>

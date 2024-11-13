@@ -71,6 +71,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/kategori', [KategoriController::class, 'index'])->name('kategori.index'); // Rute untuk index
     Route::get('/kategori/create', [KategoriController::class, 'create'])->name('kategori.create'); // Rute untuk create
     Route::post('/kategori', [KategoriController::class, 'store'])->name('kategori.store'); //ROUTE UNTUK STORE DATA
+    Route::post('/kategori', [KategoriController::class, 'input'])->name('kategori.input'); //ROUTE UNTUK  DATA
     Route::get('/kategori/{kategori}/edit', [KategoriController::class, 'edit'])->name('kategori.edit'); // Rute untuk edit
     Route::put('/kategori/{kategori}', [KategoriController::class, 'update'])->name('kategori.update'); // Rute untuk update
     Route::delete('/kategori/{kategori}', [KategoriController::class, 'destroy'])->name('kategori.destroy'); // Rute untuk destroy
