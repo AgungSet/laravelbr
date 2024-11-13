@@ -43,8 +43,9 @@ Route::post('/umum/produk/{produks}', [KeranjangController::class, 'input'])->na
 Route::get('/home', function () {
     return view('welcome');
 });
-
-Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::post('/umum/login', [LoginmemberController::class, 'login'])->name('umum.loginpost');
+Route::get('/dashboardumum', [LoginmemberController::class, 'index'])->name('dashboardumum');
+Route::get('/dashboardumum', [LoginmemberController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/produk', function () {
     return view('produk');
@@ -77,6 +78,7 @@ Route::middleware('auth')->group(function () {
 
 // PESANAN
 Route::middleware('auth')->group(function () {
+    Route::get('umum/pesanan', [PesananController::class, 'index'])->name('umum.pesanan');
     Route::get('/pesanan', [PesananController::class, 'index'])->name('pesanan.index'); // Rute untuk index
     Route::get('/pesanan/create', [PesananController::class, 'create'])->name('pesanan.create'); // Rute untuk create
     Route::post('/pesanan', [PesananController::class, 'store'])->name('pesanan.store'); //ROUTE UNTUK STORE DATA

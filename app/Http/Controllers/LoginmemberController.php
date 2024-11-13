@@ -88,6 +88,20 @@ class LoginmemberController extends Controller
             'no_hp' => 'nullable|string|max:15',
         ]);
 
+
+        // login
+        $member = Member::where('username', $request->username)->first();
+
+        if ($member && Hash::check($request->password, $member->password)) {
+            // Autentikasi berhasil, login user
+            Auth::login($member);
+
+            // Redirect ke dashboard jika login berhasil
+            return redirect()->route('dashboardumum');
+        } else {
+            // Login gagal, kembali ke halaman login dengan pesan error
+            return redirect()->back()->withErrors(['login_error' => 'Username atau Password salah.']);
+        }
         // Update data member
         $member->email = $request->email;
         $member->nama_customer = $request->nama_customer;

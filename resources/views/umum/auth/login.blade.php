@@ -89,6 +89,9 @@
             <input type="text" name="username" placeholder="Username" required>
             <input type="password" name="password" placeholder="Password" required>
             <button type="submit">Login</button>
+            @if ($errors->has('login_error'))
+                <div class="error">{{ $errors->first('login_error') }}</div>
+            @endif
         </form>
         <a href="{{ route('umum.register') }}" class="register-link">Register</a>
         <p>Silahkan yang belum mempunyai akun bisa register terlebih dahulu</p>
