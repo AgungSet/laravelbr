@@ -7,6 +7,7 @@ use App\Http\Controllers\KeranjangController;
 use App\Http\Controllers\LoginmemberController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\PesananController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UmumController;
 use Illuminate\Support\Facades\Route;
@@ -21,12 +22,17 @@ Route::post('/umum/login', [LoginmemberController::class, 'login']);
 
 Route::post('/umum/logout', [LoginmemberController::class, 'logout'])->name('umum.logout');
 // HALAMAN UMUM
-
 Route::get('/', [UmumController::class, 'index'])->name('umum.index'); // Rute untuk index
 Route::get('/umum/produk', [UmumController::class, 'produk'])->name('umum.produk'); // Rute untuk index
 Route::get('/umum/kategori', [UmumController::class, 'kategori'])->name('umum.kategori'); // Rute untuk index
 Route::get('/Keranjang/index', [UmumController::class, 'keranjang'])->name('keranjang.index'); // Rute untuk index
 // Route::get('produk/{id}', [ProdukController::class, 'show'])->name('produk.show');
+
+//PROFILE
+Route::middleware('auth:member')->group(function () {
+    Route::get('/member/profile', [LoginmemberController::class, 'editProfile'])->name('member.profile.edit');
+    Route::put('/member/profile', [LoginmemberController::class, 'updateProfile'])->name('member.profile.update');
+});
 
 //KERANJANG
 
@@ -69,7 +75,15 @@ Route::middleware('auth')->group(function () {
     Route::delete('/kategori/{kategori}', [KategoriController::class, 'destroy'])->name('kategori.destroy'); // Rute untuk destroy
 });
 
-
+// PESANAN
+Route::middleware('auth')->group(function () {
+    Route::get('/pesanan', [PesananController::class, 'index'])->name('pesanan.index'); // Rute untuk index
+    Route::get('/pesanan/create', [PesananController::class, 'create'])->name('pesanan.create'); // Rute untuk create
+    Route::post('/pesanan', [PesananController::class, 'store'])->name('pesanan.store'); //ROUTE UNTUK STORE DATA
+    Route::get('/pesanan/{pesanan}/edit', [PesananController::class, 'edit'])->name('pesanan.edit'); // Rute untuk edit
+    Route::put('/pesanan/{pesanan}', [PesananController::class, 'update'])->name('pesanan.update'); // Rute untuk update
+    Route::delete('/pesanan/{pesanan}', [PesananController::class, 'destroy'])->name('pesanan.destroy'); // Rute untuk destroy
+});
 // PRODUK
 Route::middleware('auth')->group(function () {
     Route::get('/produk', [ProdukController::class, 'index'])->name('produk.index'); // Rute untuk index

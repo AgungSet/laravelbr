@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\member;
+use App\Models\Member;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class LoginmemberController extends Controller
 {
@@ -65,10 +66,48 @@ class LoginmemberController extends Controller
             'username' => 'Username atau password salah.',
         ])->onlyInput('username');
     }
+
+    // Menampilkan form edit profil
+    public function editProfile()
+    {
+        $member = Auth::guard('member')->user();
+        return view('umum.auth.edit_profile', compact('member'));
+    }
+
+    // Proses update profil
+    public function updateProfile(Request $request)
+    {
+        $member = Auth::guard('member')->user();
+
+        $request->validate([
+            'email' => 'required|email|unique:members,email,' . $member->id,
+            'nama_customer' => 'required|string|max:255',
+            'username' => 'required|string|max:255|unique:members,username,' . $member->id,
+            'password' => 'nullable|min:8|confirmed',
+            'alamat' => 'nullable|string',
+            'no_hp' => 'nullable|string|max:15',
+        ]);
+
+        // Update data member
+        $member->email = $request->email;
+        $member->nama_customer = $request->nama_customer;
+        $member->username = $request->username;
+
+        if ($request->filled('password')) {
+            $member->password = Hash::make($request->password);
+        }
+
+        $member->alamat = $request->alamat;
+        $member->no_hp = $request->no_hp;
+        $member->save();
+
+        return redirect()->route('member.profile.edit')->with('success', 'Profil berhasil diperbarui.');
+    }
+
     // Proses logout
     public function logout()
     {
-        Auth::logout();
+        Auth::guard('member')->logout();
         return redirect()->route('umum.login');
     }
 }
