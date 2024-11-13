@@ -26,6 +26,7 @@ Route::get('/', [UmumController::class, 'index'])->name('umum.index'); // Rute u
 Route::get('/umum/produk', [UmumController::class, 'produk'])->name('umum.produk'); // Rute untuk index
 Route::get('/umum/kategori', [UmumController::class, 'kategori'])->name('umum.kategori'); // Rute untuk index
 Route::get('/Keranjang/index', [UmumController::class, 'keranjang'])->name('keranjang.index'); // Rute untuk index
+Route::get('/umum/pesanan', [UmumController::class, 'pesanan'])->name('umum.pesanan'); // Rute untuk index
 // Route::get('produk/{id}', [ProdukController::class, 'show'])->name('produk.show');
 
 //PROFILE
@@ -43,9 +44,8 @@ Route::post('/umum/produk/{produks}', [KeranjangController::class, 'input'])->na
 Route::get('/home', function () {
     return view('welcome');
 });
-Route::post('/umum/login', [LoginmemberController::class, 'login'])->name('umum.loginpost');
-Route::get('/dashboardumum', [LoginmemberController::class, 'index'])->name('dashboardumum');
-Route::get('/dashboardumum', [LoginmemberController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/produk', function () {
     return view('produk');
@@ -68,10 +68,10 @@ Route::get('/pesanan', function () {
 
 // KATEGORI
 Route::middleware('auth')->group(function () {
+    Route::get('/kategori', [KategoriController::class, 'input'])->name('kategori.input'); // Rute untuk input
     Route::get('/kategori', [KategoriController::class, 'index'])->name('kategori.index'); // Rute untuk index
     Route::get('/kategori/create', [KategoriController::class, 'create'])->name('kategori.create'); // Rute untuk create
     Route::post('/kategori', [KategoriController::class, 'store'])->name('kategori.store'); //ROUTE UNTUK STORE DATA
-    Route::post('/kategori', [KategoriController::class, 'input'])->name('kategori.input'); //ROUTE UNTUK  DATA
     Route::get('/kategori/{kategori}/edit', [KategoriController::class, 'edit'])->name('kategori.edit'); // Rute untuk edit
     Route::put('/kategori/{kategori}', [KategoriController::class, 'update'])->name('kategori.update'); // Rute untuk update
     Route::delete('/kategori/{kategori}', [KategoriController::class, 'destroy'])->name('kategori.destroy'); // Rute untuk destroy
@@ -79,7 +79,7 @@ Route::middleware('auth')->group(function () {
 
 // PESANAN
 Route::middleware('auth')->group(function () {
-    Route::get('umum/pesanan', [PesananController::class, 'index'])->name('umum.pesanan');
+    // Route::get('/pesanan', [PesananController::class, 'inputpesanan'])->name('pesanan.inputpesanan'); // Rute untuk input
     Route::get('/pesanan', [PesananController::class, 'index'])->name('pesanan.index'); // Rute untuk index
     Route::get('/pesanan/create', [PesananController::class, 'create'])->name('pesanan.create'); // Rute untuk create
     Route::post('/pesanan', [PesananController::class, 'store'])->name('pesanan.store'); //ROUTE UNTUK STORE DATA
@@ -117,6 +117,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
 // MEMBER
 Route::middleware('auth')->group(function () {
     Route::get('/member', [MemberController::class, 'index'])->name('member.index'); // Rute untuk index

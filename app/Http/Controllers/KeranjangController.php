@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Produk;
 use App\Models\keranjang;
+use App\Models\Pesanan;
 use App\Models\umum;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,6 +21,16 @@ class KeranjangController extends Controller
         $produks = Produk::orderByDesc('created_at')->paginate(10);
         return view('umum.produk', compact('produks'));
     }
+    // public function indexpesanan()
+    // {
+    //     $produks = Produk::orderByDesc('created_at')->paginate(10);
+    //     return view('umum.indexpesanan', compact('pesanan'));
+    // }
+    // public function pesanan()
+    // {
+    //     $pesanan = Pesanan::orderByDesc('created_at')->paginate(10);
+    //     return view('umum.pesanan', compact('pesanans'));
+    // }
     public function getKeranjang()
     {
         $keranjangs = Keranjang::orderByDesc('created_at')->paginate(10);
@@ -38,4 +49,17 @@ class KeranjangController extends Controller
         // Redirect ke halaman lain setelah aksi
         return to_route('umum.produk');
     }
+    // public function inputpesanan($pesanan)
+    // {
+    //     // Simpan data ke dalam Keranjang
+    //     $id_member = Auth::guard('member')->id();
+
+    //     Keranjang::create([
+    //         'id_pesanan' => $pesanan,
+    //         'id_member' => $id_member,
+    //     ]);
+
+    //     // Redirect ke halaman lain setelah aksi
+    //     return to_route('umum.pesanan');
+    // }
 }

@@ -141,7 +141,7 @@
                                 <h6 class="price">Rp {{ number_format($pesanan->harga, 0, ',', '.') }}</h6>
 
                                 <!-- Tombol tambah ke keranjang -->
-                                <form action="{{ route('pesanan.input', ['pesanans' => $pesanan->id]) }}" method="POST" style="display: inline-block;">
+                                <form action="{{ route('pesanan.index', ['pesanans' => $pesanan->id]) }}" method="POST" style="display: inline-block;">
                                     @csrf
                                     @method('POST')
                                     <button type="submit" class="btn-gold mt-3">Tambahkan ke Keranjang</button>

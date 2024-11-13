@@ -153,7 +153,8 @@
             </div>
         </div>
     </body>
-</html>
+
+    </html>
 
 
     <h1 class="text-center mb-4">Produk Pesanan</h1>
@@ -166,7 +167,7 @@
                         <h5 class="card-title">{{ $produk->nama_produk }}</h5>
                         <p class="card-text">{{ $produk->deskripsi }}</p>
                         <h6 class="mt-auto text-danger">Rp {{ number_format($produk->harga, 0, ',', '.') }}</h6>
-                        <form action="{{ route('produk.input', $produk->id) }}" method="POST" onsubmit="return confirm('Are you sure?')" style="display: inline-block;">
+                        <form action="{{ route('produk.index', $produk->id) }}" method="POST" onsubmit="return confirm('Are you sure?')" style="display: inline-block;">
                             @csrf
                             @method('post')
                             <button type="submit" class="btn btn-warning mt-3">Tambahkan ke Keranjang</button>
