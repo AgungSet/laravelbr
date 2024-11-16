@@ -35,8 +35,13 @@ class UmumController extends Controller
 
     public function keranjang()
     {
-        $keranjangs = keranjang::orderByDesc('created_at')->paginate(10);
+        $keranjangs = keranjang::all();
         return view('keranjang.index', compact('keranjangs'));
+    }
+    public function keranjangdestroy(keranjang $keranjang)
+    {
+        $keranjang->delete();
+        return to_route('keranjang.index');
     }
     public function pesanan()
     {

@@ -10,8 +10,21 @@ class Keranjang extends Model
     use HasFactory;
     protected $guarded = [];
 
-    public function keranjang()
+    /**
+     * Relasi ke model Produk.
+     * Setiap keranjang memiliki satu produk.
+     */
+    public function produk()
     {
-        return $this->hasMany(Keranjang::class, 'id_keranjang'); //MANY
+        return $this->belongsTo(Produk::class, 'id_produk');
+    }
+
+    /**
+     * Relasi ke model Member atau User.
+     * Setiap keranjang dimiliki oleh satu member.
+     */
+    public function member()
+    {
+        return $this->belongsTo(User::class, 'id_member'); // Asumsi model User digunakan untuk member
     }
 }

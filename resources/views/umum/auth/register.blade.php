@@ -85,7 +85,7 @@
     <div class="register-container">
         <h2>Register Katalog Muria Batik</h2>
         <p>Silakan isi data Anda untuk mendaftar</p>
-        <form action="{{ route('umum.register') }}" method="POST">
+        <form action="{{ route('umum.registerpost') }}" method="POST">
             @csrf
             <input type="email" name="email" placeholder="Email" required>
             <input type="text" name="nama_customer" placeholder="Nama Customer" required>

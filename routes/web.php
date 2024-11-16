@@ -15,17 +15,16 @@ use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 //Halaman Login Umum
 Route::get('/umum/register', [LoginmemberController::class, 'showRegisterForm'])->name('umum.register');
-Route::post('/umum/register', [LoginmemberController::class, 'register']);
+Route::post('/umum/register', [LoginmemberController::class, 'register'])->name('umum.registerpost');
 
 Route::get('/umum/login', [LoginmemberController::class, 'showLoginForm'])->name('umum.login');
-Route::post('/umum/login', [LoginmemberController::class, 'login']);
+Route::post('/umum/login', [LoginmemberController::class, 'login'])->name('umum.loginpost');
 
 Route::post('/umum/logout', [LoginmemberController::class, 'logout'])->name('umum.logout');
 // HALAMAN UMUM
 Route::get('/', [UmumController::class, 'index'])->name('umum.index'); // Rute untuk index
 Route::get('/umum/produk', [UmumController::class, 'produk'])->name('umum.produk'); // Rute untuk index
 Route::get('/umum/kategori', [UmumController::class, 'kategori'])->name('umum.kategori'); // Rute untuk index
-Route::get('/Keranjang/index', [UmumController::class, 'keranjang'])->name('keranjang.index'); // Rute untuk index
 Route::get('/umum/pesanan', [UmumController::class, 'pesanan'])->name('umum.pesanan'); // Rute untuk index
 // Route::get('produk/{id}', [ProdukController::class, 'show'])->name('produk.show');
 
@@ -36,6 +35,10 @@ Route::middleware('auth:member')->group(function () {
 });
 
 //KERANJANG
+Route::get('/keranjang/index', [UmumController::class, 'keranjang'])->name('keranjang.index'); // Rute untuk index
+Route::delete('/keranjang/{keranjang}', [UmumController::class, 'keranjangdestroy'])->name('keranjang.destroy'); // Rute untuk destroy
+
+
 
 Route::post('/umum/produk/{produks}', [KeranjangController::class, 'input'])->name('produk.input'); // Rute untuk input
 

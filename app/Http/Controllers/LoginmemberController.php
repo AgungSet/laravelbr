@@ -58,7 +58,7 @@ class LoginmemberController extends Controller
 
         // Autentikasi menggunakan guard 'member' dan model Member
         if (Auth::guard('member')->attempt($credentials)) {
-            return redirect()->intended('/memberarea'); // Halaman khusus member
+            return redirect()->intended('/umum/produk'); // Halaman khusus member
         }
 
         // Kembali ke halaman login jika gagal
@@ -122,6 +122,6 @@ class LoginmemberController extends Controller
     public function logout()
     {
         Auth::guard('member')->logout();
-        return redirect()->route('umum.login');
+        return redirect()->route('umum.produk');
     }
 }

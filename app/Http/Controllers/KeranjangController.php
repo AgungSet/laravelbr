@@ -39,6 +39,9 @@ class KeranjangController extends Controller
     public function input($produks)
     {
         // Simpan data ke dalam Keranjang
+        if (Auth::guard('member')->id() == null) {
+            return to_route('umum.login');
+        }
         $id_member = Auth::guard('member')->id();
 
         Keranjang::create([
@@ -49,17 +52,4 @@ class KeranjangController extends Controller
         // Redirect ke halaman lain setelah aksi
         return to_route('umum.produk');
     }
-    // public function inputpesanan($pesanan)
-    // {
-    //     // Simpan data ke dalam Keranjang
-    //     $id_member = Auth::guard('member')->id();
-
-    //     Keranjang::create([
-    //         'id_pesanan' => $pesanan,
-    //         'id_member' => $id_member,
-    //     ]);
-
-    //     // Redirect ke halaman lain setelah aksi
-    //     return to_route('umum.pesanan');
-    // }
 }

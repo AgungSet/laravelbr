@@ -56,24 +56,25 @@
             </div>
             <div class="d-flex align-items-center">
                 @if (Auth::guard('member')->check())
-                    <p class="text-6xl font-bold mb-4 me-3" style="font-size: 2rem;">
+                    <p class="fw-bold mb-4 me-3" style="font-size: 2rem;">
                         {{ Auth::guard('member')->user()->username }}
                     </p>
-                    <a href="{{ route('member.profile.edit') }}" class="relative bg-gold text-black p-3 rounded-full hover:bg-yellow-600 transition mt-2">
-                        <!-- Ikon user -->
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 12c2.28 0 4.14-1.86 4.14-4.14S14.28 3.72 12 3.72 7.86 5.58 7.86 8.86 9.72 12 12 12zm0 1.71c-2.48 0-7.14 1.24-7.14 3.72v2.14h14.28v-2.14c0-2.48-4.66-3.72-7.14-3.72z" />
-                        </svg>
+                    <a href="{{ route('member.profile.edit') }}" class="btn btn-warning text-black p-3 rounded-pill me-2">
+                        Edit Profile
                     </a>
+                    <form action="{{ route('umum.logout') }}" method="POST" style="display: inline;">
+                        @csrf
+                        <button type="submit" class="btn btn-danger text-white">
+                            Logout
+                        </button>
+                    </form>
                 @else
-                    <a href="{{ route('umum.login') }}" class="relative bg-gold text-black p-3 rounded-full hover:bg-yellow-600 transition mt-2">
-                        <!-- Ikon user untuk login -->
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M5.121 5.121a1.5 1.5 0 012.121 0l2.83 2.828a1.5 1.5 0 010 2.122l-2.83 2.828a1.5 1.5 0 01-2.121-2.122l1.586-1.586H3a1.5 1.5 0 110-3h3.707l-1.586-1.586a1.5 1.5 0 010-2.122z" />
-                        </svg>
+                    <a href="{{ route('umum.login') }}" class="btn btn-warning text-black p-3 rounded-pill">
+                        Login
                     </a>
                 @endif
             </div>
+
 
 
 

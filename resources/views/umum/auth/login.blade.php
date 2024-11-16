@@ -33,6 +33,12 @@
             color: #333;
         }
 
+        .login-container h3 {
+            margin-bottom: 20px;
+            font-size: 10px;
+            color: #333;
+        }
+
         .login-container p {
             font-size: 16px;
             color: #666;
@@ -82,6 +88,7 @@
 
 <body>
     <div class="login-container">
+        <h3>Silahkan Login Terlebih dahulu</h3>
         <h2>Login Katalog Muria Batik</h2>
         <p>Masukkan username dan password Anda</p>
         <form action="{{ route('umum.loginpost') }}" method="POST">
