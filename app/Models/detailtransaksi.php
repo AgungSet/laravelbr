@@ -5,13 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class detailpesanan extends Model
+class detailtransaksi extends Model
 {
     use HasFactory;
-    protected $table = 'detail_pesanans';
+    protected $table = 'detail_transaksis';
 
     protected $guarded = [];
-    // Relasi ke tabel produk
+
     public function produk()
     {
         return $this->belongsTo(Produk::class, 'id_produk');

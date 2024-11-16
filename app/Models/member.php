@@ -15,4 +15,8 @@ class member extends Authenticatable
     {
         return $this->hasMany(Produk::class, 'id_produk'); //MANY
     }
+    public function transaksi()
+    {
+        return $this->hasMany(detailtransaksi::class, 'id_member');
+    }
 }

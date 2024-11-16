@@ -8,10 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class transaksi extends Model
 {
     use HasFactory;
+    protected $table = 'transaksis';
+
     protected $guarded = [];
 
-    public function produk()
+    // Relasi ke tabel pengguna
+    public function member()
     {
-        return $this->hasMany(Produk::class, 'id_transaksi'); //MANY
+        return $this->belongsTo(Member::class, 'id_member');
+    }
+
+    // Relasi ke detail transaksi
+    public function detailTransaksi()
+    {
+        return $this->hasMany(detailtransaksi::class, 'id_transaksi');
     }
 }
