@@ -5,7 +5,7 @@
         <h1 class="text-center mb-4">Keranjang Belanja Anda</h1>
 
         @if ($keranjangs->isEmpty())
-            <p class="text-center text-muted">Keranjang anda kosong. <a href="{{ route('produk.index') }}" class="text-decoration-none">Belanja sekarang!</a></p>
+            <p class="text-center text-muted">Keranjang anda kosong. <a href="{{ route('umum.produk') }}" class="text-decoration-none">Belanja sekarang!</a></p>
         @else
             <div class="table-responsive">
                 <table class="table table-bordered text-center">
@@ -23,16 +23,16 @@
                         @php $total = 0; @endphp
                         @foreach ($keranjangs as $index => $keranjang)
                             @php
-                                $subtotal = $keranjang->jumlah * $keranjang->produk->harga;
+                                $subtotal = 1 * $keranjang->produk->harga;
                                 $total += $subtotal;
                             @endphp
                             <tr>
                                 <td>{{ $index + 1 }}</td>
                                 <td>
-                                    <img src="{{ asset('storage/' . $keranjang->produk->gambar) }}" alt="{{ $keranjang->produk->nama }}" class="img-thumbnail" style="width: 100px; height: auto;">
-                                    <p class="mt-2">{{ $keranjang->produk->nama }}</p>
+                                    <img src="{{ asset('uploads/' . $keranjang->produk->foto) }}" alt="{{ $keranjang->produk->nama_produk }}" class="img-thumbnail" style="width: 100px; height: auto;">
+                                    <p class="mt-2">{{ $keranjang->produk->nama_produk }}</p>
                                 </td>
-                                <td>{{ $keranjang->jumlah }}</td>
+                                <td>{{ 1 }}</td>
                                 <td>Rp {{ number_format($keranjang->produk->harga, 0, ',', '.') }}</td>
                                 <td>Rp {{ number_format($subtotal, 0, ',', '.') }}</td>
                                 <td>
@@ -55,7 +55,12 @@
             </div>
 
             <div class="text-end">
-                <a href="{{ route('checkout') }}" class="btn btn-warning btn-lg">Lanjut ke Checkout</a>
+                <form action="{{ route('keranjang.checkout') }}" method="POST" style="display: inline;">
+                    @csrf
+                    <label for="catatan_transaksi">Catatan Transaksi</label>
+                    <textarea type="text" name="catatan_transaksi" value="Contoh catatan"></textarea>
+                    <button type="submit" class="btn btn-warning btn-lg">Checkout</button>
+                </form>
             </div>
         @endif
     </div>

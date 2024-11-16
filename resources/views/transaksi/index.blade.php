@@ -24,16 +24,13 @@
                                     <span class="text-xs font-medium uppercase leading-4 tracking-wider text-gray-500">Nama Customer</span>
                                 </th>
                                 <th class="bg-gray-50 px-6 py-3 text-left">
-                                    <span class="text-xs font-medium uppercase leading-4 tracking-wider text-gray-500">Nama Produk</span>
+                                    <span class="text-xs font-medium uppercase leading-4 tracking-wider text-gray-500">total harga</span>
                                 </th>
                                 <th class="bg-gray-50 px-6 py-3 text-left">
-                                    <span class="text-xs font-medium uppercase leading-4 tracking-wider text-gray-500">Harga</span>
+                                    <span class="text-xs font-medium uppercase leading-4 tracking-wider text-gray-500">Status</span>
                                 </th>
                                 <th class="bg-gray-50 px-6 py-3 text-left">
-                                    <span class="text-xs font-medium uppercase leading-4 tracking-wider text-gray-500">Total</span>
-                                </th>
-                                <th class="bg-gray-50 px-6 py-3 text-left">
-                                    <span class="text-xs font-medium uppercase leading-4 tracking-wider text-gray-500">Edit/Delete</span>
+                                    <span class="text-xs font-medium uppercase leading-4 tracking-wider text-gray-500">Aksi</span>
                                 </th>
                             </tr>
                         </thead>
@@ -45,16 +42,13 @@
                                         {{ date('d M Y', strtotime($transaksi->created_at)) }}
                                     </td>
                                     <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
-                                        {{ $transaksi->nama_member }}
+                                        {{ $transaksi->member->nama_customer }}
                                     </td>
                                     <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
-                                        {{ $transaksi->nama_produk }}
+                                        {{ $transaksi->total_harga_transaksi }}
                                     </td>
                                     <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
-                                        {{ $transaksi->harga }}
-                                    </td>
-                                    <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
-                                        {{ $transaksi->total }}
+                                        {{ $transaksi->status_transaksi }}
                                     </td>
 
 
@@ -63,13 +57,25 @@
                                         <a href="{{ route('transaksi.edit', $transaksi) }}" title="Edit">
                                             <i class="fas fa-edit" style="font-size: 1.5em; color: gold;"></i>
                                         </a>
-
-
                                         <form action="{{ route('transaksi.destroy', $transaksi) }}" method="POST" onsubmit="return confirm('Are you sure?')" style="display: inline-block;">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" style="background: none; border: none; cursor: pointer;">
                                                 <i class="fas fa-trash" style="font-size: 1.2em; color: #6B7280;"></i>
+                                            </button>
+                                        </form>
+                                        <form action="{{ route('transaksi.updateterbayar', $transaksi) }}" method="POST" onsubmit="return confirm('Are you sure?')" style="display: inline-block;">
+                                            @csrf
+                                            @method('PUT')
+                                            <button type="submit" style="background: none; border: none; cursor: pointer;">
+                                                <i class="fas fa-trash" style="font-size: 1.2em; color: #6B7280;">Terbayar</i>
+                                            </button>
+                                        </form>
+                                        <form action="{{ route('transaksi.updateselesai', $transaksi) }}" method="POST" onsubmit="return confirm('Are you sure?')" style="display: inline-block;">
+                                            @csrf
+                                            @method('PUT')
+                                            <button type="submit" style="background: none; border: none; cursor: pointer;">
+                                                <i class="fas fa-trash" style="font-size: 1.2em; color: #6B7280;">Selesai</i>
                                             </button>
                                         </form>
                                     </td>

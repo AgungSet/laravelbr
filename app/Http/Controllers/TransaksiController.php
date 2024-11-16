@@ -20,7 +20,6 @@ class TransaksiController extends Controller
     public function index(): View
     {
         $transaksis = transaksi::orderByDesc('created_at')->paginate(10);
-
         return view('transaksi.index', compact('transaksis'))->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
@@ -78,7 +77,20 @@ class TransaksiController extends Controller
         ]);
         return redirect()->route('transaksi.index')->with('success', 'transakai update successfully.');
     }
-
+    public function updateterbayar(transaksi $transaksi)
+    {
+        $transaksi->update([
+            'status_transaksi' => 'Terbayar',
+        ]);
+        return redirect()->route('transaksi.index')->with('success', 'transakai update successfully.');
+    }
+    public function updateselesai(transaksi $transaksi)
+    {
+        $transaksi->update([
+            'status_transaksi' => 'Selesai',
+        ]);
+        return redirect()->route('transaksi.index')->with('success', 'transakai update successfully.');
+    }
     public function destroy(transaksi $transaksi)
     {
         $transaksi->delete();

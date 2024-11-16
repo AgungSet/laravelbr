@@ -26,6 +26,8 @@ Route::get('/', [UmumController::class, 'index'])->name('umum.index'); // Rute u
 Route::get('/umum/produk', [UmumController::class, 'produk'])->name('umum.produk'); // Rute untuk index
 Route::get('/umum/kategori', [UmumController::class, 'kategori'])->name('umum.kategori'); // Rute untuk index
 Route::get('/umum/pesanan', [UmumController::class, 'pesanan'])->name('umum.pesanan'); // Rute untuk index
+Route::get('/umum/transaksi', [UmumController::class, 'transaksi'])->name('umum.transaksi'); // Rute untuk index
+Route::get('/umum/transaksi/detail/{id}', [UmumController::class, 'detailtransaksi'])->name('umum.detailtransaksi'); // Rute untuk index
 // Route::get('produk/{id}', [ProdukController::class, 'show'])->name('produk.show');
 
 //PROFILE
@@ -38,7 +40,7 @@ Route::middleware('auth:member')->group(function () {
 Route::get('/keranjang/index', [UmumController::class, 'keranjang'])->name('keranjang.index'); // Rute untuk index
 Route::delete('/keranjang/{keranjang}', [UmumController::class, 'keranjangdestroy'])->name('keranjang.destroy'); // Rute untuk destroy
 
-
+Route::post('/keranjang/checkout', [UmumController::class, 'checkout'])->name('keranjang.checkout');
 
 Route::post('/umum/produk/{produks}', [KeranjangController::class, 'input'])->name('produk.input'); // Rute untuk input
 
@@ -111,7 +113,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/transaksi/create', [TransaksiController::class, 'create'])->name('transaksi.create'); // Rute untuk create
     Route::post('/transaksi', [TransaksiController::class, 'store'])->name('transaksi.store'); //ROUTE UNTUK STORE DATA
     Route::get('/transaksi/{transaksi}/edit', [TransaksiController::class, 'edit'])->name('transaksi.edit'); // Rute untuk edit
-    Route::put('/transaksi/{transaksi}', [TransaksiController::class, 'update'])->name('transaksi.update'); // Rute untuk update
+    Route::put('/transaksi/update/{transaksi}', [TransaksiController::class, 'update'])->name('transaksi.update'); // Rute untuk update
+    Route::put('/transaksi/terbayar/{transaksi}', [TransaksiController::class, 'updateterbayar'])->name('transaksi.updateterbayar'); // Rute untuk update
+    Route::put('/transaksi/selesai/{transaksi}', [TransaksiController::class, 'updateselesai'])->name('transaksi.updateselesai'); // Rute untuk updatse
     Route::delete('/transaksi/{transaksi}', [TransaksiController::class, 'destroy'])->name('transaksi.destroy'); // Rute untuk destroy
 });
 
