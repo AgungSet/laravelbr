@@ -55,6 +55,10 @@ class MemberController extends Controller
     {
         $produks = Produk::all();
         return view('member.edit', compact('member', 'produks'));
+        // Cari member berdasarkan id_member
+        $member = Member::findOrFail($id_member);
+        // Return view edit dengan data member
+        return view('member.edit', compact('member'));
     }
 
     public function update(Request $request, member $member)
@@ -81,5 +85,12 @@ class MemberController extends Controller
     {
         $member->delete();
         return to_route('member.index');
+    }
+    public function logout(Request $request)
+    {
+        Member::logout();
+
+        // Redirect ke halaman login
+        return redirect()->route('login')->with('status', 'Anda telah logout.');
     }
 }

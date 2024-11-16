@@ -120,6 +120,9 @@ Route::middleware('auth')->group(function () {
 
 // MEMBER
 Route::middleware('auth')->group(function () {
+    //membereditpopup
+    Route::get('/member/{id_member}/edit', [MemberController::class, 'edit'])->name('member.edit');
+    Route::post('/logout', [MemberController::class, 'logout'])->name('logout');
     Route::get('/member', [MemberController::class, 'index'])->name('member.index'); // Rute untuk index
     Route::get('/member/create', [MemberController::class, 'create'])->name('member.create'); // Rute untuk create
     Route::post('/member', [MemberController::class, 'store'])->name('member.store'); //ROUTE UNTUK STORE DATA
