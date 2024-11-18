@@ -150,41 +150,55 @@
                 <a href="{{ route('umum.produk') }}" class="text-dark me-3 btn btn-warning btn-gold-hover">Produk</a>
                 <a href="{{ route('umum.kategori') }}" class="text-dark me-3 btn btn-warning btn-gold-hover">Kategori</a>
                 <a href="{{ route('umum.pesanan') }}" class="text-dark me-3 btn btn-warning btn-gold-hover">Pesanan</a>
-                <a href="{{ route('umum.transaksi') }}" class="text-dark me-3 btn btn-warning btn-gold-hover">Transaksi Saya</a>
+                <a href="{{ route('umum.transaksi') }}" class="text-black me-3 btn" style="background-color: #ffffff; border: 1px solid #919191; padding: 10px 20px; border-radius: 8px;">
+                    Transaksi Saya
+                </a>
+
 
             </nav>
 
             <!-- Keranjang Icon with Item Count -->
-            <div class="d-flex align-items-center">
-                <p class="text-6xl font-bold mb-4 me-3" style="font-size: 2rem;">{{ $keranjangs->count() }}</p>
+            <div class="d-flex align-items-center gap-3">
+                <!-- Jumlah Item di Keranjang -->
+                <p class="fw-bold mb-0" style="font-size: 1.5rem;">
+                    {{ $keranjangs->count() }}
+                </p>
 
-                <a href="{{ route('keranjang.index') }}" class="relative bg-gold text-black p-3 rounded-full hover:bg-yellow-600 transition mt-2">
-                    <!-- Ikon keranjang -->
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4m1.6 8l1.3 5.2a1 1 0 001 .8h9.4a1 1 0 001-.8l1.3-5.2M10 21a1 1 0 100-2 1 1 0 000 2zm8 0a1 1 0 100-2 1 1 0 000 2z" />
+                <!-- Tombol Keranjang -->
+                <a href="{{ route('keranjang.index') }}" class="d-flex align-items-center justify-content-center bg-warning text-black p-3 rounded-circle hover-bg-light transition" style="width: 48px; height: 48px; line-height: 0;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16">
+                        <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
                     </svg>
                 </a>
             </div>
-            <div class="d-flex align-items-center">
+
+            <div class="d-flex align-items-center justify-content-center flex-wrap gap-3">
                 @if (Auth::guard('member')->check())
-                    <p class="fw-bold mb-4 me-3" style="font-size: 2rem;">
+                    <!-- Username -->
+                    <p class="fw-bold text-center mb-0" style="font-size: 1rem;">
                         {{ Auth::guard('member')->user()->username }}
                     </p>
-                    <a href="{{ route('member.profile.edit') }}" class="btn btn-warning text-black p-3 rounded-pill me-2">
+
+                    <!-- Tombol Edit Profile -->
+                    <a href="{{ route('member.profile.edit') }}" class="btn text-black rounded-pill" style="background-color: #fff; border: 1px solid #ccc; padding: 0.5rem 1rem; font-size: 0.875rem;">
                         Edit Profile
                     </a>
-                    <form action="{{ route('umum.logout') }}" method="POST" style="display: inline;">
+
+                    <!-- Tombol Logout -->
+                    <form action="{{ route('umum.logout') }}" method="POST" style="display: inline;" onsubmit="return confirm('Apakah Anda yakin ingin logout?');">
                         @csrf
-                        <button type="submit" class="btn btn-danger text-white">
+                        <button type="submit" class="btn rounded-pill text-black" style="background-color: #ff4d4d; border: 1px solid #ff0000; padding: 0.5rem 1rem; font-size: 0.875rem;">
                             Logout
                         </button>
                     </form>
                 @else
-                    <a href="{{ route('umum.login') }}" class="btn btn-warning text-black p-3 rounded-pill">
+                    <!-- Tombol Login -->
+                    <a href="{{ route('umum.login') }}" class="btn text-black rounded-pill" style="background-color: #fff; border: 1px solid #ccc; padding: 0.5rem 1rem; font-size: 0.875rem;">
                         Login
                     </a>
                 @endif
             </div>
+
 
 
 
