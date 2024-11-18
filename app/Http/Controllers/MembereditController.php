@@ -7,13 +7,13 @@ use App\Models\Member;
 
 class MembereditController extends Controller
 {
-    public function edit($id_member)
+    public function edit($member)
     {
         // Cari member berdasarkan id_member
-        $member = Member::findOrFail($id_member);
+        $member = Member::findOrFail($member);
 
         // Return view edit dengan data member
-        return view('member.edit', compact('member'));
+        return view('memberedit.edit', compact('memberedit'));
     }
 
     public function logout(Request $request)
