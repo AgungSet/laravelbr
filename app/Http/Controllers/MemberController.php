@@ -71,8 +71,6 @@ class MemberController extends Controller
             'alamat' => $request->alamat,
             'no_hp' => $request->no_hp,
             'instagram' => $request->instagram,
-
-
         ]);
         return redirect()->route('member.index')->with('success', 'transakai update successfully.');
     }
