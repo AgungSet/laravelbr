@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MembereditController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\KategoriController;
@@ -30,10 +31,10 @@ Route::get('/umum/transaksi', [UmumController::class, 'transaksi'])->name('umum.
 Route::get('/umum/transaksi/detail/{id}', [UmumController::class, 'detailtransaksi'])->name('umum.detailtransaksi'); // Rute untuk index
 // Route::get('produk/{id}', [ProdukController::class, 'show'])->name('produk.show');
 
-//PROFILE
+//memberedit
 Route::middleware('auth:member')->group(function () {
-    Route::get('/member/profile', [LoginmemberController::class, 'editProfile'])->name('member.profile.edit');
-    Route::put('/member/profile', [LoginmemberController::class, 'updateProfile'])->name('member.profile.update');
+    Route::get('/member/profile', [MembereditController::class, 'edit'])->name('member.profile.edit');
+    Route::put('/member/profile/{member}', [MembereditController::class, 'update'])->name('member.profile.update');
 });
 
 //KERANJANG
@@ -127,7 +128,7 @@ Route::middleware('auth')->group(function () {
 
 // MEMBER
 Route::middleware('auth')->group(function () {
-    //membereditpopup
+
     Route::get('/member/{id_member}/edit', [MemberController::class, 'edit'])->name('member.edit');
     Route::post('/logout', [MemberController::class, 'logout'])->name('logout');
     Route::get('/member', [MemberController::class, 'index'])->name('member.index'); // Rute untuk index
@@ -136,7 +137,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/member/{member}/edit', [MemberController::class, 'edit'])->name('member.edit'); // Rute untuk edit
     Route::put('/member/{member}', [MemberController::class, 'update'])->name('member.update'); // Rute untuk update
     Route::delete('/member/{member}', [MemberController::class, 'destroy'])->name('member.destroy'); // Rute untuk destroy
+
 });
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

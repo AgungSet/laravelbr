@@ -3,50 +3,47 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Member;
+use App\Models\Member; // Mengimpor model Member
+use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View; // Menambahkan View import untuk tipe return
 
 class MembereditController extends Controller
 {
-    public function edit($member)
+    public function edit(): View
     {
-        // Cari member berdasarkan id_member
-        $member = Member::findOrFail($member);
-
-        // Return view edit dengan data member
-        return view('memberedit.edit', compact('memberedit'));
+        $member = Auth::guard('member')->user();
+        return view('umum.auth.edit_profile', compact('member'));
     }
 
-    public function logout(Request $request)
+    public function update(Request $request, Member $member)
     {
-        Memberedit::logout();
-
-        // Redirect ke halaman login
-        return redirect()->route('login')->with('status', 'Anda telah logout.');
-    }
-    public function update(Request $request, $id_member)
-    {
-        $member = Member::findOrFail($id_member);
-
+        // dd($request);
+        // Validasi input
         $request->validate([
             'email' => 'required|email',
-            'name' => 'required|string|max:255',
+            'nama_customer' => 'required|string|max:255',
             'username' => 'required|string|max:255',
-            'phone' => 'required|string|max:15',
-            'address' => 'required|string|max:255',
+            'password' => 'nullable',
+            'alamat' => 'required|string',
+            'no_hp' => 'required|string|max:15',
         ]);
 
-        $member->email = $request->input('email');
-        $member->name = $request->input('name');
-        $member->username = $request->input('username');
-        $member->phone = $request->input('phone');
-        $member->address = $request->input('address');
+        // Update data
+        $member->email = $request->email;
+        $member->nama_customer = $request->nama_customer;
+        $member->username = $request->username;
+        $member->alamat = $request->alamat;
+        $member->no_hp = $request->no_hp;
 
+        // Update password jika diisi
         if ($request->filled('password')) {
-            $member->password = bcrypt($request->input('password'));
+            $member->password = bcrypt($request->password);
         }
 
         $member->save();
 
-        return redirect()->route('member.edit', $id_member)->with('status', 'Data member berhasil diperbarui.');
+        // Redirect dengan pesan sukses
+        return redirect()->route('member.profile.edit', $member->id)
+            ->with('success', 'Data member berhasil diperbarui.');
     }
 }
