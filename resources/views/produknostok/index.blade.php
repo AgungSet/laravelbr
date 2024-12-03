@@ -7,7 +7,7 @@
                 <div class="flex flex-row justify-between px-4">
                     <div></div>
                     <a href="{{ route('produknostok.create') }}" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-[#d3b643] hover:bg-[#b39b38] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#bca93e] transition ease-in-out duration-150">
-                        {{ __('Add Produknostok') }}
+                        {{ __('Add Produk no stok') }}
                     </a>
                 </div>
 
@@ -17,7 +17,7 @@
                         <thead>
                             <tr>
                                 <th class="bg-gray-50 px-6 py-3 text-left">
-                                    <span class="text-xs font-medium uppercase leading-4 tracking-wider text-gray-500">Nama produknostok</span>
+                                    <span class="text-xs font-medium uppercase leading-4 tracking-wider text-gray-500">Nama produk no stok</span>
                                 </th>
                                 <th class="bg-gray-50 px-6 py-3 text-left">
                                     <span class="text-xs font-medium uppercase leading-4 tracking-wider text-gray-500">dibuat</span>

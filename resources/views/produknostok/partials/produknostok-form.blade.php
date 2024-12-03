@@ -2,7 +2,7 @@
     <div class="flex flex-col mt-4 gap-6">
         <div class="flex flex-col md:flex-row flex-wrap gap-4">
             <div class="flex-1">
-                <label for="produknostok" :value="__('Produknostok')"> Produknostok</label>
+                <label for="produknostok" :value="__('Produknostok')"> Nama</label>
                 <input type="text" id="nama_produknostok" name="nama_produknostok" value="{{ old('nama_produknostok', optional($produknostok ?? null)->nama_produknostok) }}" class="mt-1 block w-full" />
             </div>
         </div>
@@ -15,7 +15,7 @@
             <textarea id="deskripsi" name="deskripsi" type="text" class="mt-1 block w-full">{{ old('deskripsi', optional($produknostok ?? null)->deskripsi ? $produknostok->deskripsi : '') }}</textarea>
         </div>
         <div>
-            <label for="foto">foto produknostok</label>
+            <label for="foto">foto</label>
             <input type="file" name="foto" class="mt-1 block w-full" value="{{ old('foto', optional($produknostok ?? null)->foto ? $produknostok->foto : '') }}"></input>
         </div>
         {{-- FIELD OPTION KATEGORI --}}

@@ -66,7 +66,6 @@ class ProduknostokController extends Controller
     {
         $request->validate([
             'nama_produknostok' => 'required',
-
             'harga' => 'required',
             'id_kategori' => 'required',
             'foto' => 'required',
@@ -81,7 +80,6 @@ class ProduknostokController extends Controller
         }
         $produknostok->update([
             'nama_produknostok' => $request->nama_produknostok,
-
             'harga' => $request->harga,
             'id_kategori' => $request->id_kategori,
             'foto' => $filename,

@@ -150,11 +150,9 @@
                 <a href="{{ route('umum.produk') }}" class="text-dark me-3 btn btn-warning btn-gold-hover">Produk</a>
                 <a href="{{ route('umum.kategori') }}" class="text-dark me-3 btn btn-warning btn-gold-hover">Kategori</a>
                 <a href="{{ route('umum.pesanan') }}" class="text-dark me-3 btn btn-warning btn-gold-hover">Pesanan</a>
-                <a href="{{ route('umum.transaksi') }}" class="text-black me-3 btn" style="background-color: #ffffff; border: 1px solid #919191; padding: 10px 20px; border-radius: 8px;">
+                <a href="{{ route('umum.transaksi') }}" class="text-black me-3 btn" style="background-color: #ffffff; border: 1px solid #919191; padding: 5px 10px; border-radius: 6px; font-size: 0.85em;">
                     Transaksi Saya
                 </a>
-
-
             </nav>
 
             <!-- Keranjang Icon with Item Count -->
@@ -180,16 +178,18 @@
                     </p>
 
                     <!-- Tombol Edit Profile -->
-                    <a href="{{ route('member.profile.edit') }}" class="btn text-black rounded-pill" style="background-color: #fff; border: 1px solid #ccc; padding: 0.5rem 1rem; font-size: 0.875rem;">
+                    <a href="{{ route('member.profile.edit') }}" class="btn text-black rounded-pill" style="background-color: #fff; border: 1px solid #ccc; padding: 0.3rem 0.90rem; font-size: 0.75rem;">
                         Edit Profile
                     </a>
+
 
                     <!-- Tombol Logout -->
                     <form action="{{ route('umum.logout') }}" method="POST" style="display: inline;" onsubmit="return confirm('Apakah Anda yakin ingin logout?');">
                         @csrf
-                        <button type="submit" class="btn rounded-pill text-black" style="background-color: #ff4d4d; border: 1px solid #ff0000; padding: 0.5rem 1rem; font-size: 0.875rem;">
+                        <button type="submit" class="btn rounded-pill text-black" style="background-color: #ff4d4d; border: 1px solid #ff0000; padding: 0.3rem 0.75rem; font-size: 0.75rem;">
                             Logout
                         </button>
+
                     </form>
                 @else
                     <!-- Tombol Login -->

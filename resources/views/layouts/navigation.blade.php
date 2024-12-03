@@ -26,7 +26,7 @@
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('produknostok.index')" :active="request()->routeIs('produknostok.index')" class="text-white">
-                        {{ __('Produknostok') }}
+                        {{ __('Produk no stok') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">

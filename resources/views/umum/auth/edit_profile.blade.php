@@ -5,8 +5,9 @@
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <div class="card shadow">
-                    <div class="card-header bg-primary text-white text-center">
+                    <div class="card-header text-black text-center" style="background-color: #ffc107;">
                         <h4>Edit Member</h4>
+
                     </div>
                     <div class="card-body">
                         <form action="{{ route('member.profile.update', $member) }}" method="POST" enctype="multipart/form-data">
@@ -50,12 +51,15 @@
                                 <input type="text" name="no_hp" id="no_hp" class="form-control" value="{{ old('no_hp', $member->no_hp) }}" required>
                             </div>
 
+                            <!-- Tombol Submit -->
                             <div class="text-center">
-                                <button type="submit" class="btn btn-primary w-100">Update Member</button>
+                                <button type="submit" class="btn w-100" style="background-color: {{ auth()->check() ? '#ffc107' : '#007bff' }};
+                                               color: {{ auth()->check() ? '#000' : '#fff' }};">
+                                    Update Member
+                                </button>
                             </div>
 
                         </form>
-
                     </div>
                 </div>
             </div>
