@@ -3,6 +3,7 @@
 use App\Http\Controllers\MembereditController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProdukController;
+use App\Http\Controllers\ProduknostokController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\KeranjangController;
 use App\Http\Controllers\LoginmemberController;
@@ -101,6 +102,21 @@ Route::middleware('auth')->group(function () {
     Route::get('/produk/{produk}/edit', [ProdukController::class, 'edit'])->name('produk.edit'); // Rute untuk edit
     Route::put('/produk/{produk}', [ProdukController::class, 'update'])->name('produk.update'); // Rute untuk update
     Route::delete('/produk/{produk}', [ProdukController::class, 'destroy'])->name('produk.destroy'); // Rute untuk destroy
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+// PRODUKNOSTOK
+Route::middleware('auth')->group(function () {
+    Route::get('/produknostok', [ProduknostokController::class, 'index'])->name('produknostok.index'); // Rute untuk index
+    Route::get('/produknostok/create', [ProduknostokController::class, 'create'])->name('produknostok.create'); // Rute untuk create
+    Route::post('/produknostok', [ProduknostokController::class, 'store'])->name('produknostok.store'); //ROUTE UNTUK STORE DATA
+    Route::get('/produknostok/{produknostok}/edit', [ProduknostokController::class, 'edit'])->name('produknostok.edit'); // Rute untuk edit
+    Route::put('/produknostok/{produknostok}', [ProduknostokController::class, 'update'])->name('produknostok.update'); // Rute untuk update
+    Route::delete('/produknostok/{produknostok}', [ProduknostokController::class, 'destroy'])->name('produknostok.destroy'); // Rute untuk destroy
 });
 
 Route::middleware('auth')->group(function () {

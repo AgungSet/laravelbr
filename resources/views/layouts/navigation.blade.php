@@ -25,6 +25,11 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('produknostok.index')" :active="request()->routeIs('produknostok.index')" class="text-white">
+                        {{ __('Produknostok') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('kategori.index')" :active="request()->routeIs('kategori.index')" class="text-white">
                         {{ __('Kategori') }}
                     </x-nav-link>
@@ -107,6 +112,13 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('produk.index')" :active="request()->routeIs('produk.index')">
                 {{ __('produk') }}
+            </x-responsive-nav-link>
+        </div>
+    </div>
+    <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('produknostok.index')" :active="request()->routeIs('produknostok.index')">
+                {{ __('produknostok') }}
             </x-responsive-nav-link>
         </div>
     </div>
