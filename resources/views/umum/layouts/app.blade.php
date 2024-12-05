@@ -149,7 +149,7 @@
                 <a href="{{ route('umum.index') }}" class="text-dark me-3 btn btn-warning btn-gold-hover">Home</a>
                 <a href="{{ route('umum.produk') }}" class="text-dark me-3 btn btn-warning btn-gold-hover">Produk</a>
                 <a href="{{ route('umum.kategori') }}" class="text-dark me-3 btn btn-warning btn-gold-hover">Kategori</a>
-                <a href="{{ route('umum.pesanan') }}" class="text-dark me-3 btn btn-warning btn-gold-hover">Pesanan</a>
+                <a href="{{ route('umum.produknostok') }}" class="text-dark me-3 btn btn-warning btn-gold-hover">Pesanan</a>
                 <a href="{{ route('umum.transaksi') }}" class="text-black me-3 btn" style="background-color: #ffffff; border: 1px solid #919191; padding: 5px 10px; border-radius: 6px; font-size: 0.85em;">
                     Transaksi Saya
                 </a>
