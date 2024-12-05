@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\detailtransaksi;
 use App\Models\Produk;
+use App\Models\Produknostok;
 use App\Models\Kategori;
 use App\Models\keranjang;
 use App\Models\member;
@@ -35,6 +36,12 @@ class UmumController extends Controller
 
         $produks = Produk::orderByDesc('created_at')->paginate(10);
         return view('umum.produk', compact('produks'));
+    }
+    public function produknostok()
+    {
+
+        $produknostok = Produknostok::orderByDesc('created_at')->paginate(10);
+        return view('umum.produknostok', compact('produknostok'));
     }
 
     public function keranjang()
