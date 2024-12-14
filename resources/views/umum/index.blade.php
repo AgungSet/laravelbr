@@ -10,6 +10,7 @@
             Temukan koleksi batik terbaik Anda di Batik Kudus ini.
         </p>
     </div>
+
     <div class="d-flex align-items-center my-4" style="gap: 20px;">
         <!-- Gambar -->
         <img src="{{ asset('img/MBPAGE.png') }}" alt="Batik Kudus" class="img-fluid" style="width: 50%; border: 3px solid #ddd;">
@@ -30,4 +31,28 @@
                 Keberhasilan Yuli Arstuti dalam menghidupkan kembali batik Kudus menjadi sebuah inspirasi bagi para perajin dan pecinta batik di Kudus. Upaya pelestarian dan pengembangan motif-motif batik Kudus terus dilakukan agar warisan budaya ini dapat tetap dikenal dan diapresiasi oleh generasi mendatang. Hal ini menjadikannya sebagai salah satu kekayaan budaya Indonesia yang dapat terus berkembang dan menjadi sumber kebanggaan bagi masyarakat Kudus dan Indonesia secara keseluruhan.
             </p>
         </div>
-    @endsection
+    </div>
+
+    <!-- Footer dengan Icon Sosial Media -->
+    <div class="text-center mt-5" style="border-top: 1px solid #ddd; padding-top: 20px;">
+        <p style="font-weight: bold; font-size: 1.2em;">Muria Batik</p>
+        <div class="d-flex justify-content-center" style="gap: 15px;">
+            <!-- Instagram -->
+            <a href="https://instagram.com" target="_blank" style="color: #333; text-decoration: none;">
+                <i class="fab fa-instagram" style="font-size: 1.5em;"></i>
+            </a>
+            <!-- Website -->
+            <a href="https://muriasite.com" target="_blank" style="color: #333; text-decoration: none;">
+                <i class="fas fa-globe" style="font-size: 1.5em;"></i>
+            </a>
+            <!-- YouTube -->
+            <a href="https://youtube.com" target="_blank" style="color: #333; text-decoration: none;">
+                <i class="fab fa-youtube" style="font-size: 1.5em;"></i>
+            </a>
+            <!-- TikTok -->
+            <a href="https://tiktok.com" target="_blank" style="color: #333; text-decoration: none;">
+                <i class="fab fa-tiktok" style="font-size: 1.5em;"></i>
+            </a>
+        </div>
+    </div>
+@endsection
