@@ -104,7 +104,7 @@
         }
 
         .btn-gold {
-            background-color: #f39c12;
+            background-color: #D4A017;
             color: #fff;
             font-weight: 600;
             border: none;
@@ -115,7 +115,7 @@
         }
 
         .btn-gold:hover {
-            background-color: #e67e22;
+            background-color: #D4A017;
             transform: translateY(-2px);
         }
 
@@ -216,7 +216,7 @@
         }
 
         .btn-gold-hover {
-            background-color: #f39c12;
+            background-color: #D4A017;
             color: white;
             font-weight: 600;
             border-radius: 5px;
@@ -225,7 +225,7 @@
         }
 
         .btn-gold-hover:hover {
-            background-color: #e67e22;
+            background-color: #e4bb52;
             transform: translateY(-2px);
         }
 
@@ -240,15 +240,15 @@
         }
 
         .text-gold {
-            color: #f39c12 !important;
+            color: #e4bb52 !important;
         }
 
         .bg-gold {
-            background-color: #f39c12;
+            background-color: #e4bb52;
         }
 
         .bg-gold:hover {
-            background-color: #e67e22;
+            background-color: #e4bb52;
         }
 
         .relative {
