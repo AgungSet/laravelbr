@@ -20,7 +20,8 @@ class member extends Seeder
             'username' => 'agung',
             'password' => bcrypt('agung'),
             'alamat' => 'cimahi',
-            'no_hp' => '0812345678'
+            'no_hp' => '0812345678',
+            'instagram' => 'magung'
         ]);
     }
 }
