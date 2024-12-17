@@ -12,9 +12,9 @@ class detailpesanan extends Model
 
     protected $guarded = [];
     // Relasi ke tabel produk
-    public function produk()
+    public function produknostok()
     {
-        return $this->belongsTo(Produk::class, 'id_produk');
+        return $this->belongsTo(Produknostok::class, 'id_produknostok');
     }
 
     // Relasi ke tabel pesanan

@@ -18,6 +18,10 @@ class Keranjang extends Model
     {
         return $this->belongsTo(Produk::class, 'id_produk');
     }
+    public function produknostok()
+    {
+        return $this->belongsTo(ProdukNoStok::class, 'id_produknostok');
+    }
 
     /**
      * Relasi ke model Member atau User.
