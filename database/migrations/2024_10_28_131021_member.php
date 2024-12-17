@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('alamat');
             $table->string('no_hp');
+            $table->string('instagram')->nullable();
             $table->timestamps();
         });
     }

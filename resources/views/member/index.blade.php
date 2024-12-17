@@ -39,7 +39,7 @@
                             @foreach ($members as $index => $member)
                                 <tr class="bg-white">
                                     <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
-                                        {{ $member->nama_member }}
+                                        {{ $member->nama_customer }}
                                     </td>
                                     <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
                                         {{ $member->alamat }}

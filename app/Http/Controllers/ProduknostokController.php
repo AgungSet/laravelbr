@@ -35,12 +35,12 @@ class ProduknostokController extends Controller
             'nama_produknostok' => 'required',
             'harga' => 'required',
             'id_kategori' => 'required',
-            'foto' => 'required|image',
+            'foto' => 'nullable|file',
             'deskripsi' => 'required',
         ]);
 
         // Menghandle upload file
-        $filename = null; // Default value
+        $filename = 'sample.jpg'; // Default value
         if ($request->hasFile('foto')) {
             $file = $request->file('foto');
             $filename = time() . '_' . $file->getClientOriginalName();
