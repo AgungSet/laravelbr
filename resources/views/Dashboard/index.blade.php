@@ -25,7 +25,7 @@
                     <p class="text-sm">Kelola dan lihat data Produk batik yang tersedia.</p>
                 </div>
                 <div class="flex items-start justify-between mt-6">
-                    <p class="text-6xl font-bold">{{ $produks }}</p>
+                    <p class="text-6xl font-bold">{{ $produknostoks }}</p>
                     <a href="{{ route('produknostok.index') }}" class="bg-gold text-black px-4 py-2 rounded hover:bg-yellow-500">Lihat Produk</a>
                 </div>
             </div>

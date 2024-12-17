@@ -31,15 +31,16 @@ class ProduknostokController extends Controller
 
     public function store(Request $request)
     {
-
         $request->validate([
             'nama_produknostok' => 'required',
             'harga' => 'required',
             'id_kategori' => 'required',
-            'foto' => 'required',
+            'foto' => 'required|image',
             'deskripsi' => 'required',
         ]);
+
         // Menghandle upload file
+        $filename = null; // Default value
         if ($request->hasFile('foto')) {
             $file = $request->file('foto');
             $filename = time() . '_' . $file->getClientOriginalName();
@@ -53,7 +54,8 @@ class ProduknostokController extends Controller
             'foto' => $filename,
             'deskripsi' => $request->deskripsi
         ]);
-        return redirect()->route('produknostok.index')->with('success', 'produknostok created successfully.');
+
+        return redirect()->route('produknostok.index')->with('success', 'Produknostok created successfully.');
     }
 
     public function edit(produknostok $produknostok): View
@@ -68,16 +70,18 @@ class ProduknostokController extends Controller
             'nama_produknostok' => 'required',
             'harga' => 'required',
             'id_kategori' => 'required',
-            'foto' => 'required',
+            'foto' => 'nullable|image',
             'deskripsi' => 'required',
         ]);
 
         // Menghandle upload file
+        $filename = $produknostok->foto; // Default to the existing photo
         if ($request->hasFile('foto')) {
             $file = $request->file('foto');
             $filename = time() . '_' . $file->getClientOriginalName();
             $file->move(public_path('uploads'), $filename); // Menyimpan file ke folder 'uploads'
         }
+
         $produknostok->update([
             'nama_produknostok' => $request->nama_produknostok,
             'harga' => $request->harga,
@@ -85,12 +89,24 @@ class ProduknostokController extends Controller
             'foto' => $filename,
             'deskripsi' => $request->deskripsi
         ]);
-        return redirect()->route('produknostok.index')->with('success', 'produknostok update successfully.');
+
+        return redirect()->route('produknostok.index')->with('success', 'Produknostok updated successfully.');
     }
 
     public function destroy(produknostok $produknostok)
     {
         $produknostok->delete();
-        return to_route('produknostok.index');
+        return to_route('produknostok.index')->with('success', 'Produknostok deleted successfully.');
+    }
+}
+
+class ProductoStockController extends Controller
+{
+    public function index()
+    {
+        // Assuming you have a 'stock' column to determine no-stock products
+        $produknostoks = produknostok::where('stock', 0)->count(); // Adjust the condition as needed
+
+        return view('produknostok.index', compact('produknostoks'));
     }
 }
