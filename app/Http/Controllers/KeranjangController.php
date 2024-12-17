@@ -52,4 +52,20 @@ class KeranjangController extends Controller
         // Redirect ke halaman lain setelah aksi
         return to_route('umum.produk');
     }
+    public function produknostokinput($produknostoks)
+    {
+        // Simpan data ke dalam Keranjang
+        if (Auth::guard('member')->id() == null) {
+            return to_route('umum.login');
+        }
+        $id_member = Auth::guard('member')->id();
+
+        Keranjang::create([
+            'id_produknostok' => $produknostoks,
+            'id_member' => $id_member,
+        ]);
+
+        // Redirect ke halaman lain setelah aksi
+        return to_route('umum.produk');
+    }
 }
