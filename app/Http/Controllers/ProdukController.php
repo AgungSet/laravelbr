@@ -31,31 +31,34 @@ class ProdukController extends Controller
 
     public function store(Request $request)
     {
-
         $request->validate([
             'nama_produk' => 'required',
             'harga' => 'required',
             'stok' => 'required',
             'id_kategori' => 'required',
-            'foto' => 'required',
+            'foto' => 'nullable|file', // Foto tidak lagi required, boleh kosong
             'deskripsi' => 'required',
         ]);
+
         // Menghandle upload file
+        $filename = 'sample.jpg'; // Default jika tidak ada file diunggah
         if ($request->hasFile('foto')) {
             $file = $request->file('foto');
             $filename = time() . '_' . $file->getClientOriginalName();
             $file->move(public_path('uploads'), $filename); // Menyimpan file ke folder 'uploads'
         }
 
+        // Menyimpan data ke database
         produk::create([
             'nama_produk' => $request->nama_produk,
             'harga' => $request->harga,
             'stok' => $request->stok,
             'id_kategori' => $request->id_kategori,
-            'foto' => $filename,
-            'deskripsi' => $request->deskripsi
+            'foto' => $filename, // Tetap null jika tidak ada file diunggah
+            'deskripsi' => $request->deskripsi,
         ]);
-        return redirect()->route('produk.index')->with('success', 'produk created successfully.');
+
+        return redirect()->route('produk.index')->with('success', 'Produk created successfully.');
     }
 
     public function edit(produk $produk): View
@@ -68,11 +71,10 @@ class ProdukController extends Controller
     {
         $request->validate([
             'nama_produk' => 'required',
-
             'harga' => 'required',
             'stok' => 'required',
             'id_kategori' => 'required',
-            'foto' => 'required',
+            'foto' => 'nullable|file',
             'deskripsi' => 'required',
         ]);
 
@@ -80,11 +82,13 @@ class ProdukController extends Controller
         if ($request->hasFile('foto')) {
             $file = $request->file('foto');
             $filename = time() . '_' . $file->getClientOriginalName();
-            $file->move(public_path('uploads'), $filename); // Menyimpan file ke folder 'uploads'
+            $file->move(public_path('uploads'), $filename); // Menyimpan file baru ke folder 'uploads'
+        } else {
+            $existingData = produk::find($produk->id);
+            $filename = $existingData->foto; // Tetap gunakan file lama
         }
         $produk->update([
             'nama_produk' => $request->nama_produk,
-
             'harga' => $request->harga,
             'stok' => $request->stok,
             'id_kategori' => $request->id_kategori,

@@ -3,16 +3,16 @@
         <div class="flex flex-col md:flex-row flex-wrap gap-4">
             <div class="flex-1">
                 <label for="produk" :value="__('Produk')"> Produk</label>
-                <input type="text" id="nama_produk" name="nama_produk" value="{{ old('nama_produk', optional($produk ?? null)->nama_produk) }}" class="mt-1 block w-full" />
+                <input type="text" id="nama_produk" name="nama_produk" value="{{ old('nama_produk', optional($produk ?? null)->nama_produk) }}" class="mt-1 block w-full form-control" />
             </div>
         </div>
         <div>
             <label for="harga">harga</label>
-            <input id="harga" name="harga" type="number" class="mt-1 block w-full"value={{ old('harga', optional($produk ?? null)->harga ? $produk->harga : '') }}></input>
+            <input id="harga" name="harga" type="number" class="mt-1 block w-full form-control"value={{ old('harga', optional($produk ?? null)->harga ? $produk->harga : '') }}></input>
         </div>
         <div>
             <label for="stok">stok</label>
-            <input id="stok" name="stok" type="number" class="mt-1 block w-full" value={{ old('stok', optional($produk ?? null)->stok ? $produk->stok : '') }}></input>
+            <input id="stok" name="stok" type="number" class="mt-1 block w-full form-control" value={{ old('stok', optional($produk ?? null)->stok ? $produk->stok : '') }}></input>
         </div>
         <div>
             <label for="deskripsi">deskripsi</label>
