@@ -123,7 +123,7 @@ class UmumController extends Controller
         $filtermember = Auth::guard('member')->id();
         $nama_customer = member::where('id', $filtermember)->pluck('nama_customer')->first();
         // WhatsApp redirect
-        $whatsappNumber = "62855183287385";
+        $whatsappNumber = "6285183287385";
         $whatsappMessage = urlencode(
             "Halo Admin,\n\nSaya telah melakukan checkout. Berikut adalah detail transaksi saya:\n\n" .
                 "*Tanggal Transaksi:* " . now()->format('d-m-Y H:i:s') . "\n" .
@@ -185,7 +185,7 @@ class UmumController extends Controller
         $filtermember = Auth::guard('member')->id();
         $nama_customer = member::where('id', $filtermember)->pluck('nama_customer')->first();
         // WhatsApp redirect
-        $whatsappNumber = "62855183287385";
+        $whatsappNumber = "6285183287385";
         $whatsappMessage = urlencode(
             "Halo Admin,\n\nSaya telah melakukan checkout. Berikut adalah detail transaksi saya:\n\n" .
                 "*Tanggal Transaksi:* " . now()->format('d-m-Y H:i:s') . "\n" .
