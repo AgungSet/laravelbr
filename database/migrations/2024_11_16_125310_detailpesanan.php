@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('detail_pesanans', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_pesanan');
-            $table->unsignedBigInteger('id_produk');
+            $table->unsignedBigInteger('id_produknostok');
             $table->integer('total_produk');
             $table->integer('subtotal_harga_produk');
             $table->timestamps();
@@ -22,7 +22,7 @@ return new class extends Migration
             // Foreign key untuk id_pesanan
             $table->foreign('id_pesanan')->references('id')->on('pesanans')->onDelete('cascade');
             // Foreign key untuk id_produk
-            $table->foreign('id_produk')->references('id')->on('produks')->onDelete('cascade');
+            $table->foreign('id_produknostok')->references('id')->on('produknostoks')->onDelete('cascade');
         });
     }
 
