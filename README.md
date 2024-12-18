@@ -17,8 +17,10 @@ kurang
 -   tampilan umum
 -   tampilan admin
 
-transaksi (terbayar,diproses,terkirim,barang diterima)
-pesanan (terbayar,diproses,terkirim,barang diterima)
+-   logika penyimpanan file (penting)
+
+    transaksi (terbayar,diproses,terkirim,barang diterima)
+    pesanan (terbayar,diproses,terkirim,barang diterima)
 
 ===UMUM
 
