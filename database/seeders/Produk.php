@@ -6,6 +6,7 @@ use App\Models\Produk as ModelsProduk;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class Produk extends Seeder
 {
@@ -14,40 +15,65 @@ class Produk extends Seeder
      */
     public function run(): void
     {
-        ModelsProduk::create([
-            'nama_produk' => 'Kain Batik Tulis Motif Parang',
-            'harga' => 250000,
-            'stok' => 10,
-            'foto' => 'sample.jpg', // Nama file gambar produk
-            'deskripsi' => 'Kain batik tulis dengan motif parang klasik yang dibuat dengan tangan secara manual.',
-            'id_kategori' => 1, // ID kategori (misalnya Batik Tulis)
-        ]);
+        $categories = [
+            'Batik tulis variasi cap' => 350000,
+            'Sarung Batik' => 400000,
+            'Batik Cap Satu Warna' => 150000,
+            'Batik Cap Variasi Nitik' => 550000,
+            'Kaos' => 200000,
+            'Kemeja Batik' => 400000,
+            'Outer' => 600000,
+            'Slint Bag' => 100000,
+            'Syal Cotton Bamboo' => 350000,
+        ];
 
-        ModelsProduk::create([
-            'nama_produk' => 'Batik Cap Motif Mega Mendung',
-            'harga' => 150000,
-            'stok' => 20,
-            'foto' => 'sample.jpg',
-            'deskripsi' => 'Batik cap dengan motif Mega Mendung yang sangat terkenal dan ikonik.',
-            'id_kategori' => 2, // ID kategori (misalnya Batik Cap)
-        ]);
+        $produkData = [
+            'Batik tulis variasi cap' => [
+                'tari kretek',
+                'tembakau cengkeh',
+                'gading patiayam',
+                'taburan cengkeh',
+                'parijotho pakis aji',
+                'tembakau parijotho',
+                'taburan tembakau',
+                'rumah kapal Menara',
+                'gerbang k3',
+                'pakis haji',
+                'parijotho rejenu',
+                'air tiga rasa',
+                'kembang kupu',
+                'ceplokan beras tumpah',
+                'cerita rakyat bulusan',
+                'diorama kretek',
+            ],
+            'Sarung Batik' => ['lasem1', 'lasem2', 'kudusan1', 'kudusan2', 'klasik1', 'klasik2'],
+            'Batik Cap Satu Warna' => ['cengkeh', 'Gerbang K3', 'diorama kretek', 'tembakau parijotho', 'tembakau cengkeh', 'buket parijotho'],
+            'Batik Cap Variasi Nitik' => ['Buketan Parijotho', 'Buket Parijotho', 'Buket cengkeh', 'Gerbang K3', 'Gading Patiayam', 'Buket Kupu cengkeh'],
+            'Kaos' => ['Kaos 1', 'Kaos 2', 'Kaos 3', 'Kaos 4', 'Kaos 5', 'Kaos 6', 'Kaos 7'],
+            'Kemeja Batik' => ['Kemeja 1', 'Kemeja 2', 'Kemeja 3', 'Kemeja 4', 'Kemeja 5'],
+            'Outer' => ['Outer 1', 'Outer 2', 'Outer 3', 'Outer 4', 'Outer 5', 'Outer 6'],
+            'Slint Bag' => ['sb 1', 'sb 2', 'sb 3', 'sb 4', 'sb 5'],
+            'Syal Cotton Bamboo' => ['Syal 1', 'Syal 2', 'Syal 3', 'Syal 4', 'Syal 5'],
+        ];
 
-        ModelsProduk::create([
-            'nama_produk' => 'Batik Kombinasi Motif Kawung dan Sekar Jagad',
-            'harga' => 300000,
-            'stok' => 5,
-            'foto' => 'sample.jpg',
-            'deskripsi' => 'Batik kombinasi dengan motif Kawung dan Sekar Jagad yang unik.',
-            'id_kategori' => 3, // ID kategori (misalnya Batik Kombinasi)
-        ]);
+        $categoryIds = DB::table('kategoris')->pluck('id', 'nama_kategori')->toArray();
 
-        ModelsProduk::create([
-            'nama_produk' => 'Batik Print Motif Bunga',
-            'harga' => 80000,
-            'stok' => 15,
-            'foto' => 'sample.jpg',
-            'deskripsi' => 'Batik print dengan motif bunga berwarna cerah dan modern.',
-            'id_kategori' => 4, // ID kategori (misalnya Batik Print)
-        ]);
+        foreach ($produkData as $categoryName => $products) {
+            $harga = $categories[$categoryName];
+            $id_kategori = $categoryIds[$categoryName];
+
+            foreach ($products as $product) {
+                DB::table('produks')->insert([
+                    'nama_produk' => $product,
+                    'harga' => $harga,
+                    'stok' => 20,
+                    'foto' => "masterimage/$categoryName/$product.jpg",
+                    'deskripsi' => "Produk $product adalah bagian dari kategori $categoryName dengan kualitas unggul dan motif khas.",
+                    'id_kategori' => $id_kategori,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+            }
+        }
     }
 }

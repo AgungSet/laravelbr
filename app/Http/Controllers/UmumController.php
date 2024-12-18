@@ -35,13 +35,13 @@ class UmumController extends Controller
     public function produk()
     {
 
-        $produks = Produk::orderByDesc('created_at')->paginate(10);
+        $produks = Produk::all();
         return view('umum.produk', compact('produks'));
     }
     public function produknostok()
     {
 
-        $produknostoks = Produknostok::orderByDesc('created_at')->paginate(10);
+        $produknostoks = Produknostok::all();
         return view('umum.produknostok', compact('produknostoks'));
     }
 

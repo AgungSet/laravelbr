@@ -57,7 +57,7 @@
                                         {{ date('d M Y', strtotime($produk->created_at)) }}
                                     </td>
                                     <td>
-                                        <img src="uploads/{{ $produk->foto }}" alt="{{ $produk->foto }}" width="100px" height="100px">
+                                        <img src="{{ $produk->foto }}" alt="{{ $produk->foto }}" width="100px" height="100px">
                                     </td>
 
                                     <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">

@@ -14,34 +14,45 @@ class Kategori extends Seeder
      */
     public function run(): void
     {
-        ModelsKategori::create([
-            'nama_kategori' => 'Batik Tulis',
-            'deskripsi' => 'Produk batik yang dibuat dengan teknik tulis secara manual menggunakan canting dan lilin panas.'
-        ]);
+        $categories = [
+            [
+                'nama_kategori' => 'Batik tulis variasi cap',
+                'deskripsi' => 'Batik dengan kombinasi antara teknik tulis dan cap.',
+            ],
+            [
+                'nama_kategori' => 'Sarung Batik',
+                'deskripsi' => 'Sarung yang dihiasi dengan motif batik khas.',
+            ],
+            [
+                'nama_kategori' => 'Batik Cap Satu Warna',
+                'deskripsi' => 'Batik cap dengan motif sederhana dalam satu warna.',
+            ],
+            [
+                'nama_kategori' => 'Batik Cap Variasi Nitik',
+                'deskripsi' => 'Batik cap dengan variasi motif nitik.',
+            ],
+            [
+                'nama_kategori' => 'Kaos',
+                'deskripsi' => 'Kaos berbahan nyaman dengan motif batik.',
+            ],
+            [
+                'nama_kategori' => 'Kemeja Batik',
+                'deskripsi' => 'Kemeja dengan desain formal bermotif batik.',
+            ],
+            [
+                'nama_kategori' => 'Outer',
+                'deskripsi' => 'Outerwear dengan desain unik berbahan batik.',
+            ],
+            [
+                'nama_kategori' => 'Slint Bag',
+                'deskripsi' => 'Tas kecil dengan motif batik.',
+            ],
+            [
+                'nama_kategori' => 'Syal Cotton Bamboo',
+                'deskripsi' => 'Syal berbahan cotton bamboo dengan motif batik.',
+            ],
+        ];
 
-        ModelsKategori::create([
-            'nama_kategori' => 'Batik Cap',
-            'deskripsi' => 'Batik yang dibuat dengan teknik cap menggunakan stempel atau cap yang dicelupkan pada lilin panas.'
-        ]);
-
-        ModelsKategori::create([
-            'nama_kategori' => 'Batik Kombinasi',
-            'deskripsi' => 'Produk batik dengan kombinasi teknik tulis dan cap untuk memberikan detail yang berbeda.'
-        ]);
-
-        ModelsKategori::create([
-            'nama_kategori' => 'Batik Print',
-            'deskripsi' => 'Batik yang dibuat dengan teknik cetak menggunakan mesin atau sablon untuk mempercepat produksi.'
-        ]);
-
-        ModelsKategori::create([
-            'nama_kategori' => 'Kain Mori',
-            'deskripsi' => 'Kain yang digunakan sebagai bahan dasar untuk membuat batik, baik tulis maupun cap.'
-        ]);
-
-        ModelsKategori::create([
-            'nama_kategori' => 'Pewarna Batik Alami',
-            'deskripsi' => 'Bahan pewarna alami yang digunakan dalam pembuatan batik untuk menghasilkan warna yang ramah lingkungan.'
-        ]);
+        DB::table('kategoris')->insert($categories);
     }
 }

@@ -7,7 +7,7 @@
                 <div class="col-md">
                     <div class="card h-100">
                         <!-- Gambar produknostok -->
-                        <img src="{{ asset('uploads/' . $produknostok->foto) }}" class="card-img-top" alt="{{ $produknostok->nama_produknostok }}">
+                        <img src="{{ asset($produknostok->foto) }}" class="card-img-top" alt="{{ $produknostok->nama_produknostok }}">
 
                         <div class="card-body">
                             <!-- Nama produknostok -->

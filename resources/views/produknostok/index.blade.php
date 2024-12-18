@@ -51,7 +51,7 @@
                                         {{ date('d M Y', strtotime($produknostok->created_at)) }}
                                     </td>
                                     <td>
-                                        <img src="uploads/{{ $produknostok->foto }}" alt="{{ $produknostok->foto }}" width="100px" height="100px">
+                                        <img src="{{ $produknostok->foto }}" alt="{{ $produknostok->foto }}" width="100px" height="100px">
                                     </td>
 
                                     <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
