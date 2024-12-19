@@ -18,7 +18,7 @@ class UmumController extends Controller
 {
     public function index()
     {
-        $produks = Produk::orderByDesc('created_at')->paginate(10);
+        $produks = Produk::all();
         $kategoris = Kategori::all();
 
         return view('umum.index', compact('produks', 'kategoris'));
@@ -34,14 +34,32 @@ class UmumController extends Controller
 
     public function produk()
     {
+        // Mendapatkan parameter kategori dari request
+        $id_kategori = request('kategori');
 
-        $produks = Produk::all();
+        // Jika ada kategori yang dipilih, filter produk berdasarkan kategori tersebut
+        if ($id_kategori) {
+            $produks = Produk::where('id_kategori', $id_kategori)->get();
+        } else {
+            // Jika tidak ada kategori yang dipilih, ambil semua produk
+            $produks = Produk::all();
+        }
+
         return view('umum.produk', compact('produks'));
     }
     public function produknostok()
     {
 
-        $produknostoks = Produknostok::all();
+        // Mendapatkan parameter kategori dari request
+        $id_kategori = request('kategori');
+
+        // Jika ada kategori yang dipilih, filter produk berdasarkan kategori tersebut
+        if ($id_kategori) {
+            $produknostoks = Produknostok::where('id_kategori', $id_kategori)->get();
+        } else {
+            // Jika tidak ada kategori yang dipilih, ambil semua produk
+            $produknostoks = Produknostok::all();
+        }
         return view('umum.produknostok', compact('produknostoks'));
     }
 

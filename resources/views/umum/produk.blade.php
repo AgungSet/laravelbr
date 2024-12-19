@@ -1,38 +1,82 @@
 @extends('umum.layouts.app')
 @section('content')
-    <div class="container">
-        <h1 class="text-center mb-4">Produk Ready</h1>
+    <style>
+        .product-card {
+            transition: transform 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .product-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-img {
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .pagination {
+            margin-top: 20px;
+        }
+
+        .pagination .page-item.active .page-link {
+            background-color: #007bff;
+            border-color: #007bff;
+            color: white;
+        }
+    </style>
+
+    <div class="container py-4" id="products">
+        <div class="row mb-4">
+            <div class="col-md-8">
+                <h2 class="fw-bold">Daftar Produk</h2>
+            </div>
+            <div class="col-md-4">
+                <form method="GET" action="{{ route('umum.produk') }}">
+                    <select name="kategori" id="kategori" class="form-select w-100" onchange="this.form.submit()">
+                        <option value="">Semua</option>
+                        @foreach (\App\Models\Kategori::all() as $kategori)
+                            <option value="{{ $kategori->id }}" {{ request('kategori') == $kategori->id ? 'selected' : '' }}>
+                                {{ $kategori->nama_kategori }}
+                            </option>
+                        @endforeach
+                    </select>
+                </form>
+            </div>
+        </div>
+
         <div class="row">
-            @foreach ($produks as $produk)
-                <div class="col-md">
-                    <div class="card h-100">
-                        <!-- Gambar produk -->
-                        <img src="{{ asset($produk->foto) }}" class="card-img-top" alt="{{ $produk->nama_produk }}">
-
+            @forelse ($produks as $produk)
+                <div class="col-md-3 mb-4">
+                    <div class="card product-card">
+                        <img src="{{ asset($produk->foto) }}" class="card-img-top product-img" alt="{{ $produk->nama_produk }}" />
                         <div class="card-body">
-                            <!-- Nama produk -->
-                            <h5 class="card-title">{{ $produk->nama_produk }}</h5>
-
-                            <!-- Deskripsi produk -->
-                            <p class="card-text">{{ $produk->deskripsi }}</p>
-
-                            <!-- Harga produk -->
-                            <h6 class="price">Rp {{ number_format($produk->harga, 0, ',', '.') }}</h6>
-
-                            <!-- Tombol tambah ke keranjang -->
-                            <form action="{{ route('produk.input', ['produks' => $produk->id]) }}" method="POST" style="display: inline-block;">
-                                @csrf
-                                @method('POST')
-                                <button type="submit" class="btn-gold mt-3">Tambahkan ke Keranjang</button>
-                            </form>
+                            <a href="{{ route('produk.input', $produk->id) }}" class="h5 card-title text-dark" style="text-decoration: none;">{{ $produk->nama_produk }}</a>
+                            <p class="card-text text-muted">
+                                {{ Str::limit(strip_tags($produk->deskripsi), 80) }}
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="fw-bold text-warning">Rp {{ number_format($produk->harga, 0, ',', '.') }}</span>
+                                <form action="{{ route('produk.input', $produk->id) }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="btn btn-sm btn-warning">
+                                        <i class="bi bi-cart-plus"></i> Tambah
+                                    </button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
-            @endforeach
+            @empty
+                <div class="col-12">
+                    <div class="alert alert-warning text-center" role="alert">
+                        Tidak ada produk tersedia untuk kategori ini.
+                    </div>
+                </div>
+            @endforelse
         </div>
-    </div>
-
-    <div class="container text-center my-5">
-        <a href="#" class="btn btn-warning btn-lg">Lanjut ke Checkout</a>
     </div>
 @endsection

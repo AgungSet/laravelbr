@@ -6,7 +6,7 @@
             <div class="col-md-6">
                 <div class="card shadow">
                     <div class="card-header text-black text-center" style="background-color: #ffc107;">
-                        <h4>Edit Member</h4>
+                        <h4>Edit Akun</h4>
 
                     </div>
                     <div class="card-body">
@@ -55,7 +55,7 @@
                             <div class="text-center">
                                 <button type="submit" class="btn w-100" style="background-color: {{ auth()->check() ? '#ffc107' : '#007bff' }};
                                                color: {{ auth()->check() ? '#000' : '#fff' }};">
-                                    Update Member
+                                    Update Akun
                                 </button>
                             </div>
 
