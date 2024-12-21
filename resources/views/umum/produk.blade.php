@@ -65,16 +65,17 @@
                     <div class="card product-card">
                         <img src="{{ asset($produk->foto) }}" class="card-img-top product-img" alt="{{ $produk->nama_produk }}" />
                         <div class="card-body">
-                            <a href="{{ route('produk.input', $produk->id) }}" class="h5 card-title text-dark" style="text-decoration: none;">{{ $produk->nama_produk }}</a>
+                            <a href="#" class="h5 card-title text-dark" style="text-decoration: none;">{{ $produk->nama_produk }}</a>
                             <p class="card-text text-muted">
                                 {{ Str::limit(strip_tags($produk->deskripsi), 80) }}
                             </p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <span class="fw-bold text-warning">Rp {{ number_format($produk->harga, 0, ',', '.') }}</span>
+                                <span class="text-muted">Stok Tersedia: {{ $produk->stok }}</span>
                                 <form action="{{ route('produk.input', $produk->id) }}" method="POST">
                                     @csrf
                                     <button type="submit" class="btn btn-sm btn-warning">
-                                        <i class="bi bi-cart-plus"></i> Tambah
+                                        <i class="bi bi-cart-plus"></i>
                                     </button>
                                 </form>
                             </div>
