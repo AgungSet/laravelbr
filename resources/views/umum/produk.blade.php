@@ -20,12 +20,23 @@
 
         .pagination {
             margin-top: 20px;
+            justify-content: center;
         }
 
         .pagination .page-item.active .page-link {
             background-color: #007bff;
             border-color: #007bff;
             color: white;
+        }
+
+        .pagination .page-item .page-link {
+            color: #007bff;
+        }
+
+        .pagination .page-item .page-link:hover {
+            color: white;
+            background-color: #0056b3;
+            border-color: #0056b3;
         }
     </style>
 
@@ -77,6 +88,11 @@
                     </div>
                 </div>
             @endforelse
+        </div>
+
+        <!-- Paginasi -->
+        <div class="pagination">
+            {{ $produks->links('pagination::bootstrap-4') }}
         </div>
     </div>
 @endsection
