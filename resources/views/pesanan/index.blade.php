@@ -26,9 +26,6 @@
                                 <th class="bg-gray-50 px-6 py-3 text-left">
                                     <span class="text-xs font-medium uppercase leading-4 tracking-wider text-gray-500">Status</span>
                                 </th>
-                                <th class="bg-gray-50 px-6 py-3 text-left">
-                                    <span class="text-xs font-medium uppercase leading-4 tracking-wider text-gray-500">Aksi</span>
-                                </th>
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200 divide-solid">
@@ -54,7 +51,6 @@
                                                     <span style="font-size: 0.9em; color: {{ $pesanan->status_pesanan === 'Terbayar' ? '#4CAF50' : '#000' }};">Terbayar</span>
                                                 </button>
                                             </form>
-
                                             {{-- Tombol Selesai --}}
                                             <form action="{{ route('pesanan.updateselesai', $pesanan->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin mengubah status menjadi Selesai?')">
                                                 @csrf
@@ -65,20 +61,6 @@
                                                 </button>
                                             </form>
                                         </div>
-                                    </td>
-                                    <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
-                                        {{-- Edit --}}
-                                        <a href="{{ route('pesanan.edit', $pesanan) }}" title="Edit">
-                                            <i class="fas fa-edit" style="font-size: 1.5em; color: gold;"></i>
-                                        </a>
-                                        {{-- Hapus --}}
-                                        <form action="{{ route('pesanan.destroy', $pesanan) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus pesanan ini?')" style="display: inline-block;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" style="background: none; border: none; cursor: pointer;">
-                                                <i class="fas fa-trash" style="font-size: 1.2em; color: #6B7280;"></i>
-                                            </button>
-                                        </form>
                                     </td>
                                 </tr>
                             @endforeach
