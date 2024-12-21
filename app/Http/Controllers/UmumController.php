@@ -39,10 +39,10 @@ class UmumController extends Controller
 
         // Jika ada kategori yang dipilih, filter produk berdasarkan kategori tersebut
         if ($id_kategori) {
-            $produks = Produk::where('id_kategori', $id_kategori)->get();
+            $produks = Produk::where('id_kategori', $id_kategori)->paginate(8);
         } else {
             // Jika tidak ada kategori yang dipilih, ambil semua produk
-            $produks = Produk::all();
+            $produks = Produk::paginate(8);
         }
 
         return view('umum.produk', compact('produks'));
@@ -55,10 +55,10 @@ class UmumController extends Controller
 
         // Jika ada kategori yang dipilih, filter produk berdasarkan kategori tersebut
         if ($id_kategori) {
-            $produknostoks = Produknostok::where('id_kategori', $id_kategori)->get();
+            $produknostoks = Produknostok::where('id_kategori', $id_kategori)->paginate(8);
         } else {
             // Jika tidak ada kategori yang dipilih, ambil semua produk
-            $produknostoks = Produknostok::all();
+            $produknostoks = Produknostok::paginate(8);
         }
         return view('umum.produknostok', compact('produknostoks'));
     }
@@ -103,7 +103,7 @@ class UmumController extends Controller
         if ($keranjangs->isEmpty()) {
             return redirect()->route('keranjang.index')->with('error', 'Keranjang Anda kosong.');
         }
-        $totalHarga = $keranjangs->sum(fn($item) => $item->produk->harga);
+        $totalHarga = $keranjangs->sum(fn($item) => $item->produk->harga * $item->jumlah);
 
         $transaksi = Transaksi::create([
             'id_member' => Auth::guard('member')->id(),
@@ -116,24 +116,24 @@ class UmumController extends Controller
         foreach ($keranjangs as $keranjang) {
             $produk = $keranjang->produk;
 
-            if ($produk->stok < 1) {
+            if ($produk->stok < $keranjang->jumlah) {
                 return redirect()->route('keranjang.index')->with('error', 'Stok produk ' . $produk->nama_produk . ' tidak mencukupi.');
             }
 
-            $produk->decrement('stok', 1);
+            $produk->decrement('stok', $keranjang->jumlah);
 
             DetailTransaksi::create([
                 'id_transaksi' => $transaksi->id,
                 'id_produk' => $produk->id,
-                'total_produk' => 1,
-                'subtotal_harga_produk' => $produk->harga,
+                'total_produk' => $keranjang->jumlah,
+                'subtotal_harga_produk' => $produk->harga * $keranjang->jumlah,
             ]);
 
             // Format detail pesanan untuk WhatsApp
             $detailPesanan .= "*Nama Produk:* {$produk->nama_produk}\n";
-            $detailPesanan .= "*Jumlah:* 1\n";
+            $detailPesanan .= "*Jumlah:* {$keranjang->jumlah}\n";
             $detailPesanan .= "*Harga Satuan:* Rp " . number_format($produk->harga, 0, ',', '.') . "\n";
-            $detailPesanan .= "*Subtotal:* Rp " . number_format($produk->harga, 0, ',', '.') . "\n\n";
+            $detailPesanan .= "*Subtotal:* Rp " . number_format($produk->harga * $keranjang->jumlah, 0, ',', '.') . "\n\n";
         }
 
         Keranjang::where('id_member', Auth::guard('member')->id())
@@ -169,7 +169,7 @@ class UmumController extends Controller
             return redirect()->route('keranjang.index')->with('error', 'Keranjang Anda kosong.');
         }
 
-        $totalHarga = $keranjangs->sum(fn($item) => $item->produknostok->harga);
+        $totalHarga = $keranjangs->sum(fn($item) => $item->produknostok->harga * $item->jumlah);
 
         $pesanan = pesanan::create([
             'id_member' => Auth::guard('member')->id(),
@@ -186,15 +186,15 @@ class UmumController extends Controller
             detailpesanan::create([
                 'id_pesanan' => $pesanan->id,
                 'id_produknostok' => $produk->id,
-                'total_produk' => 1,
-                'subtotal_harga_produk' => $produk->harga,
+                'total_produk' => $keranjang->jumlah,
+                'subtotal_harga_produk' => $produk->harga * $keranjang->jumlah,
             ]);
 
             // Format detail pesanan untuk WhatsApp
             $detailPesanan .= "*Nama Produk:* {$produk->nama_produknostok}\n";
-            $detailPesanan .= "*Jumlah:* 1\n";
+            $detailPesanan .= "*Jumlah:* {$keranjang->jumlah}\n";
             $detailPesanan .= "*Harga Satuan:* Rp " . number_format($produk->harga, 0, ',', '.') . "\n";
-            $detailPesanan .= "*Subtotal:* Rp " . number_format($produk->harga, 0, ',', '.') . "\n\n";
+            $detailPesanan .= "*Subtotal:* Rp " . number_format($produk->harga * $keranjang->jumlah, 0, ',', '.') . "\n\n";
         }
 
         Keranjang::where('id_member', Auth::guard('member')->id())
@@ -248,4 +248,19 @@ class UmumController extends Controller
     //     $produk = Produk::findOrFail($produk);
     //     return view('umum.produk.show', compact('produk')); // Mengarahkan ke halaman detail produk
     // }
+
+    public function update(Request $request, $id)
+    {
+        $keranjang = Keranjang::findOrFail($id);
+
+        if ($request->action === 'increase') {
+            $keranjang->jumlah += 1;
+        } elseif ($request->action === 'decrease' && $keranjang->jumlah > 1) {
+            $keranjang->jumlah -= 1;
+        }
+
+        $keranjang->save();
+
+        return redirect()->back()->with('success', 'Jumlah produk berhasil diperbarui.');
+    }
 }

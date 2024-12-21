@@ -20,12 +20,23 @@
 
         .pagination {
             margin-top: 20px;
+            justify-content: center;
         }
 
         .pagination .page-item.active .page-link {
             background-color: #007bff;
             border-color: #007bff;
             color: white;
+        }
+
+        .pagination .page-item .page-link {
+            color: #007bff;
+        }
+
+        .pagination .page-item .page-link:hover {
+            color: white;
+            background-color: #0056b3;
+            border-color: #0056b3;
         }
     </style>
 
@@ -73,10 +84,15 @@
             @empty
                 <div class="col-12">
                     <div class="alert alert-warning text-center" role="alert">
-                        Tidak ada produknostok tersedia untuk kategori ini.
+                        Tidak ada Produk Pre Order untuk kategori ini.
                     </div>
                 </div>
             @endforelse
+        </div>
+
+        <!-- Paginasi -->
+        <div class="pagination">
+            {{ $produknostoks->links('pagination::bootstrap-4') }}
         </div>
     </div>
 @endsection

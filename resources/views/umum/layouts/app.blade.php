@@ -23,6 +23,7 @@
     @include('umum.layouts.footer')
 
     <!-- Bootstrap 5 JS Bundle with Popper -->
+    @yield('script')
     <script src="{{ asset('assets/landing/js/bootstrap.bundle.min.js') }}"></script>
 </body>
 

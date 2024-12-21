@@ -13,7 +13,6 @@
             <h3>Produk Biasa</h3>
             @if ($keranjangproduks->isNotEmpty())
                 <div class="table-responsive">
-
                     <table class="table table-bordered text-center">
                         <thead class="table-warning">
                             <tr>
@@ -29,18 +28,28 @@
                             @php $totalBiasa = 0; @endphp
                             @foreach ($keranjangproduks as $index => $keranjang)
                                 @php
-                                    $subtotal = 1 * $keranjang->produk->harga;
+                                    $subtotal = $keranjang->jumlah * $keranjang->produk->harga;
                                     $totalBiasa += $subtotal;
                                 @endphp
-                                <tr>
+                                <tr data-id="{{ $keranjang->id }}">
                                     <td>{{ $index + 1 }}</td>
                                     <td>
-                                        <img src="{{ asset('uploads/' . $keranjang->produk->foto) }}" alt="{{ $keranjang->produk->nama_produk }}" class="img-thumbnail" style="width: 100px; height: auto;">
+                                        <img src="{{ asset($keranjang->produk->foto) }}" alt="{{ $keranjang->produk->nama_produk }}" class="img-thumbnail" style="width: 100px; height: auto;">
                                         <p class="mt-2">{{ $keranjang->produk->nama_produk }}</p>
                                     </td>
-                                    <td>{{ 1 }}</td>
+                                    <td>
+                                        <form action="{{ route('keranjang.update', $keranjang->id) }}" method="POST" class="d-inline">
+                                            @csrf
+                                            @method('PUT')
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <button type="submit" name="action" value="decrease" class="btn btn-sm btn-outline-secondary">-</button>
+                                                <input type="text" class="form-control text-center mx-1" value="{{ $keranjang->jumlah }}" style="width: 50px;" readonly>
+                                                <button type="submit" name="action" value="increase" class="btn btn-sm btn-outline-secondary">+</button>
+                                            </div>
+                                        </form>
+                                    </td>
                                     <td>Rp {{ number_format($keranjang->produk->harga, 0, ',', '.') }}</td>
-                                    <td>Rp {{ number_format($subtotal, 0, ',', '.') }}</td>
+                                    <td class="subtotal">Rp {{ number_format($subtotal, 0, ',', '.') }}</td>
                                     <td>
                                         <form action="{{ route('keranjang.destroy', $keranjang->id) }}" method="POST">
                                             @csrf
@@ -54,7 +63,7 @@
                         <tfoot>
                             <tr>
                                 <td colspan="4" class="text-end fw-bold">Total</td>
-                                <td colspan="2" class="fw-bold">Rp {{ number_format($totalBiasa, 0, ',', '.') }}</td>
+                                <td colspan="2" class="fw-bold" id="total">Rp {{ number_format($totalBiasa, 0, ',', '.') }}</td>
                             </tr>
                         </tfoot>
                     </table>
@@ -66,7 +75,6 @@
                             <button type="submit" class="btn btn-primary">Checkout Produk Biasa</button>
                         </form>
                     </div>
-
                 </div>
             @else
                 <p class="text-muted">Tidak ada produk biasa di keranjang Anda.</p>
@@ -92,16 +100,26 @@
                             @php $totalNoStok = 0; @endphp
                             @foreach ($keranjangproduknostoks as $index => $keranjang)
                                 @php
-                                    $subtotal = 1 * $keranjang->produknostok->harga;
+                                    $subtotal = $keranjang->jumlah * $keranjang->produknostok->harga;
                                     $totalNoStok += $subtotal;
                                 @endphp
                                 <tr>
                                     <td>{{ $index + 1 }}</td>
                                     <td>
-                                        <img src="{{ asset('uploads/' . $keranjang->produknostok->foto) }}" alt="{{ $keranjang->produknostok->nama_produk }}" class="img-thumbnail" style="width: 100px; height: auto;">
+                                        <img src="{{ asset($keranjang->produknostok->foto) }}" alt="{{ $keranjang->produknostok->nama_produk }}" class="img-thumbnail" style="width: 100px; height: auto;">
                                         <p class="mt-2">{{ $keranjang->produknostok->nama_produk }}</p>
                                     </td>
-                                    <td>{{ 1 }}</td>
+                                    <td>
+                                        <form action="{{ route('keranjang.update', $keranjang->id) }}" method="POST" class="d-inline">
+                                            @csrf
+                                            @method('PUT')
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <button type="submit" name="action" value="decrease" class="btn btn-sm btn-outline-secondary">-</button>
+                                                <input type="text" class="form-control text-center mx-1" value="{{ $keranjang->jumlah }}" style="width: 50px;" readonly>
+                                                <button type="submit" name="action" value="increase" class="btn btn-sm btn-outline-secondary">+</button>
+                                            </div>
+                                        </form>
+                                    </td>
                                     <td>Rp {{ number_format($keranjang->produknostok->harga, 0, ',', '.') }}</td>
                                     <td>Rp {{ number_format($subtotal, 0, ',', '.') }}</td>
                                     <td>
@@ -135,4 +153,5 @@
             @endif
         @endif
     </div>
+
 @endsection

@@ -21,16 +21,6 @@ class KeranjangController extends Controller
         $produks = Produk::orderByDesc('created_at')->paginate(10);
         return view('umum.produk', compact('produks'));
     }
-    // public function indexpesanan()
-    // {
-    //     $produks = Produk::orderByDesc('created_at')->paginate(10);
-    //     return view('umum.indexpesanan', compact('pesanan'));
-    // }
-    // public function pesanan()
-    // {
-    //     $pesanan = Pesanan::orderByDesc('created_at')->paginate(10);
-    //     return view('umum.pesanan', compact('pesanans'));
-    // }
     public function getKeranjang()
     {
         $keranjangs = Keranjang::orderByDesc('created_at')->paginate(10);
@@ -43,12 +33,18 @@ class KeranjangController extends Controller
             return to_route('umum.login');
         }
         $id_member = Auth::guard('member')->id();
-
-        Keranjang::create([
-            'id_produk' => $produks,
-            'id_member' => $id_member,
-        ]);
-
+        // jika sudah ada maka menambah jika belum maka membuat
+        if (Keranjang::where('id_produk', $produks)->where('id_member', $id_member)->exists()) {
+            Keranjang::where('id_produk', $produks)->where('id_member', $id_member)->update([
+                'jumlah' => Keranjang::where('id_produk', $produks)->where('id_member', $id_member)->first()->jumlah + 1
+            ]);
+        } else {
+            Keranjang::create([
+                'id_produk' => $produks,
+                'id_member' => $id_member,
+                'jumlah' => 1
+            ]);
+        }
         // Redirect ke halaman lain setelah aksi
         return to_route('umum.produk');
     }
@@ -59,13 +55,19 @@ class KeranjangController extends Controller
             return to_route('umum.login');
         }
         $id_member = Auth::guard('member')->id();
-
-        Keranjang::create([
-            'id_produknostok' => $produknostoks,
-            'id_member' => $id_member,
-        ]);
-
+        // jika sudah ada maka menambah jika belum maka membuat
+        if (Keranjang::where('id_produknostok', $produknostoks)->where('id_member', $id_member)->exists()) {
+            Keranjang::where('id_produknostok', $produknostoks)->where('id_member', $id_member)->update([
+                'jumlah' => Keranjang::where('id_produknostok', $produknostoks)->where('id_member', $id_member)->first()->jumlah + 1
+            ]);
+        } else {
+            Keranjang::create([
+                'id_produknostok' => $produknostoks,
+                'id_member' => $id_member,
+                'jumlah' => 1
+            ]);
+        }
         // Redirect ke halaman lain setelah aksi
-        return to_route('umum.produk');
+        return to_route('umum.produknostok');
     }
 }

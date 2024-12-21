@@ -40,6 +40,7 @@ Route::middleware('auth:member')->group(function () {
 
 //KERANJANG
 Route::get('/keranjang/index', [UmumController::class, 'keranjang'])->name('keranjang.index');
+Route::put('/keranjang/update/{id}', [UmumController::class, 'update'])->name('keranjang.update');
 Route::delete('/keranjang/{keranjang}', [UmumController::class, 'keranjangdestroy'])->name('keranjang.destroy');
 
 Route::post('/keranjang/checkoutproduk', [UmumController::class, 'checkoutproduk'])->name('keranjangproduk.checkout');

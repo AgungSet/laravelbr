@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreign('id_produknostok')->references('id')->on('produknostoks')->onDelete('cascade');
             $table->unsignedBigInteger('id_member')->nullable();
             $table->foreign('id_member')->references('id')->on('members')->onDelete('cascade');
+            $table->integer('jumlah');
             $table->timestamps();
         });
     }
