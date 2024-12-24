@@ -1,5 +1,5 @@
 <!-- Navigation -->
-<nav class="navbar navbar-expand-lg" style="background-color: #000;">
+<nav class="navbar navbar-expand-lg" style="background-color: #202020;">
     <div class="container">
         <!-- Logo -->
         <a href="{{ route('umum.index') }}" class="navbar-brand">
@@ -7,7 +7,7 @@
         </a>
         <!-- Toggler -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon" style="color: #ffc107;"></span>
+            <span class="navbar-toggler-icon" style="color: #d9c24d;"></span>
         </button>
         <!-- Navigation Links -->
         <div class="collapse navbar-collapse" id="navbarNav">
