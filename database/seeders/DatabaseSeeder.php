@@ -16,8 +16,8 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
 
         User::factory()->create([
-            'name' => 'laravelbr',
-            'email' => 'laravelbr@gmail.com',
+            'name' => 'Admin',
+            'email' => 'Adminmbk@gmail.com',
             'password' => '123',
         ]);
 

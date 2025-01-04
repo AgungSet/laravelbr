@@ -22,25 +22,41 @@ class Produknostok extends Seeder
 
         $produkData = [
             'Batik tulis variasi cap' => [
-                'tari kretek',
-                'tembakau cengkeh',
-                'gading patiayam',
                 'taburan cengkeh',
-                'parijotho pakis aji',
-                'tembakau parijotho',
-                'taburan tembakau',
-                'rumah kapal Menara',
                 'gerbang k3',
-                'pakis haji',
                 'parijotho rejenu',
-                'air tiga rasa',
-                'kembang kupu',
-                'ceplokan beras tumpah',
-                'cerita rakyat bulusan',
                 'diorama kretek',
+                'rumah kapal Menara',
+                'ceplokan beras tumpah',
+                'pakis haji',
+                'tembakau cengkeh',
+                'air tiga rasa',
+                'parijotho pakis aji',
+                'taburan tembakau',
+                'kembang kupu',
+                'tembakau parijotho',
+                'cerita rakyat bulusan',
+                'gading patiayam',
+                'tari kretek'
             ],
-            'Batik Cap Satu Warna' => ['cengkeh', 'Gerbang K3', 'diorama kretek', 'tembakau parijotho', 'tembakau cengkeh', 'buket parijotho'],
-            'Batik Cap Variasi Nitik' => ['Buketan Parijotho', 'Buket Parijotho', 'Buket cengkeh', 'Gerbang K3', 'Gading Patiayam', 'Buket Kupu cengkeh'],
+            'Batik Cap Satu Warna' =>
+            [
+                'tembakau cengkeh',
+                'buket parijotho',
+                'Gerbang K3',
+                'diorama kretek',
+                'tembakau parijotho',
+                'cengkeh'
+            ],
+            'Batik Cap Variasi Nitik' =>
+            [
+                'Gerbang K3',
+                'Buket Kupu cengkeh',
+                'Buket Parijotho',
+                'Gading Patiayam',
+                'Buketan Parijotho',
+                'Buket cengkeh'
+            ],
         ];
 
         $categoryIds = DB::table('kategoris')->pluck('id', 'nama_kategori')->toArray();
