@@ -10,7 +10,7 @@
             </p>
         @else
             {{-- Form untuk Produk Biasa --}}
-            <h3>Produk Biasa</h3>
+            <h3>Produk</h3>
             @if ($keranjangproduks->isNotEmpty())
                 <div class="table-responsive">
                     <table class="table table-bordered text-center">
@@ -70,9 +70,9 @@
                     <div class="text-end">
                         <form action="{{ route('keranjangproduk.checkout') }}" method="POST">
                             @csrf
-                            <label for="catatan_transaksi">Catatan untuk Produk Biasa</label>
+                            <label for="catatan_transaksi">Catatan untuk Produk </label>
                             <textarea name="catatan_transaksi" class="form-control mb-2" placeholder="Contoh catatan"></textarea>
-                            <button type="submit" class="btn btn-primary">Checkout Produk Biasa</button>
+                            <button type="submit" class="btn btn-primary">Checkout Produk</button>
                         </form>
                     </div>
                 </div>
@@ -144,12 +144,12 @@
                             @csrf
                             <label for="catatan_pesanan">Catatan Pesanan</label>
                             <textarea name="catatan_pesanan" class="form-control mb-2" placeholder="Contoh catatan"></textarea>
-                            <button type="submit" class="btn btn-warning">Checkout Produk No Stok</button>
+                            <button type="submit" class="btn btn-primary">Checkout Pesanan</button>
                         </form>
+                        < </div>
                     </div>
-                </div>
-            @else
-                <p class="text-muted">Tidak ada produk no stok di keranjang Anda.</p>
+                @else
+                    <p class="text-muted">Tidak ada produk no stok di keranjang Anda.</p>
             @endif
         @endif
     </div>
