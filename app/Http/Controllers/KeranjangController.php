@@ -33,6 +33,7 @@ class KeranjangController extends Controller
             return to_route('umum.login');
         }
         $id_member = Auth::guard('member')->id();
+        $id_kategori = Produk::find($produks)->id_kategori;
         // jika sudah ada maka menambah jika belum maka membuat
         if (Keranjang::where('id_produk', $produks)->where('id_member', $id_member)->exists()) {
             Keranjang::where('id_produk', $produks)->where('id_member', $id_member)->update([
@@ -46,6 +47,7 @@ class KeranjangController extends Controller
             ]);
         }
         // Redirect ke halaman lain setelah aksi
+        return to_route('umum.produk', ['kategori' => $id_kategori]);
         return to_route('umum.produk');
     }
     public function produknostokinput($produknostoks)
@@ -54,6 +56,7 @@ class KeranjangController extends Controller
         if (Auth::guard('member')->id() == null) {
             return to_route('umum.login');
         }
+        $id_kategori = Produk::find($produknostoks)->id_kategori;
         $id_member = Auth::guard('member')->id();
         // jika sudah ada maka menambah jika belum maka membuat
         if (Keranjang::where('id_produknostok', $produknostoks)->where('id_member', $id_member)->exists()) {
@@ -68,6 +71,7 @@ class KeranjangController extends Controller
             ]);
         }
         // Redirect ke halaman lain setelah aksi
+        return to_route('umum.produknostok', ['kategori' => $id_kategori]);
         return to_route('umum.produknostok');
     }
 }
