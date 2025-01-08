@@ -99,12 +99,6 @@
         <a href="{{ route('umum.login') }}" class="login-link">Sudah punya akun? Login</a>
     </div>
 </body>
-@extends('umum.layout.app')
-@section('content')
-    <div>
-
-    </div>
-@endsection
 
 
 </html>
