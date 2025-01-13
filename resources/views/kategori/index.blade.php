@@ -19,9 +19,7 @@
                                 <th class="bg-gray-50 px-6 py-3 text-left">
                                     <span class="text-xs font-medium uppercase leading-4 tracking-wider text-gray-500">Nama kategori</span>
                                 </th>
-                                <th class="bg-gray-50 px-6 py-3 text-left">
-                                    <span class="text-xs font-medium uppercase leading-4 tracking-wider text-gray-500">Di Buat</span>
-                                </th>
+
                                 <th class="bg-gray-50 px-6 py-3 text-left">
                                     <span class="text-xs font-medium uppercase leading-4 tracking-wider text-gray-500">Deskripsi</span>
                                 </th>
@@ -36,9 +34,6 @@
                                 <tr class="bg-white">
                                     <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
                                         {{ $kategori->nama_kategori }}
-                                    </td>
-                                    <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
-                                        {{ date('d M Y', strtotime($kategori->created_at)) }}
                                     </td>
                                     <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
                                         {{ $kategori->deskripsi }}
