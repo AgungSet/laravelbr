@@ -11,6 +11,7 @@ class pesanan extends Model
 
     // Tentukan nama tabel jika tidak mengikuti konvensi
     protected $table = 'pesanans';
+    protected $keyType = 'string';
 
     // Kolom yang diizinkan untuk diisi (fillable)
     protected $guarded = [];

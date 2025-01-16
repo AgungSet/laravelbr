@@ -9,6 +9,8 @@ class produknostok extends Model
 {
     use HasFactory;
     protected $guarded = [];
+    protected $keyType = 'string';
+
     public function produknostok()
     {
         return $this->belongsTo(produknostok::class, 'id'); //ONE

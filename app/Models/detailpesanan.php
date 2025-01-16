@@ -9,6 +9,7 @@ class detailpesanan extends Model
 {
     use HasFactory;
     protected $table = 'detail_pesanans';
+    protected $keyType = 'string';
 
     protected $guarded = [];
     // Relasi ke tabel produk

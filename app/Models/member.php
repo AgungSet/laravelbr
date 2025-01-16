@@ -10,6 +10,7 @@ class member extends Authenticatable
 {
     use HasFactory;
     protected $guarded = [];
+    protected $keyType = 'string';
 
     public function produk()
     {
