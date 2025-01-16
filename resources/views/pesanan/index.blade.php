@@ -15,6 +15,9 @@
                         <thead>
                             <tr>
                                 <th class="bg-gray-50 px-6 py-3 text-left">
+                                    <span class="text-xs font-medium uppercase leading-4 tracking-wider text-gray-500">ID</span>
+                                </th>
+                                <th class="bg-gray-50 px-6 py-3 text-left">
                                     <span class="text-xs font-medium uppercase leading-4 tracking-wider text-gray-500">Di Buat</span>
                                 </th>
                                 <th class="bg-gray-50 px-6 py-3 text-left">
@@ -31,6 +34,9 @@
                         <tbody class="bg-white divide-y divide-gray-200 divide-solid">
                             @foreach ($pesanans as $pesanan)
                                 <tr class="bg-white">
+                                    <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
+                                        {{ $pesanan->id }}
+                                    </td>
                                     <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
                                         {{ date('d M Y', strtotime($pesanan->created_at)) }}
                                     </td>

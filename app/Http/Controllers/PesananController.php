@@ -41,6 +41,7 @@ class PesananController extends Controller
 
         ]);
         pesanan::create([
+            'id' => $this->generateCustomId('PES', pesanan::class),
             'id_produknostok' => $request->id_produknostok,
             'nama_customer' => $request->nama_customer,
             'harga' => $request->harga,

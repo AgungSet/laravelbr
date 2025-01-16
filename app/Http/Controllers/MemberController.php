@@ -40,6 +40,7 @@ class MemberController extends Controller
 
         ]);
         member::create([
+            'id' => $this->generateCustomId('MEM', member::class),
             'nama_member' => $request->nama_member,
             'alamat' => $request->alamat,
             'no_hp' => $request->no_hp,

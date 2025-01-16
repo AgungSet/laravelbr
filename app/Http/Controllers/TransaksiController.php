@@ -41,6 +41,7 @@ class TransaksiController extends Controller
 
         ]);
         transaksi::create([
+            'id' => $this->generateCustomId('TRN', transaksi::class),
             'id_produk' => $request->id_produk,
             'nama_customer' => $request->nama_customer,
             'harga' => $request->harga,

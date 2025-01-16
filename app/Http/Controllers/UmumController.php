@@ -106,6 +106,7 @@ class UmumController extends Controller
         $totalHarga = $keranjangs->sum(fn($item) => $item->produk->harga * $item->jumlah);
 
         $transaksi = Transaksi::create([
+            'id' => $this->generateCustomId('TRN', transaksi::class),
             'id_member' => Auth::guard('member')->id(),
             'catatan_transaksi' => $request->input('catatan_transaksi', null),
             'tanggal' => now(),
@@ -123,6 +124,7 @@ class UmumController extends Controller
             $produk->decrement('stok', $keranjang->jumlah);
 
             DetailTransaksi::create([
+                'id' => $this->generateCustomId('DTR', DetailTransaksi::class),
                 'id_transaksi' => $transaksi->id,
                 'id_produk' => $produk->id,
                 'total_produk' => $keranjang->jumlah,
@@ -172,6 +174,7 @@ class UmumController extends Controller
         $totalHarga = $keranjangs->sum(fn($item) => $item->produknostok->harga * $item->jumlah);
 
         $pesanan = pesanan::create([
+            'id' => $this->generateCustomId('PES', pesanan::class),
             'id_member' => Auth::guard('member')->id(),
             'catatan_pesanan' => $request->input('catatan_transaksi', null),
             'tanggal' => now(),
@@ -184,6 +187,7 @@ class UmumController extends Controller
             $produk = $keranjang->produknostok;
 
             detailpesanan::create([
+                'id' => $this->generateCustomId('DPS', detailpesanan::class),
                 'id_pesanan' => $pesanan->id,
                 'id_produknostok' => $produk->id,
                 'total_produk' => $keranjang->jumlah,

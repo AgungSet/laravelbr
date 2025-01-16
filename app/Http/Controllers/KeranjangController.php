@@ -41,6 +41,7 @@ class KeranjangController extends Controller
             ]);
         } else {
             Keranjang::create([
+                'id' => $this->generateCustomId('KRN', keranjang::class),
                 'id_produk' => $produks,
                 'id_member' => $id_member,
                 'jumlah' => 1
@@ -65,6 +66,7 @@ class KeranjangController extends Controller
             ]);
         } else {
             Keranjang::create([
+                'id' => $this->generateCustomId('KRN', keranjang::class),
                 'id_produknostok' => $produknostoks,
                 'id_member' => $id_member,
                 'jumlah' => 1

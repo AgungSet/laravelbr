@@ -29,6 +29,7 @@ class LoginmemberController extends Controller
 
         // Membuat user baru dengan memasukkan data yang telah divalidasi
         Member::create([
+            'id' => $this->generateCustomId('MEM', Member::class),
             'email' => $request->email,
             'nama_customer' => $request->nama_customer,
             'username' => $request->username,
