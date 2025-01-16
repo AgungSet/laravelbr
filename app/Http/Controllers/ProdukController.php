@@ -11,15 +11,16 @@ class ProdukController extends Controller
 {
     public function ajax()
     {
-        $produks = produk::all();
+        $produks = Produk::all();
         return response()->json($produks);
     }
 
     public function index(): View
     {
-        $produks = produk::orderByDesc('created_at')->paginate(10);
+        $produks = Produk::orderByDesc('created_at')->paginate(10);
 
-        return view('produk.index', compact('produks'))->with('i', (request()->input('page', 1) - 1) * 10);
+        return view('produk.index', compact('produks'))
+            ->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     public function create(): View
@@ -36,7 +37,7 @@ class ProdukController extends Controller
             'harga' => 'required',
             'stok' => 'required',
             'id_kategori' => 'required',
-            'foto' => 'nullable|file', // Foto tidak lagi required, boleh kosong
+            'foto' => 'nullable|file',
             'deskripsi' => 'required',
         ]);
 
@@ -45,29 +46,30 @@ class ProdukController extends Controller
         if ($request->hasFile('foto')) {
             $file = $request->file('foto');
             $filename = time() . '_' . $file->getClientOriginalName();
-            $file->move(public_path('uploads'), $filename); // Menyimpan file ke folder 'uploads'
+            $file->move(public_path('uploads'), $filename);
         }
 
-        // Menyimpan data ke database
-        produk::create([
+        // Menyimpan data ke database dengan ID unik
+        Produk::create([
+            'id' => $this->generateCustomId('PRD', Produk::class),
             'nama_produk' => $request->nama_produk,
             'harga' => $request->harga,
             'stok' => $request->stok,
             'id_kategori' => $request->id_kategori,
-            'foto' => $filename, // Tetap null jika tidak ada file diunggah
+            'foto' => $filename,
             'deskripsi' => $request->deskripsi,
         ]);
 
         return redirect()->route('produk.index')->with('success', 'Produk created successfully.');
     }
 
-    public function edit(produk $produk): View
+    public function edit(Produk $produk): View
     {
         $kategoris = Kategori::all();
         return view('produk.edit', compact('produk', 'kategoris'));
     }
 
-    public function update(Request $request, produk $produk)
+    public function update(Request $request, Produk $produk)
     {
         $request->validate([
             'nama_produk' => 'required',
@@ -93,14 +95,22 @@ class ProdukController extends Controller
             'stok' => $request->stok,
             'id_kategori' => $request->id_kategori,
             'foto' => $filename,
-            'deskripsi' => $request->deskripsi
+            'deskripsi' => $request->deskripsi,
         ]);
-        return redirect()->route('produk.index')->with('success', 'produk update successfully.');
+
+        return redirect()->route('produk.index')->with('success', 'Produk updated successfully.');
     }
 
-    public function destroy(produk $produk)
+    public function destroy(Produk $produk)
     {
         $produk->delete();
         return to_route('produk.index');
+    }
+
+    private function generateCustomId($prefix, $model)
+    {
+        $latestId = $model::max('id');
+        $number = $latestId ? intval(substr($latestId, strlen($prefix))) + 1 : 1;
+        return $prefix . str_pad($number, 7, '0', STR_PAD_LEFT);
     }
 }

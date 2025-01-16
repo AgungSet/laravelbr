@@ -98,15 +98,22 @@ class ProduknostokController extends Controller
         $produknostok->delete();
         return to_route('produknostok.index')->with('success', 'Produknostok deleted successfully.');
     }
-}
-
-class ProductoStockController extends Controller
-{
-    public function index()
+    private function generateCustomId($prefix, $model)
     {
-        // Assuming you have a 'stock' column to determine no-stock products
-        $produknostoks = produknostok::where('stock', 0)->count(); // Adjust the condition as needed
-
-        return view('produknostok.index', compact('produknostoks'));
+        $latestId = $model::max('id');
+        $number = $latestId ? intval(substr($latestId, strlen($prefix))) + 1 : 1;
+        return $prefix . str_pad($number, 7, '0', STR_PAD_LEFT);
     }
 }
+
+// class ProductoStockController extends Controller
+// {
+//     public function index()
+//     {
+//         // Assuming you have a 'stock' column to determine no-stock products
+//         $produknostoks = produknostok::where('stock', 0)->count(); // Adjust the condition as needed
+
+//         return view('produknostok.index', compact('produknostoks'));
+//     }
+
+// }

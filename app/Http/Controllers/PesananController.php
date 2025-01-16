@@ -96,4 +96,10 @@ class PesananController extends Controller
         $pesanan->delete();
         return to_route('pesanan.index');
     }
+    private function generateCustomId($prefix, $model)
+    {
+        $latestId = $model::max('id');
+        $number = $latestId ? intval(substr($latestId, strlen($prefix))) + 1 : 1;
+        return $prefix . str_pad($number, 7, '0', STR_PAD_LEFT);
+    }
 }

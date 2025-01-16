@@ -124,4 +124,10 @@ class LoginmemberController extends Controller
         Auth::guard('member')->logout();
         return redirect()->route('umum.produk');
     }
+    private function generateCustomId($prefix, $model)
+    {
+        $latestId = $model::max('id');
+        $number = $latestId ? intval(substr($latestId, strlen($prefix))) + 1 : 1;
+        return $prefix . str_pad($number, 7, '0', STR_PAD_LEFT);
+    }
 }
