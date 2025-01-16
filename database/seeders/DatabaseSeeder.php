@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -16,16 +15,17 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
 
         User::factory()->create([
+            'id' => generateCustomId('USR', User::class),
             'name' => 'Admin',
             'email' => 'Adminmbk@gmail.com',
-            'password' => '123',
+            'password' => bcrypt('123'), // Pastikan password dienkripsi
         ]);
 
         $this->call([
-            Kategori::class,
-            Produk::class,
-            member::class,
-            produknostok::class,
+            // Kategori::class,
+            // Produk::class,
+            // member::class,
+            // produknostok::class,
         ]);
     }
 }
