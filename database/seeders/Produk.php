@@ -64,6 +64,7 @@ class Produk extends Seeder
 
             foreach ($products as $product) {
                 DB::table('produks')->insert([
+                    'id' => $this->generateProductId(),
                     'nama_produk' => $product,
                     'harga' => $harga,
                     'stok' => 20,
@@ -75,5 +76,16 @@ class Produk extends Seeder
                 ]);
             }
         }
+    }
+    private function generateProductId(): string
+    {
+        $lastProduct = DB::table('produks')->orderBy('id', 'desc')->first();
+        if ($lastProduct) {
+            $lastId = (int)substr($lastProduct->id, 3);
+            $newId = $lastId + 1;
+        } else {
+            $newId = 1;
+        }
+        return 'PRD' . str_pad($newId, 7, '0', STR_PAD_LEFT);
     }
 }

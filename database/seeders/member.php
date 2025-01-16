@@ -6,6 +6,7 @@ use App\Models\member as ModelsMember;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\DB;
 
 class member extends Seeder
 {
@@ -197,6 +198,21 @@ class member extends Seeder
             ],
         ];
 
+        // Menentukan ID untuk setiap member dengan format MEM0000001, MEM0000002, dll
+        $lastMember = DB::table('members')->orderBy('id', 'desc')->first();
+        $lastId = $lastMember ? (int)substr($lastMember->id, 3) : 0;
+
+        // Menentukan ID untuk setiap member, pastikan tidak ada duplikasi
+        foreach ($members as &$member) {
+            do {
+                $lastId++;
+                $newId = 'MEM' . str_pad($lastId, 7, '0', STR_PAD_LEFT);
+            } while (DB::table('members')->where('id', $newId)->exists());  // Pastikan ID belum ada di database
+
+            $member['id'] = $newId;
+        }
+
+        // Menyimpan data member dengan ID yang sudah di-generate
         foreach ($members as $member) {
             ModelsMember::create($member);
         }

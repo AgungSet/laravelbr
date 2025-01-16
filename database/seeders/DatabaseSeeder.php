@@ -22,10 +22,10 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $this->call([
-            // Kategori::class,
-            // Produk::class,
-            // member::class,
-            // produknostok::class,
+            Kategori::class,
+            Produk::class,
+            member::class,
+            produknostok::class,
         ]);
     }
 }

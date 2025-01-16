@@ -52,7 +52,16 @@ class Kategori extends Seeder
                 'deskripsi' => 'Syal berbahan cotton bamboo dengan motif batik.',
             ],
         ];
+        // Menentukan ID untuk setiap kategori dengan format KAT0000001, KAT0000002, dll
+        $lastCategory = DB::table('kategoris')->orderBy('id', 'desc')->first();
+        $lastId = $lastCategory ? (int)substr($lastCategory->id, 3) : 0;
 
-        DB::table('kategoris')->insert($categories);
+        $categoriesWithId = array_map(function ($category) use (&$lastId) {
+            $lastId++;
+            $category['id'] = 'KAT' . str_pad($lastId, 7, '0', STR_PAD_LEFT);  // Membuat ID dengan awalan KAT dan angka 7 digit
+            return $category;
+        }, $categories);
+
+        DB::table('kategoris')->insert($categoriesWithId);
     }
 }
