@@ -105,14 +105,17 @@ class UmumController extends Controller
         }
         $totalHarga = $keranjangs->sum(fn($item) => $item->produk->harga * $item->jumlah);
 
-        $transaksi = Transaksi::create([
-            'id' => $this->generateCustomId('TRN', transaksi::class),
+        $customId = $this->generateCustomId('TRN', transaksi::class);
+        // dd($customId); // Periksa nilai yang dikembalikan
+        transaksi::create([
+            'id' => $customId,
             'id_member' => Auth::guard('member')->id(),
             'catatan_transaksi' => $request->input('catatan_transaksi', null),
             'tanggal' => now(),
             'total_harga_transaksi' => $totalHarga,
             'status_transaksi' => 'Belum Dibayar',
         ]);
+        $savedTransaksi = transaksi::find($customId);
         $detailPesanan = "";
         foreach ($keranjangs as $keranjang) {
             $produk = $keranjang->produk;
@@ -125,7 +128,7 @@ class UmumController extends Controller
 
             DetailTransaksi::create([
                 'id' => $this->generateCustomId('DTR', DetailTransaksi::class),
-                'id_transaksi' => $transaksi->id,
+                'id_transaksi' => $savedTransaksi->id,
                 'id_produk' => $produk->id,
                 'total_produk' => $keranjang->jumlah,
                 'subtotal_harga_produk' => $produk->harga * $keranjang->jumlah,
@@ -173,8 +176,9 @@ class UmumController extends Controller
 
         $totalHarga = $keranjangs->sum(fn($item) => $item->produknostok->harga * $item->jumlah);
 
+        $customId = $this->generateCustomId('PES', pesanan::class);
         $pesanan = pesanan::create([
-            'id' => $this->generateCustomId('PES', pesanan::class),
+            'id' => $customId,
             'id_member' => Auth::guard('member')->id(),
             'catatan_pesanan' => $request->input('catatan_transaksi', null),
             'tanggal' => now(),
@@ -182,13 +186,14 @@ class UmumController extends Controller
             'status_pesanan' => 'Belum Dibayar',
         ]);
 
+        $savedPesanan = pesanan::find($customId);
         $detailPesanan = "";
         foreach ($keranjangs as $keranjang) {
             $produk = $keranjang->produknostok;
 
             detailpesanan::create([
                 'id' => $this->generateCustomId('DPS', detailpesanan::class),
-                'id_pesanan' => $pesanan->id,
+                'id_pesanan' => $savedPesanan->id,
                 'id_produknostok' => $produk->id,
                 'total_produk' => $keranjang->jumlah,
                 'subtotal_harga_produk' => $produk->harga * $keranjang->jumlah,
