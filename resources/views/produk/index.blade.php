@@ -17,6 +17,9 @@
                         <thead>
                             <tr>
                                 <th class="bg-gray-50 px-6 py-3 text-left">
+                                    <span class="text-xs font-medium uppercase leading-4 tracking-wider text-gray-500">ID produk</span>
+                                </th>
+                                <th class="bg-gray-50 px-6 py-3 text-left">
                                     <span class="text-xs font-medium uppercase leading-4 tracking-wider text-gray-500">Nama produk</span>
                                 </th>
                                 <th class="bg-gray-50 px-6 py-3 text-left">
@@ -43,9 +46,11 @@
                             @foreach ($produks as $index => $produk)
                                 <tr class="bg-white">
                                     <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
+                                        {{ $produk->id }}
+                                    </td>
+                                    <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
                                         {{ $produk->nama_produk }}
                                     </td>
-
                                     <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
                                         {{ $produk->harga }}
                                     </td>

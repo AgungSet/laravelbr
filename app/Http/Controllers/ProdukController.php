@@ -51,7 +51,7 @@ class ProdukController extends Controller
 
         // Menyimpan data ke database dengan ID unik
         Produk::create([
-            'id' => $this->generateCustomId('PRD', Produk::class),
+            'id' => $this->generateCustomId('PRD', Produk::class), //custom id
             'nama_produk' => $request->nama_produk,
             'harga' => $request->harga,
             'stok' => $request->stok,
