@@ -48,6 +48,7 @@ class ProduknostokController extends Controller
         }
 
         produknostok::create([
+            'id' => $this->generateCustomId('PRDN', produknostok::class),
             'nama_produknostok' => $request->nama_produknostok,
             'harga' => $request->harga,
             'id_kategori' => $request->id_kategori,
@@ -102,7 +103,7 @@ class ProduknostokController extends Controller
     {
         $latestId = $model::max('id');
         $number = $latestId ? intval(substr($latestId, strlen($prefix))) + 1 : 1;
-        return $prefix . str_pad($number, 7, '0', STR_PAD_LEFT);
+        return $prefix . str_pad($number, 6, '0', STR_PAD_LEFT);
     }
 }
 
