@@ -33,6 +33,7 @@ class KategoriController extends Controller
             'deskripsi' => 'required'
         ]);
         Kategori::create([
+            'id' => $this->generateCustomId('KAT', Kategori::class),
             'nama_kategori' => $request->nama_kategori,
             'deskripsi' => $request->deskripsi,
         ]);
