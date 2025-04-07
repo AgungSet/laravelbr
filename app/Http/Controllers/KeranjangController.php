@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Produk;
 use App\Models\keranjang;
 use App\Models\Pesanan;
+use App\Models\produknostok;
 use App\Models\umum;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -57,7 +58,7 @@ class KeranjangController extends Controller
         if (Auth::guard('member')->id() == null) {
             return to_route('umum.login');
         }
-        $id_kategori = Produk::find($produknostoks)->id_kategori;
+        $id_kategori = produknostok::find($produknostoks)->id_kategori;
         $id_member = Auth::guard('member')->id();
         // jika sudah ada maka menambah jika belum maka membuat
         if (Keranjang::where('id_produknostok', $produknostoks)->where('id_member', $id_member)->exists()) {
