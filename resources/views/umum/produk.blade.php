@@ -62,39 +62,40 @@
         <div class="row">
             @forelse ($produks as $produk)
                 <div class="col-md-3 mb-4">
-                    <div class="card product-card">
+                    <div class="card product-card" style="cursor: pointer;" onclick="window.location='{{ route('umum.produk.detail', $produk->id) }}'">
+
                         <img src="{{ asset($produk->foto) }}" class="card-img-top product-img" alt="{{ $produk->nama_produk }}" />
+
                         <div class="card-body">
-                            <a href="#" class="h5 card-title text-dark" style="text-decoration: none;">{{ $produk->nama_produk }}</a>
+                            <h5 class="card-title text-dark">{{ $produk->nama_produk }}</h5>
                             <p class="card-text text-muted">
                                 {{ Str::limit(strip_tags($produk->deskripsi), 80) }}
                             </p>
-                            <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
                                 <span class="fw-bold text-warning">Rp {{ number_format($produk->harga, 0, ',', '.') }}</span>
-                                <span class="text-muted">Stok Tersedia: {{ $produk->stok }}</span>
-                                <form action="{{ route('produk.input', $produk->id) }}" method="POST">
+                                <span class="text-muted">Stok: {{ $produk->stok }}</span>
+
+                                {{-- Tombol Keranjang --}}
+                                <form action="{{ route('produk.input', $produk->id) }}" method="POST" class="d-inline" onclick="event.stopPropagation()">
                                     @csrf
-                                    {{-- Keranjang --}}
-                                    <button type="submit" class="btn btn-sm btn-warning">
+                                    <button type="submit" class="btn btn-sm btn-warning me-2">
                                         <i class="bi bi-cart-plus"></i>
                                     </button>
                                 </form>
-                                {{-- Detail --}}
-                                <a href="{{ route('umum.produk.detail', $produk->id) }}" class="btn btn-sm btn-primary">
-                                    <i class="bi bi-info-circle"></i> Detail
+
+                                {{-- Tombol Detail --}}
+                                <a href="{{ route('umum.produk.detail', $produk->id) }}" class="btn btn-sm btn-warning d-inline-block" onclick="event.stopPropagation()">
+                                    <i class="bi bi-info-circle"></i>
                                 </a>
                             </div>
                         </div>
                     </div>
                 </div>
             @empty
-                <div class="col-12">
-                    <div class="alert alert-warning text-center" role="alert">
-                        Tidak ada produk tersedia untuk kategori ini.
-                    </div>
-                </div>
+                <p class="text-center">Produk tidak ditemukan.</p>
             @endforelse
         </div>
+
 
         <!-- Paginasi -->
         <div class="pagination">

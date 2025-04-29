@@ -1,44 +1,46 @@
 @extends('umum.layouts.app')
 @section('content')
     <div class="container mt-5">
-        <div class="row g-4">
-            <!-- Bagian Gambar Produk -->
+        <div class="row g-4 align-items-start">
+            <!-- Gambar Produk -->
             <div class="col-md-6">
-                <div class="card shadow-sm">
-                    <img src="{{ asset($produk->foto) }}" class="card-img-top img-fluid rounded" alt="{{ $produk->nama_produk }}">
+                <div class="border rounded shadow-sm p-3 bg-white">
+                    <img src="{{ asset($produk->foto) }}" alt="{{ $produk->nama_produk }}" class="img-fluid w-100 rounded">
                 </div>
             </div>
 
-            <!-- Bagian Detail Produk -->
+            <!-- Informasi Produk -->
             <div class="col-md-6">
-                <div class="card shadow-sm">
-                    <div class="card-header bg-primary text-white">
-                        <h4 class="mb-0 text-center font-weight-bold">{{ $produk->nama_produk }}</h4>
-                    </div>
-                    <div class="card-body">
-                        <p class="card-text mb-3">
-                            <strong>Deskripsi:</strong> {{ $produk->deskripsi }}
-                        </p>
-                        <p class="card-text mb-3">
-                            <strong>Harga:</strong> <span class="text-success">Rp{{ number_format($produk->harga, 0, ',', '.') }}</span>
-                        </p>
-                        <p class="card-text mb-4">
-                            <strong>Stok:</strong> <span class="badge bg-secondary">{{ $produk->stok }}</span>
-                        </p>
+                <div class="border rounded shadow-sm p-4 bg-white text-black">
+                    <!-- Nama Produk -->
+                    <h2 class="fw-bold mb-4" style="color: #000;">{{ $produk->nama_produk }}</h2>
 
-                        <!-- Tombol Tambah ke Keranjang -->
-                        <form action="{{ route('produk.input', $produk->id) }}" method="POST" class="d-inline-block">
-                            @csrf
-                            <button type="submit" class="btn btn-warning btn-lg w-100 mb-2">
-                                <i class="bi bi-cart-plus"></i> Tambah ke Keranjang
-                            </button>
-                        </form>
+                    <!-- Harga -->
+                    <h3 class="fw-bold mb-4" style="color: #000;">Rp{{ number_format($produk->harga, 0, ',', '.') }}</h3>
 
-                        <!-- Tombol Kembali -->
-                        <a href="{{ route('umum.produk') }}" class="btn btn-secondary btn-lg w-100">
-                            Kembali
-                        </a>
+                    <!-- Stok -->
+                    <p class="mb-4">
+                        <span class="fw-semibold" style="color: #000;">Stok Tersedia:</span>
+                        <span class="badge bg-success">{{ $produk->stok }}</span>
+                    </p>
+
+                    <!-- Deskripsi -->
+                    <div class="mb-5">
+                        <h6 class="fw-semibold mb-2" style="color: #000;">Deskripsi Produk</h6>
+                        <p class="text-black" style="text-align: justify;">{!! nl2br(e($produk->deskripsi)) !!}</p>
                     </div>
+
+                    <!-- Tombol Aksi -->
+                    <form action="{{ route('produk.input', $produk->id) }}" method="POST" class="mb-3">
+                        @csrf
+                        <button type="submit" class="btn btn-warning w-100 py-2 fs-5">
+                            <i class="bi bi-cart-plus me-2"></i> Tambah ke Keranjang
+                        </button>
+                    </form>
+
+                    <a href="{{ route('umum.produk') }}" class="btn btn-outline-secondary w-100 py-2 fs-6">
+                        ← Kembali ke Produk
+                    </a>
                 </div>
             </div>
         </div>

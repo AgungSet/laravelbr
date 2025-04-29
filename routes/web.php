@@ -27,6 +27,7 @@ Route::post('/umum/logout', [LoginmemberController::class, 'logout'])->name('umu
 Route::get('/', [UmumController::class, 'index'])->name('umum.index');
 Route::get('/umum/produk', [UmumController::class, 'produk'])->name('umum.produk');
 Route::get('/umum/produk/{id}', [UmumController::class, 'detailproduk'])->name('umum.produk.detail');
+Route::get('/umum/produknostok/{id}', [UmumController::class, 'detailproduknostok'])->name('umum.produknostok.detail');
 Route::get('/umum/produknostok', [UmumController::class, 'produknostok'])->name('umum.produknostok');
 Route::get('/umum/kategori', [UmumController::class, 'kategori'])->name('umum.kategori');
 Route::get('/umum/transaksi', [UmumController::class, 'transaksi'])->name('umum.transaksi');

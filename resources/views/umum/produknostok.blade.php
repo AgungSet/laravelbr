@@ -62,26 +62,42 @@
         <div class="row">
             @forelse ($produknostoks as $produknostok)
                 <div class="col-md-3 mb-4">
-                    <div class="card product-card">
-                        <img src="{{ asset($produknostok->foto) }}" class="card-img-top product-img" alt="{{ $produknostok->nama_produknostok }}" />
+                    <div class="card product-card" style="cursor: pointer;" onclick="window.location='{{ route('umum.produknostok.detail', $produknostok->id) }}'">
+
+                        {{-- Gambar produk --}}
+                        <img src="{{ asset($produknostok->foto) }}" class="card-img-top product-img" alt="{{ $produknostok->nama_produknostok }}">
+
                         <div class="card-body">
-                            <a href="#" class="h5 card-title text-dark" style="text-decoration: none;">{{ $produknostok->nama_produknostok }}</a>
+                            {{-- Nama produk --}}
+                            <h5 class="card-title text-dark">{{ $produknostok->nama_produknostok }}</h5>
+
+                            {{-- Deskripsi produk --}}
                             <p class="card-text text-muted">
                                 {{ Str::limit(strip_tags($produknostok->deskripsi), 80) }}
                             </p>
-                            <div class="d-flex justify-content-between align-items-center">
+
+                            {{-- Harga dan stok --}}
+                            <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
                                 <span class="fw-bold text-warning">Rp {{ number_format($produknostok->harga, 0, ',', '.') }}</span>
-                                <span class="text-muted">Stok Tersedia: {{ $produknostok->stok }}</span>
-                                <form action="{{ route('produknostok.input', $produknostok->id) }}" method="POST">
+                                <span class="text-muted">Stok: {{ $produknostok->stok }}</span>
+
+                                {{-- Tombol keranjang --}}
+                                <form action="{{ route('produknostok.input', $produknostok->id) }}" method="POST" onclick="event.stopPropagation()">
                                     @csrf
                                     <button type="submit" class="btn btn-sm btn-warning">
                                         <i class="bi bi-cart-plus"></i>
                                     </button>
                                 </form>
+
+                                {{-- Tombol detail --}}
+                                <a href="{{ route('umum.produknostok.detail', $produknostok->id) }}" class="btn btn-sm btn-warning" onclick="event.stopPropagation()">
+                                    <i class="bi bi-info-circle"></i>
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
+
             @empty
                 <div class="col-12">
                     <div class="alert alert-warning text-center" role="alert">
