@@ -44,8 +44,8 @@ class UmumController extends Controller
             // Jika tidak ada kategori yang dipilih, ambil semua produk
             $produks = Produk::paginate(8);
         }
-
-        return view('umum.produk', compact('produks'));
+        $kategoris = Kategori::all();
+        return view('umum.produk', compact('produks', 'kategoris'));
     }
     public function produknostok()
     {
@@ -82,6 +82,15 @@ class UmumController extends Controller
 
         return view('keranjang.index', compact('keranjangproduks', 'keranjangproduknostoks'));
     }
+    public function detailproduk($id)
+    {
+        // Cari produk berdasarkan ID
+        $produk = Produk::findOrFail($id);
+
+        // Tampilkan view detail produk
+        return view('umum.detail_produk', compact('produk'));
+    }
+
     public function keranjangdestroy(keranjang $keranjang)
     {
         if ($keranjang->id_member != Auth::guard('member')->id()) {

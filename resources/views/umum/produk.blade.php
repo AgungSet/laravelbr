@@ -74,10 +74,15 @@
                                 <span class="text-muted">Stok Tersedia: {{ $produk->stok }}</span>
                                 <form action="{{ route('produk.input', $produk->id) }}" method="POST">
                                     @csrf
+                                    {{-- Keranjang --}}
                                     <button type="submit" class="btn btn-sm btn-warning">
                                         <i class="bi bi-cart-plus"></i>
                                     </button>
                                 </form>
+                                {{-- Detail --}}
+                                <a href="{{ route('umum.produk.detail', $produk->id) }}" class="btn btn-sm btn-primary">
+                                    <i class="bi bi-info-circle"></i> Detail
+                                </a>
                             </div>
                         </div>
                     </div>

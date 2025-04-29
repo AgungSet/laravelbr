@@ -7,11 +7,9 @@
                 <div class="card shadow">
                     <div class="card-header text-black text-center" style="background-color: #ffc107;">
                         <h4>Edit Akun</h4>
-
                     </div>
                     <div class="card-body">
                         <form action="{{ route('member.profile.update', $member) }}" method="POST" enctype="multipart/form-data">
-
                             @csrf
                             @method('PUT')
 
@@ -58,11 +56,12 @@
                                     Update Akun
                                 </button>
                             </div>
-
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+@endsection
+@section('script')
 @endsection

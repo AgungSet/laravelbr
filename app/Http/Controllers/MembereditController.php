@@ -17,35 +17,36 @@ class MembereditController extends Controller
 
     public function update(Request $request, Member $member)
     {
-        // dd($request);
         // Validasi input
         $request->validate([
             'email' => 'required|email',
             'nama_customer' => 'required|string|max:255',
             'username' => 'required|string|max:255',
-            'password' => 'nullable',
+            'password' => 'nullable|string|min:8',
             'alamat' => 'required|string',
             'no_hp' => 'required|string|max:15',
         ]);
 
-        // Update data
+        // Update data member
         $member->email = $request->email;
         $member->nama_customer = $request->nama_customer;
         $member->username = $request->username;
         $member->alamat = $request->alamat;
         $member->no_hp = $request->no_hp;
 
-        // Update password jika diisi
+        // Perbarui password hanya jika diisi
         if ($request->filled('password')) {
             $member->password = bcrypt($request->password);
         }
 
+        // Simpan data
         $member->save();
 
         // Redirect dengan pesan sukses
         return redirect()->route('member.profile.edit', $member->id)
-            ->with('success', 'Data member berhasil diperbarui.');
+            ->with('success', "Data member {$member->nama_customer} berhasil diperbarui.");
     }
+
     private function generateCustomId($prefix, $model)
     {
         $latestId = $model::max('id');
