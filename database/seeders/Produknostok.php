@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\produknostok as ProduknoStokmodel;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -81,9 +80,9 @@ class Produknostok extends Seeder
     }
     private function generateProductId(): string
     {
-        $lastProduct = DB::table('produknostoks')->orderBy('id', 'desc')->first();
-        if ($lastProduct) {
-            $lastId = (int)substr($lastProduct->id, 3);
+        $lastProducts = DB::table('produknostoks')->orderBy('id', 'desc')->first();
+        if ($lastProducts) {
+            $lastId = (int)substr($lastProducts->id, 4);
             $newId = $lastId + 1;
         } else {
             $newId = 1;
