@@ -160,15 +160,7 @@ class member extends Seeder
                 'no_hp' => '0812345693',
                 'instagram' => 'putragram',
             ],
-            [
-                'email' => 'ratna@gmail.com',
-                'nama_customer' => 'Ratna',
-                'username' => 'ratna',
-                'password' => bcrypt('ratna123'),
-                'alamat' => 'Bali',
-                'no_hp' => '0812345694',
-                'instagram' => 'ratnainsta',
-            ],
+
             [
                 'email' => 'susi@gmail.com',
                 'nama_customer' => 'Susi',
@@ -177,25 +169,7 @@ class member extends Seeder
                 'alamat' => 'Pontianak',
                 'no_hp' => '0812345695',
                 'instagram' => 'susigram',
-            ],
-            [
-                'email' => 'tomi@gmail.com',
-                'nama_customer' => 'Tomi',
-                'username' => 'tomi',
-                'password' => bcrypt('tomi123'),
-                'alamat' => 'Balikpapan',
-                'no_hp' => '0812345696',
-                'instagram' => 'tomigram',
-            ],
-            [
-                'email' => 'umar@gmail.com',
-                'nama_customer' => 'Umar',
-                'username' => 'umar',
-                'password' => bcrypt('umar123'),
-                'alamat' => 'Malang',
-                'no_hp' => '0812345697',
-                'instagram' => 'umargram',
-            ],
+            ]
         ];
 
         // Menentukan ID untuk setiap member dengan format MEM0000001, MEM0000002, dll
@@ -207,14 +181,15 @@ class member extends Seeder
             do {
                 $lastId++;
                 $newId = 'MEM' . str_pad($lastId, 7, '0', STR_PAD_LEFT);
-            } while (DB::table('members')->where('id', $newId)->exists());  // Pastikan ID belum ada di database
+            } while (DB::table('members')->where('id', $newId)->exists());
 
             $member['id'] = $newId;
+            ModelsMember::create($member);
         }
 
         // Menyimpan data member dengan ID yang sudah di-generate
-        foreach ($members as $member) {
-            ModelsMember::create($member);
-        }
+        // foreach ($member as $member) {
+        //     ModelsMember::create($member);
+        // }
     }
 }

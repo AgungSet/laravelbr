@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
             Kategori::class,
             Produk::class,
             member::class,
-            produknostok::class,
+            Produknostok::class,
         ]);
     }
 }
