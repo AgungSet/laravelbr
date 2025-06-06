@@ -9,7 +9,6 @@ use App\Http\Controllers\KeranjangController;
 use App\Http\Controllers\LoginmemberController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\MemberController;
-use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PesananController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UmumController;
@@ -22,8 +21,6 @@ Route::post('/umum/register', [LoginmemberController::class, 'register'])->name(
 
 Route::get('/umum/login', [LoginmemberController::class, 'showLoginForm'])->name('umum.login');
 Route::post('/umum/login', [LoginmemberController::class, 'login'])->name('umum.loginpost');
-Route::get('/umum', [UmumController::class, 'index'])->name('umum.index');
-
 
 Route::post('/umum/logout', [LoginmemberController::class, 'logout'])->name('umum.logout');
 // HALAMAN UMUM
@@ -49,7 +46,6 @@ Route::put('/keranjang/update/{id}', [UmumController::class, 'update'])->name('k
 Route::delete('/keranjang/{keranjang}', [UmumController::class, 'keranjangdestroy'])->name('keranjang.destroy');
 
 Route::post('/keranjang/checkoutproduk', [UmumController::class, 'checkoutproduk'])->name('keranjangproduk.checkout');
-Route::get('/', [OrderController::class, 'index']);
 Route::post('/keranjang/checkoutproduknostok', [UmumController::class, 'checkoutproduknostok'])->name('keranjangproduknostok.checkout');
 
 Route::post('/umum/produk/{produks}', [KeranjangController::class, 'input'])->name('produk.input');
