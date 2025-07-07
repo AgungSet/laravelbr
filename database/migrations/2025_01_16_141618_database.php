@@ -95,7 +95,9 @@ return new class extends Migration
             $table->text('catatan_transaksi')->nullable();
             $table->date('tanggal');
             $table->integer('total_harga_transaksi');
-            $table->string('status_transaksi');
+            $table->string('payment_status')->default('pending'); // Status pembayaran: pending, success, failed
+            $table->string('snap_token', 100)->nullable(); // Untuk menyimpan snap token dari Midtrans
+            $table->string('status_pesanan'); // midtrans
             $table->timestamps();
 
             $table->foreign('id_member')->references('id')->on('members')->onDelete('cascade');

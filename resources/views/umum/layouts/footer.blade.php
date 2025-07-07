@@ -1,3 +1,6 @@
+@php
+    $kategoris = \App\Models\Kategori::all();
+@endphp
 <footer class="bg-dark text-white mt-auto py-4">
     <div class="container">
         <div class="row">
