@@ -10,6 +10,7 @@ class Keranjang extends Model
     use HasFactory;
     protected $guarded = [];
     protected $keyType = 'string';
+    public $incrementing = false;
 
     /**
      * Relasi ke model Produk.

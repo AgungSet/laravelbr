@@ -10,6 +10,7 @@ class transaksi extends Model
     use HasFactory;
     protected $table = 'transaksis';
     protected $keyType = 'string';
+    public $incrementing = false;
 
     protected $guarded = [];
 
