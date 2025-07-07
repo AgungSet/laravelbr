@@ -9,6 +9,7 @@ use App\Http\Controllers\KeranjangController;
 use App\Http\Controllers\LoginmemberController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\MidtransController;
 use App\Http\Controllers\PesananController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UmumController;
@@ -51,6 +52,10 @@ Route::post('/keranjang/checkoutproduknostok', [UmumController::class, 'checkout
 Route::post('/umum/produk/{produks}', [KeranjangController::class, 'input'])->name('produk.input');
 Route::post('/umum/produknostok/{produknostoks}', [KeranjangController::class, 'produknostokinput'])->name('produknostok.input');
 
+// MIDTRANS
+Route::post('/midtrans/callback', [MidtransController::class, 'callback'])->name('midtrans.callback');
+
+Route::get('/transaksi/pay/{transaksi}', [UmumController::class, 'pay'])->name('transaksi.pay')->middleware('auth:member');
 
 // HALAMAN LOGIN
 Route::get('/home', function () {

@@ -26,8 +26,8 @@
                                 <td>Rp {{ number_format($transaksi->total_harga_transaksi, 0, ',', '.') }}</td>
                                 <td>
                                     <span class="badge
-                                        {{ $transaksi->status_transaksi == 'Belum Dibayar' ? 'bg-danger' : 'bg-success' }}">
-                                        {{ $transaksi->status_transaksi }}
+                                        {{ $transaksi->status_pesanan == 'Belum Dibayar' ? 'bg-danger' : 'bg-success' }}">
+                                        {{ $transaksi->status_pesanan }}
                                     </span>
                                 </td>
                                 <td>
@@ -64,13 +64,21 @@
                                 <td>{{ $pesanan->tanggal }}</td>
                                 <td>Rp {{ number_format($pesanan->total_harga_pesanan, 0, ',', '.') }}</td>
                                 <td>
-                                    <span class="badge
-                                        {{ $pesanan->status_pesanan == 'Belum Dibayar' ? 'bg-danger' : 'bg-success' }}">
-                                        {{ $pesanan->status_pesanan }}
-                                    </span>
+                                    {{-- Tampilkan status berdasarkan payment_status dari Midtrans --}}
+                                    @if ($transaksi->payment_status == 'success')
+                                        <span class="badge bg-success">Berhasil</span>
+                                    @elseif ($transaksi->payment_status == 'pending')
+                                        <span class="badge bg-warning">Menunggu Pembayaran</span>
+                                    @else
+                                        <span class="badge bg-danger">Gagal/Kadaluarsa</span>
+                                    @endif
                                 </td>
                                 <td>
-                                    <a href="{{ route('umum.detailpesanan', $pesanan->id) }}" class="btn btn-primary btn-sm">Lihat Detail</a>
+                                    <a href="{{ route('umum.detailtransaksi', $transaksi->id) }}" class="btn btn-info btn-sm">Detail</a>
+                                    {{-- Jika transaksi masih pending, tampilkan tombol bayar --}}
+                                    @if ($transaksi->payment_status == 'pending' && $transaksi->snap_token)
+                                        <a href="{{ route('transaksi.pay', $transaksi->id) }}" class="btn btn-success btn-sm">Bayar</a>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach
